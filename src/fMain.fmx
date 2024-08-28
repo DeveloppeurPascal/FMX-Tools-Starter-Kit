@@ -1,0 +1,4 @@
+inherited frmMain: TfrmMain
+  Caption = '__TFormAncestor1'
+  DesignerMasterStyle = 0
+end
