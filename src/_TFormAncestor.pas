@@ -60,6 +60,8 @@ type
   /// Should be used as your TForm ancestor.
   /// </summary>
   T__TFormAncestor = class(TForm)
+    procedure FormKeyDown(Sender: TObject; var Key: Word; var KeyChar: WideChar;
+      Shift: TShiftState);
   private
   protected
     procedure DoTranslateTexts(const Sender: TObject; const Msg: TMessage);
@@ -79,7 +81,8 @@ implementation
 
 uses
   uTranslate,
-  uConfig;
+  uConfig,
+  uConsts, uDMAboutBox;
 
 { T__TFormAncestor }
 
@@ -106,6 +109,16 @@ begin
 
   if assigned(Msg) and (Msg is TTranslateTextsMessage) then
     TranslateTexts((Msg as TTranslateTextsMessage).Language);
+end;
+
+procedure T__TFormAncestor.FormKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: WideChar; Shift: TShiftState);
+begin
+  if CShowAboutBoxWithF1 and (KeyChar = #0) and (Key = vkF1) then
+  begin
+    Key := 0;
+    TAboutBox.Current.ShowModal;
+  end;
 end;
 
 procedure T__TFormAncestor.TranslateTexts(const Language: string);

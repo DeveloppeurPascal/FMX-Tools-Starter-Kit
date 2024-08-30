@@ -105,6 +105,11 @@ const
 {$MESSAGE WARN 'Set your GUID, don''t use the default value !!!'}
   CProjectGUID = '{8346EB88-E9AB-4578-A416-DA1D904229D4}';
 
+  /// <summary>
+  ///   Show the About box dialog when F1 key is used
+  /// </summary>
+CShowAboutBoxWithF1 = true;
+
 {$IF Defined(RELEASE)}
 
 var
