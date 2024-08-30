@@ -1,0 +1,86 @@
+inherited frmMainAncestor: TfrmMainAncestor
+  Caption = '__TFormAncestor1'
+  DesignerMasterStyle = 0
+  object MainMenu1: TMainMenu
+    Left = 520
+    Top = 104
+    object mnuMacOS: TMenuItem
+      Text = 'mnuMacOS'
+    end
+    object mnuFile: TMenuItem
+      Text = 'mnuFile'
+      object mnuFileQuit: TMenuItem
+        Action = actQuit
+        Locked = True
+        ImageIndex = -1
+      end
+    end
+    object mnuProject: TMenuItem
+      Text = 'mnuProject'
+      object mnuProjectOptions: TMenuItem
+        Action = actProjectOptions
+        Locked = True
+        ImageIndex = -1
+      end
+    end
+    object mnuTools: TMenuItem
+      Text = 'mnuTools'
+      object mnuToolsOptions: TMenuItem
+        Action = actToolsOptions
+        Locked = True
+        ImageIndex = -1
+      end
+      object mnuToolsLanguage: TMenuItem
+        Action = actLanguageChange
+        Locked = True
+        ImageIndex = -1
+      end
+      object mnuToolsStyle: TMenuItem
+        Action = actStyleChange
+        Locked = True
+        ImageIndex = -1
+      end
+    end
+    object mnuHelp: TMenuItem
+      Text = 'mnuHelp'
+      object mnuHelpAbout: TMenuItem
+        Action = actAbout
+        Locked = True
+        ImageIndex = -1
+      end
+      object mnuHelpSupport: TMenuItem
+        Action = actSupport
+        Locked = True
+        ImageIndex = -1
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 520
+    Top = 176
+    object actQuit: TAction
+      Text = 'actQuit'
+      OnExecute = actQuitExecute
+    end
+    object actAbout: TAction
+      Text = 'actAbout'
+      OnExecute = actAboutExecute
+    end
+    object actSupport: TAction
+      Text = 'actSupport'
+      OnExecute = actSupportExecute
+    end
+    object actProjectOptions: TAction
+      Text = 'actProjectOptions'
+    end
+    object actLanguageChange: TAction
+      Text = 'actLanguageChange'
+    end
+    object actStyleChange: TAction
+      Text = 'actStyleChange'
+    end
+    object actToolsOptions: TAction
+      Text = 'actToolsOptions'
+    end
+  end
+end

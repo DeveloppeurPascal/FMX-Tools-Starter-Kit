@@ -30,17 +30,53 @@
 /// ***************************************************************************
 /// </summary>
 
-unit fMain;
+unit _MainFormAncestor;
 
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  _TFormAncestor;
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
+  System.Variants,
+  FMX.Types,
+  FMX.Graphics,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Dialogs,
+  FMX.StdCtrls,
+  _TFormAncestor,
+  System.Actions,
+  FMX.ActnList,
+  FMX.Menus;
 
 type
   TfrmMainAncestor = class(T__TFormAncestor)
+    MainMenu1: TMainMenu;
+    mnuMacOS: TMenuItem;
+    mnuFile: TMenuItem;
+    mnuProject: TMenuItem;
+    mnuTools: TMenuItem;
+    mnuHelp: TMenuItem;
+    mnuFileQuit: TMenuItem;
+    mnuProjectOptions: TMenuItem;
+    mnuToolsOptions: TMenuItem;
+    mnuToolsLanguage: TMenuItem;
+    mnuToolsStyle: TMenuItem;
+    mnuHelpAbout: TMenuItem;
+    mnuHelpSupport: TMenuItem;
+    ActionList1: TActionList;
+    actQuit: TAction;
+    actAbout: TAction;
+    actSupport: TAction;
+    actProjectOptions: TAction;
+    actLanguageChange: TAction;
+    actStyleChange: TAction;
+    actToolsOptions: TAction;
+    procedure actQuitExecute(Sender: TObject);
+    procedure actAboutExecute(Sender: TObject);
+    procedure actSupportExecute(Sender: TObject);
   private
     { Déclarations privées }
   public
@@ -53,5 +89,25 @@ var
 implementation
 
 {$R *.fmx}
+
+uses
+  uDMAboutBox,
+  u_urlOpen,
+  uConsts;
+
+procedure TfrmMainAncestor.actAboutExecute(Sender: TObject);
+begin
+  TAboutBox.Current.ShowModal;
+end;
+
+procedure TfrmMainAncestor.actQuitExecute(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmMainAncestor.actSupportExecute(Sender: TObject);
+begin
+  url_Open_In_Browser(CSupportURL);
+end;
 
 end.

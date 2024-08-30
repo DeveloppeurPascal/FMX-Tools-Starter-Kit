@@ -342,7 +342,7 @@
             <Form>__TFormAncestor</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="fMain.pas">
+        <DCCReference Include="_MainFormAncestor.pas">
             <Form>frmMainAncestor</Form>
             <FormType>fmx</FormType>
         </DCCReference>
