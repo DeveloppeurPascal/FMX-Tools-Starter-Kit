@@ -1,5 +1,6 @@
 inherited frmMainAncestor: TfrmMainAncestor
   Caption = '__TFormAncestor1'
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object MainMenu1: TMainMenu
     Left = 520
@@ -25,11 +26,6 @@ inherited frmMainAncestor: TfrmMainAncestor
     end
     object mnuTools: TMenuItem
       Text = 'mnuTools'
-      object mnuToolsOptions: TMenuItem
-        Action = actToolsOptions
-        Locked = True
-        ImageIndex = -1
-      end
       object mnuToolsLanguage: TMenuItem
         Action = actLanguageChange
         Locked = True
@@ -37,6 +33,11 @@ inherited frmMainAncestor: TfrmMainAncestor
       end
       object mnuToolsStyle: TMenuItem
         Action = actStyleChange
+        Locked = True
+        ImageIndex = -1
+      end
+      object mnuToolsOptions: TMenuItem
+        Action = actToolsOptions
         Locked = True
         ImageIndex = -1
       end
@@ -72,15 +73,19 @@ inherited frmMainAncestor: TfrmMainAncestor
     end
     object actProjectOptions: TAction
       Text = 'actProjectOptions'
+      OnExecute = actProjectOptionsExecute
     end
     object actLanguageChange: TAction
       Text = 'actLanguageChange'
+      OnExecute = actLanguageChangeExecute
     end
     object actStyleChange: TAction
       Text = 'actStyleChange'
+      OnExecute = actStyleChangeExecute
     end
     object actToolsOptions: TAction
       Text = 'actToolsOptions'
+      OnExecute = actToolsOptionsExecute
     end
   end
 end

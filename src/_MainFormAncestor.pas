@@ -77,10 +77,24 @@ type
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
+    procedure actProjectOptionsExecute(Sender: TObject);
+    procedure actLanguageChangeExecute(Sender: TObject);
+    procedure actStyleChangeExecute(Sender: TObject);
+    procedure actToolsOptionsExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
-    { Déclarations privées }
+  protected
+    /// <summary>
+    /// Show/hide TMainMenu items depending on there sub menus items visibility
+    /// </summary>
+    procedure RefreshMenuItemsVisibility(const Menu: TMainMenu);
+      overload; virtual;
+    /// <summary>
+    /// Show/hide a TMenuItem depending on its sub menus items visibility
+    /// </summary>
+    function RefreshMenuItemsVisibility(const MenuItem: TMenuItem;
+      const FirstLevel: boolean): boolean; overload; virtual;
   public
-    { Déclarations publiques }
   end;
 
 var
@@ -100,14 +114,89 @@ begin
   TAboutBox.Current.ShowModal;
 end;
 
+procedure TfrmMainAncestor.actLanguageChangeExecute(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPascal : à compléter
+  raise exception.Create('Not implemented.');
+end;
+
+procedure TfrmMainAncestor.actProjectOptionsExecute(Sender: TObject);
+begin
+  // Nothing to do here, fill it in your main form descendant
+  raise exception.Create('Not implemented in the starter kit.');
+end;
+
 procedure TfrmMainAncestor.actQuitExecute(Sender: TObject);
 begin
   Close;
 end;
 
+procedure TfrmMainAncestor.actStyleChangeExecute(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPascal : à compléter
+  raise exception.Create('Not implemented.');
+end;
+
 procedure TfrmMainAncestor.actSupportExecute(Sender: TObject);
 begin
-  url_Open_In_Browser(CSupportURL);
+  if not CSupportURL.IsEmpty then
+    url_Open_In_Browser(CSupportURL)
+  else
+    raise exception.Create('Missing support website URL.');
+end;
+
+procedure TfrmMainAncestor.actToolsOptionsExecute(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPascal : à compléter
+  raise exception.Create('Not implemented.');
+end;
+
+procedure TfrmMainAncestor.FormCreate(Sender: TObject);
+begin
+{$IFDEF MACOS}
+  mnuFileQuit.Visible := false;
+  mnuHelpAbout.parent := mnuMacOS;
+{$ENDIF}
+  actAbout.Text := 'About ' + CAboutTitle;
+  // TODO -oDeveloppeurPascal : récupérer texte de titre de about box
+
+  RefreshMenuItemsVisibility(MainMenu1);
+end;
+
+function TfrmMainAncestor.RefreshMenuItemsVisibility(const MenuItem: TMenuItem;
+  const FirstLevel: boolean): boolean;
+var
+  i: integer;
+begin
+  if assigned(MenuItem) then
+  begin
+    if (MenuItem.ItemsCount > 0) then
+    begin
+      result := false;
+      for i := 0 to MenuItem.ItemsCount - 1 do
+      begin
+        MenuItem.Items[i].Visible := MenuItem.Items[i].Visible and
+          RefreshMenuItemsVisibility(MenuItem.Items[i], false);
+        result := result or MenuItem.Items[i].Visible;
+      end;
+    end
+    else
+      result := not FirstLevel;
+  end
+  else
+    result := false;
+end;
+
+procedure TfrmMainAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
+var
+  i: integer;
+  item: TMenuItem;
+begin
+  if assigned(Menu) and (Menu.ItemsCount > 0) then
+    for i := 0 to Menu.ItemsCount - 1 do
+      if (Menu.Items[i] is TMenuItem) then
+        (Menu.Items[i] as TMenuItem).Visible :=
+          RefreshMenuItemsVisibility((Menu.Items[i] as TMenuItem), true);
 end;
 
 end.
