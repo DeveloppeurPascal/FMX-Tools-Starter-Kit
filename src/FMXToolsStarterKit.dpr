@@ -58,7 +58,8 @@ uses
   uStyleManager in 'uStyleManager.pas',
   _StyleContainerAncestor in '_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
   uStyleLightByDefault in 'uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
-  uStyleDarkByDefault in 'uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule};
+  uStyleDarkByDefault in 'uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
+  Olf.RTL.SystemAppearance in '..\lib-externes\librairies\src\Olf.RTL.SystemAppearance.pas';
 
 {$R *.res}
 
