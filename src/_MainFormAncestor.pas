@@ -110,7 +110,8 @@ implementation
 uses
   uDMAboutBox,
   u_urlOpen,
-  uConsts;
+  uConsts,
+  uStyleManager;
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
@@ -164,6 +165,12 @@ begin
   // TODO -oDeveloppeurPascal : récupérer texte de titre de about box
 
   RefreshMenuItemsVisibility(MainMenu1);
+
+  tthread.ForceQueue(nil,
+    procedure
+    begin
+      TProjectStyle.Current.EnableDefaultStyle;
+    end);
 end;
 
 function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem

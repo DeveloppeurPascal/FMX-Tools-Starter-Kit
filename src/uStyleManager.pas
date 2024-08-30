@@ -50,13 +50,17 @@ type
       const StyleType: TProjectStyleType = TProjectStyleType.other);
     class function Current: TProjectStyle;
     destructor Destroy; override;
+    procedure EnableDefaultStyle;
   end;
 
 implementation
 
 uses
   System.SysUtils,
-  System.Classes;
+  System.Classes,
+  uConfig,
+  uConsts,
+  Olf.RTL.SystemAppearance;
 
 var
   ProjectStyle: TProjectStyle;
@@ -80,6 +84,30 @@ destructor TProjectStyle.Destroy;
 begin
   FStyles.Free;
   inherited;
+end;
+
+procedure TProjectStyle.EnableDefaultStyle;
+var
+  StyleMode: TStyleMode;
+begin
+  StyleMode := tconfig.Current.StyleMode;
+  if StyleMode = TStyleMode.System then
+    if isSystemThemeInLightMode then
+      StyleMode := TStyleMode.light
+    else if isSystemThemeInDarkMode then
+      StyleMode := TStyleMode.dark
+    else
+      StyleMode := TStyleMode.custom;
+  case StyleMode of
+    TStyleMode.light:
+      StyleName := tconfig.Current.LightStyleName;
+    TStyleMode.dark:
+      StyleName := tconfig.Current.DarkStyleName;
+    TStyleMode.custom:
+      StyleName := tconfig.Current.CustomStyleName;
+  else
+    raise Exception.Create('Unknow style.');
+  end;
 end;
 
 function TProjectStyle.GetStyle(const Index: integer): TProjectStyleItem;
