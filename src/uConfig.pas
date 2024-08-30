@@ -41,7 +41,8 @@ interface
 // your needs and the changes to be made to the template.
 
 uses
-  Olf.RTL.Params;
+  Olf.RTL.Params,
+  uConsts;
 
 type
   TConfig = class
@@ -49,6 +50,14 @@ type
     FParams: TParamsFile;
     function GetLanguage: string;
     procedure SetLanguage(const Value: string);
+    function GetStyleMode: TStyleMode;
+    procedure SetStyleMode(const Value: TStyleMode);
+    procedure SetCustomStyleName(const Value: string);
+    procedure SetDarkStyleName(const Value: string);
+    procedure SetLightStyleName(const Value: string);
+    function GetCustomStyleName: string;
+    function GetDarkStyleName: string;
+    function GetLightStyleName: string;
   protected
   public
     /// <summary>
@@ -59,6 +68,28 @@ type
     /// or the CDefaultLanguage constant if it's not available
     /// </remarks>
     property Language: string read GetLanguage write SetLanguage;
+    /// <summary>
+    /// Style mode choosen by the user.
+    /// </summary>
+    /// <remarks>
+    /// By default it depends on the CDefaultStyleMode constant and the system
+    /// appearance.
+    /// </remarks>
+    property StyleMode: TStyleMode read GetStyleMode write SetStyleMode;
+    /// <summary>
+    /// Name of the light style (by default or customized by the user)
+    /// </summary>
+    property LightStyleName: string read GetLightStyleName
+      write SetLightStyleName;
+    /// <summary>
+    /// Name of the dark style (by default or customized by the user)
+    /// </summary>
+    property DarkStyleName: string read GetDarkStyleName write SetDarkStyleName;
+    /// <summary>
+    /// Name of the custom style (by default or customized by the user)
+    /// </summary>
+    property CustomStyleName: string read GetCustomStyleName
+      write SetCustomStyleName;
     /// <summary>
     /// Return the instance to TConfig singleton
     /// </summary>
@@ -87,7 +118,6 @@ uses
   FMX.Platform,
   Olf.RTL.CryptDecrypt,
   Olf.RTL.Language,
-  uConsts,
   uTranslate;
 
 var
@@ -153,6 +183,16 @@ begin
   inherited;
 end;
 
+function TConfig.GetCustomStyleName: string;
+begin
+  result := FParams.getValue('CustomStyleName', CDefaultStyleCustom);
+end;
+
+function TConfig.GetDarkStyleName: string;
+begin
+  result := FParams.getValue('DarkStyleName', CDefaultStyleDark);
+end;
+
 function TConfig.GetLanguage: string;
 var
   lng: string;
@@ -164,9 +204,31 @@ begin
   result := FParams.getValue('Language', lng);
 end;
 
+function TConfig.GetLightStyleName: string;
+begin
+  result := FParams.getValue('LightStyleName', CDefaultStyleLight);
+end;
+
 function TConfig.GetPath: string;
 begin
   result := FParams.getFilePath;
+end;
+
+function TConfig.GetStyleMode: TStyleMode;
+begin
+  result := TStyleMode(FParams.getValue('StyleMode', ord(CDefaultStyleMode)));
+end;
+
+procedure TConfig.SetCustomStyleName(const Value: string);
+begin
+  FParams.setValue('CustomStyleName', Value);
+  FParams.Save;
+end;
+
+procedure TConfig.SetDarkStyleName(const Value: string);
+begin
+  FParams.setValue('DarkStyleName', Value);
+  FParams.Save;
 end;
 
 procedure TConfig.SetLanguage(const Value: string);
@@ -180,6 +242,18 @@ begin
   FParams.setValue('Language', Value);
   FParams.Save;
   TTranslateTextsMessage.Broadcast(Value);
+end;
+
+procedure TConfig.SetLightStyleName(const Value: string);
+begin
+  FParams.setValue('LightStyleName', Value);
+  FParams.Save;
+end;
+
+procedure TConfig.SetStyleMode(const Value: TStyleMode);
+begin
+  FParams.setValue('StyleMode', ord(Value));
+  FParams.Save;
 end;
 
 initialization
