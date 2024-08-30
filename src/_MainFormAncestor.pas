@@ -52,7 +52,7 @@ uses
   FMX.Menus;
 
 type
-  TfrmMainAncestor = class(T__TFormAncestor)
+  T__MainFormAncestor = class(T__TFormAncestor)
     MainMenu1: TMainMenu;
     mnuMacOS: TMenuItem;
     mnuFile: TMenuItem;
@@ -97,8 +97,11 @@ type
   public
   end;
 
+{$IFDEF DEBUG}
+
 var
-  frmMainAncestor: TfrmMainAncestor;
+  __MainFormAncestor: T__MainFormAncestor;
+{$ENDIF}
 
 implementation
 
@@ -109,35 +112,35 @@ uses
   u_urlOpen,
   uConsts;
 
-procedure TfrmMainAncestor.actAboutExecute(Sender: TObject);
+procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
   TAboutBox.Current.ShowModal;
 end;
 
-procedure TfrmMainAncestor.actLanguageChangeExecute(Sender: TObject);
+procedure T__MainFormAncestor.actLanguageChangeExecute(Sender: TObject);
 begin
   // TODO -oDeveloppeurPascal : à compléter
   raise exception.Create('Not implemented.');
 end;
 
-procedure TfrmMainAncestor.actProjectOptionsExecute(Sender: TObject);
+procedure T__MainFormAncestor.actProjectOptionsExecute(Sender: TObject);
 begin
   // Nothing to do here, fill it in your main form descendant
   raise exception.Create('Not implemented in the starter kit.');
 end;
 
-procedure TfrmMainAncestor.actQuitExecute(Sender: TObject);
+procedure T__MainFormAncestor.actQuitExecute(Sender: TObject);
 begin
   Close;
 end;
 
-procedure TfrmMainAncestor.actStyleChangeExecute(Sender: TObject);
+procedure T__MainFormAncestor.actStyleChangeExecute(Sender: TObject);
 begin
   // TODO -oDeveloppeurPascal : à compléter
   raise exception.Create('Not implemented.');
 end;
 
-procedure TfrmMainAncestor.actSupportExecute(Sender: TObject);
+procedure T__MainFormAncestor.actSupportExecute(Sender: TObject);
 begin
   if not CSupportURL.IsEmpty then
     url_Open_In_Browser(CSupportURL)
@@ -145,13 +148,13 @@ begin
     raise exception.Create('Missing support website URL.');
 end;
 
-procedure TfrmMainAncestor.actToolsOptionsExecute(Sender: TObject);
+procedure T__MainFormAncestor.actToolsOptionsExecute(Sender: TObject);
 begin
   // TODO -oDeveloppeurPascal : à compléter
   raise exception.Create('Not implemented.');
 end;
 
-procedure TfrmMainAncestor.FormCreate(Sender: TObject);
+procedure T__MainFormAncestor.FormCreate(Sender: TObject);
 begin
 {$IFDEF MACOS}
   mnuFileQuit.Visible := false;
@@ -163,8 +166,8 @@ begin
   RefreshMenuItemsVisibility(MainMenu1);
 end;
 
-function TfrmMainAncestor.RefreshMenuItemsVisibility(const MenuItem: TMenuItem;
-  const FirstLevel: boolean): boolean;
+function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem
+  : TMenuItem; const FirstLevel: boolean): boolean;
 var
   i: integer;
 begin
@@ -187,10 +190,9 @@ begin
     result := false;
 end;
 
-procedure TfrmMainAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
+procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
 var
   i: integer;
-  item: TMenuItem;
 begin
   if assigned(Menu) and (Menu.ItemsCount > 0) then
     for i := 0 to Menu.ItemsCount - 1 do

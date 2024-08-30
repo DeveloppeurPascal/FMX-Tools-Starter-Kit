@@ -1,4 +1,4 @@
-inherited frmMainAncestor: TfrmMainAncestor
+inherited __MainFormAncestor: T__MainFormAncestor
   Caption = '__TFormAncestor1'
   OnCreate = FormCreate
   DesignerMasterStyle = 0
