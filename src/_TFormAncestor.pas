@@ -82,7 +82,8 @@ implementation
 uses
   uTranslate,
   uConfig,
-  uConsts, uDMAboutBox;
+  uConsts,
+  uDMAboutBox;
 
 { T__TFormAncestor }
 
