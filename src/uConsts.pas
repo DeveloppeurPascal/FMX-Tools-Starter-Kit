@@ -109,7 +109,7 @@ const
 
 var
   GConfigXORKey: TByteDynArray;
-  GProjectDataXORKey: TByteDynArray;
+  GDocumentsXORKey: TByteDynArray;
 {$ENDIF}
 
 implementation
@@ -168,14 +168,14 @@ try
   // Path to the Pascal file where you fill GProjectDataXORKey variable.
   // This variable is used to crypt/decrypt the settings data in RELEASE mode.
   //
-  // Template file is in ____PRIVATE\src\ProjectDataFileXORKey.inc
+  // Template file is in ____PRIVATE\src\DocumentsFileXORKey.inc
   // Copy it to a private folder (not in the code repository for security reasons)
   // Customize it
   // Update it's path to the Include directive
   //
   // Don't share the key file. If you need to modify it, you won't be able to
   // open the previous configuration file!
-{$I '..\____PRIVATE\src\ProjectDataFileXORKey.inc'}
+{$I '..\____PRIVATE\src\DocumentsFileXORKey.inc'}
   // TODO : don't forget to change ProjectDataFileXORKey.inc path before releasing your project
 
 {$ENDIF}
