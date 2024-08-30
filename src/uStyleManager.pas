@@ -138,7 +138,7 @@ begin
   for i := 0 to FStyles.Count - 1 do
     if FStyles[i].StyleType = StyleType then
     begin
-      result[nb] := FStyles[i].StyleName;
+      result[idx] := FStyles[i].StyleName;
       inc(idx);
     end;
 end;
