@@ -81,7 +81,6 @@ type
     procedure actLanguageChangeExecute(Sender: TObject);
     procedure actStyleChangeExecute(Sender: TObject);
     procedure actToolsOptionsExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
   protected
     /// <summary>
@@ -95,6 +94,8 @@ type
     function RefreshMenuItemsVisibility(const MenuItem: TMenuItem;
       const FirstLevel: boolean): boolean; overload; virtual;
   public
+    procedure AfterConstruction; override;
+    procedure TranslateTexts(const Language: string); override;
   end;
 
 {$IFDEF DEBUG}
@@ -155,22 +156,24 @@ begin
   raise exception.Create('Not implemented.');
 end;
 
-procedure T__MainFormAncestor.FormCreate(Sender: TObject);
+procedure T__MainFormAncestor.AfterConstruction;
 begin
+  inherited;
 {$IFDEF MACOS}
   mnuFileQuit.Visible := false;
   mnuHelpAbout.parent := mnuMacOS;
 {$ENDIF}
-  actAbout.Text := 'About ' + CAboutTitle;
-  // TODO -oDeveloppeurPascal : récupérer texte de titre de about box
-
   RefreshMenuItemsVisibility(MainMenu1);
 
-  tthread.ForceQueue(nil,
+{$IFDEF MACOS}
+  tthread.forcequeue(nil,
     procedure
     begin
       TProjectStyle.Current.EnableDefaultStyle;
     end);
+{$ELSE}
+  TProjectStyle.Current.EnableDefaultStyle;
+{$ENDIF}
 end;
 
 function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem
@@ -195,6 +198,22 @@ begin
   end
   else
     result := false;
+end;
+
+procedure T__MainFormAncestor.TranslateTexts(const Language: string);
+begin
+  inherited;
+  mnuFile.Text := 'File';
+  actQuit.Text := 'Quit';
+  mnuProject.Text := 'Project';
+  actProjectOptions.Text := 'Options';
+  mnuTools.Text := 'Tools';
+  actLanguageChange.Text := 'Language';
+  actStyleChange.Text := 'Style';
+  actToolsOptions.Text := 'Options';
+  mnuHelp.Text := 'Help';
+  actAbout.Text := TAboutBox.Current.GetCaption;
+  actSupport.Text := 'Support site';
 end;
 
 procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);

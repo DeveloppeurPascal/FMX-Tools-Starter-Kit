@@ -1,6 +1,5 @@
 inherited __MainFormAncestor: T__MainFormAncestor
   Caption = '__TFormAncestor1'
-  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object MainMenu1: TMainMenu
     Left = 520
