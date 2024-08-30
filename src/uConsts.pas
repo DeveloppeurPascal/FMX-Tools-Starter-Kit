@@ -115,6 +115,28 @@ const
   /// </summary>
   CShowAboutBoxWithF1 = true;
 
+type
+{$SCOPEDENUMS ON}
+  TStyleMode = (Light, Dark, System, Custom);
+
+const
+  /// <summary>
+  /// Name of the default style used when the user choose the light mode.
+  /// </summary>
+  CDefaultStyleLight = 'light';
+  /// <summary>
+  /// Name of the default style used when the user choose the dark mode.
+  /// </summary>
+  CDefaultStyleDark = 'dark';
+  /// <summary>
+  /// Name of the default style used when the user choose the custom mode.
+  /// </summary>
+  CDefaultStyleCustom = 'light';
+  /// <summary>
+  /// Default style mode to use in the program.
+  /// </summary>
+  CDefaultStyleMode = TStyleMode.System;
+
 {$IF Defined(RELEASE)}
 
 var
