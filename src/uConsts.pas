@@ -68,6 +68,11 @@ const
   CAboutURL = 'https://fmxtoolsstarterkit.developpeur-pascal.fr/';
 
   /// <summary>
+  /// Website open by Tools / Support menu option
+  /// </summary>
+  CSupportURL = CAboutURL + 'userhelp.html';
+
+  /// <summary>
   /// Default language used if the system language is not supported
   /// (of course you have to translate all textes of the program in this
   /// language, so use yours or English by default)
@@ -106,9 +111,9 @@ const
   CProjectGUID = '{8346EB88-E9AB-4578-A416-DA1D904229D4}';
 
   /// <summary>
-  ///   Show the About box dialog when F1 key is used
+  /// Show the About box dialog when F1 key is used
   /// </summary>
-CShowAboutBoxWithF1 = true;
+  CShowAboutBoxWithF1 = true;
 
 {$IF Defined(RELEASE)}
 
