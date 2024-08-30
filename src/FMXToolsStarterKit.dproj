@@ -343,7 +343,7 @@
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="fMain.pas">
-            <Form>frmMain</Form>
+            <Form>frmMainAncestor</Form>
             <FormType>fmx</FormType>
         </DCCReference>
         <DCCReference Include="uProjectData.pas"/>

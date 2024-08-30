@@ -40,7 +40,7 @@ uses
   _TFormAncestor;
 
 type
-  TfrmMain = class(T__TFormAncestor)
+  TfrmMainAncestor = class(T__TFormAncestor)
   private
     { Déclarations privées }
   public
@@ -48,7 +48,7 @@ type
   end;
 
 var
-  frmMain: TfrmMain;
+  frmMainAncestor: TfrmMainAncestor;
 
 implementation
 
