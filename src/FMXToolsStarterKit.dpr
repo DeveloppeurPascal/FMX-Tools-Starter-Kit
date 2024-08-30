@@ -51,15 +51,19 @@ uses
   u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
   _TFrameAncestor in '_TFrameAncestor.pas' {__TFrameAncestor: TFrame},
   _TFormAncestor in '_TFormAncestor.pas' {__TFormAncestor},
-  _MainFormAncestor in '_MainFormAncestor.pas' {frmMainAncestor},
+  _MainFormAncestor in '_MainFormAncestor.pas' {__MainFormAncestor},
   uProjectData in 'uProjectData.pas',
   Olf.RTL.Streams in '..\lib-externes\librairies\src\Olf.RTL.Streams.pas',
-  Olf.RTL.Maths.Conversions in '..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas';
+  Olf.RTL.Maths.Conversions in '..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas',
+  uStyleManager in 'uStyleManager.pas',
+  _StyleContainerAncestor in '_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
+  uStyleLightByDefault in 'uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
+  uStyleDarkByDefault in 'uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(TfrmMainAncestor, frmMainAncestor);
+  Application.CreateForm(T__MainFormAncestor, __MainFormAncestor);
   Application.Run;
 end.
