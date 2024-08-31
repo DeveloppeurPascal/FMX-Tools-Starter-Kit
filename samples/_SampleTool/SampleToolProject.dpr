@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-08-28T12:31:32.000+02:00
-/// Signature : bbcbfc803f45a2425e3be724993c7d10dc018627
+/// File last update : 2024-08-30T13:09:40.000+02:00
+/// Signature : d85cf3e48bcee4c9b840a7f69e5b60741f64fb6e
 /// ***************************************************************************
 /// </summary>
 
