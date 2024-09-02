@@ -44,6 +44,7 @@ uses
   Olf.RTL.Params,
   uConsts;
 
+// TODO : -oDeveloppeurPascal : add a BeginUpdate/EndUpdate on TConfig to call the SAVE only once
 type
   TConfig = class
   private
@@ -221,13 +222,13 @@ end;
 
 procedure TConfig.SetCustomStyleName(const Value: string);
 begin
-  FParams.setValue('CustomStyleName', Value);
+  FParams.setValue('CustomStyleName', Value.Trim.ToLower);
   FParams.Save;
 end;
 
 procedure TConfig.SetDarkStyleName(const Value: string);
 begin
-  FParams.setValue('DarkStyleName', Value);
+  FParams.setValue('DarkStyleName', Value.Trim.ToLower);
   FParams.Save;
 end;
 
@@ -235,7 +236,7 @@ procedure TConfig.SetLanguage(const Value: string);
 var
   lng: string;
 begin
-  lng := Value.tolower;
+  lng := Value.ToLower;
   if lng.IsEmpty then
     lng := CDefaultLanguage;
 
@@ -246,7 +247,7 @@ end;
 
 procedure TConfig.SetLightStyleName(const Value: string);
 begin
-  FParams.setValue('LightStyleName', Value);
+  FParams.setValue('LightStyleName', Value.Trim.ToLower);
   FParams.Save;
 end;
 
