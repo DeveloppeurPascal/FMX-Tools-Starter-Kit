@@ -39,12 +39,15 @@ uses
   System.Classes,
   FMX.Types,
   FMX.Controls,
-  uStyleManager;
+  uStyleManager,
+  System.Messaging;
 
 type
   T__StyleContainerAncestor = class(TDataModule)
     StyleBook1: TStyleBook;
   private
+    class procedure ReceivedProjectStyleChangeMessage(const Sender: TObject;
+      const M: TMessage);
   public
     class procedure Initialize; virtual;
     class function GetStyleName: string; virtual; abstract;
@@ -56,37 +59,72 @@ implementation
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
 uses
-  System.Messaging,
   FMX.Styles;
 
 {$R *.dfm}
-{ T__StyleContainerAncestor }
 
 class procedure T__StyleContainerAncestor.Initialize;
+var
+  OS: string;
+  dm: T__StyleContainerAncestor;
+  i: integer;
+  Found: boolean;
 begin
-  TProjectStyle.Current.Register(GetStyleName, GetStyleType);
-
-  TMessageManager.DefaultManager.SubscribeToMessage(TProjectStyleChangeMessage,
-    procedure(const Sender: TObject; const M: TMessage)
-    var
-      dm: T__StyleContainerAncestor;
-    begin
-      if (M is TProjectStyleChangeMessage) and
-        ((M as TProjectStyleChangeMessage).Value.ToLower = GetStyleName.ToLower)
-      then
-      begin
-        dm := Create(nil);
-        try
-{$IFDEF MACOS}
-          TStyleManager.SetStyle(dm.StyleBook1.Style.clone(dm));
+{$IF Defined(IOS)}
+  OS := 'ios';
+{$ELSEIF Defined(ANDROID)}
+  OS := 'android';
+{$ELSEIF Defined(MACOS)}
+  OS := 'osx';
+{$ELSEIF Defined(MSWINDOWS)}
+  OS := 'windows';
+{$ELSEIF Defined(LINUX)}
+  OS := 'linux';
 {$ELSE}
-          TStyleManager.SetStyle(dm.StyleBook1.Style.clone(nil));
+  {$MESSAGE FATAL 'OS not supported' }
 {$ENDIF}
-        finally
-          dm.free;
-        end;
+  Found := false;
+  dm := Create(nil);
+  try
+    for i := 0 to dm.StyleBook1.Styles.Count - 1 do
+      if dm.StyleBook1.Styles.items[i].Platform.IsEmpty or
+        dm.StyleBook1.Styles.items[i].Platform.Tolower.StartsWith(OS) then
+      begin
+        Found := true;
+        break;
       end;
-    end);
+  finally
+    dm.free;
+  end;
+  if (Found) then
+  begin
+    TProjectStyle.Current.Register(GetStyleName, GetStyleType);
+
+    TMessageManager.DefaultManager.SubscribeToMessage
+      (TProjectStyleChangeMessage, ReceivedProjectStyleChangeMessage);
+  end;
+end;
+
+class procedure T__StyleContainerAncestor.ReceivedProjectStyleChangeMessage
+  (const Sender: TObject; const M: TMessage);
+var
+  dm: T__StyleContainerAncestor;
+begin
+  if (M is TProjectStyleChangeMessage) and
+    ((M as TProjectStyleChangeMessage).Value.Tolower = GetStyleName.Tolower)
+  then
+  begin
+    dm := Create(nil);
+    try
+{$IFDEF MACOS}
+      TStyleManager.SetStyle(dm.StyleBook1.Style.clone(dm));
+{$ELSE}
+      TStyleManager.SetStyle(dm.StyleBook1.Style.clone(nil));
+{$ENDIF}
+    finally
+      dm.free;
+    end;
+  end;
 end;
 
 initialization
