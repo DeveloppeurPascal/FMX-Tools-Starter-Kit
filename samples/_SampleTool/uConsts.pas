@@ -70,6 +70,16 @@ const
   CSupportURL = CAboutURL + 'userhelp.html';
 
   /// <summary>
+  /// Show (if true) / hide (if false) the Help/Support menu item
+  /// </summary>
+  /// <remarks>
+  /// By default its conditionned by the existence of CSupportURL constant but
+  /// you can replace it by a boolean and override the DoHelpSupport method in
+  /// your main form.
+  /// </remarks>
+  CShowHelpSupportMenuItem = (CSupportURL <> '');
+
+  /// <summary>
   /// Default language used if the system language is not supported
   /// (of course you have to translate all textes of the program in this
   /// language, so use yours or English by default)
@@ -78,6 +88,11 @@ const
   /// use 2 letters ISO code
   /// </remarks>
   CDefaultLanguage = 'en';
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Tool/Languages menu item
+  /// </summary>
+  CShowToolsLanguagesMenuItem = false;
 
   /// <summary>
   /// Used as a folder name to store your projects settings
@@ -130,6 +145,21 @@ const
   /// Default style mode to use in the program.
   /// </summary>
   CDefaultStyleMode = TStyleMode.System;
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Tool/Styles menu item
+  /// </summary>
+  CShowToolsStylesMenuItem = false;
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Tool/Options menu item
+  /// </summary>
+  CShowToolsOptionsMenuItem = true;
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Project/Options menu item
+  /// </summary>
+  CShowProjectOptionsMenuItem = false;
 
 {$IF Defined(RELEASE)}
 
