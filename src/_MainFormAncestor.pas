@@ -206,18 +206,10 @@ begin
   MainFormAncestorMenu.free;
   // TODO -oDeveloppeurPascal : add a TToolBar for iOS/Android users
 {$ELSE}
-{$IFDEF MACOS}
-  mnuFileQuit.Visible := false;
-  mnuHelpAbout.parent := mnuMacOS;
-{$ENDIF}
-  mnuToolsLanguage.Visible := CShowToolsLanguagesMenuItem;
-  mnuToolsStyle.Visible := CShowToolsStylesMenuItem;
-  mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
-  mnuProjectOptions.Visible := CShowProjectOptionsMenuItem;
-  mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
   RefreshMenuItemsVisibility(MainFormAncestorMenu);
 {$ENDIF}
-// Styles
+
+  // Styles
 {$IFDEF MACOS}
   tthread.forcequeue(nil,
     procedure
@@ -253,7 +245,7 @@ var
   i: integer;
 begin
 {$IF Defined(IOS) or Defined(ANDROID)}
-exit;
+  exit;
 {$ENDIF}
   if assigned(MenuItem) then
   begin
@@ -281,7 +273,14 @@ begin
 {$ELSE}
   mnuFile.Text := 'File';
   mnuProject.Text := 'Project';
+{$IFDEF MACOS}
+  if Language = 'fr' then
+    mnuTools.Text := 'Réglages'
+  else
+    mnuTools.Text := 'Preferences';
+{$ELSE}
   mnuTools.Text := 'Tools';
+{$ENDIF}
   mnuHelp.Text := 'Help';
 {$ENDIF}
   actQuit.Text := 'Quit';
@@ -298,13 +297,25 @@ var
   i: integer;
 begin
 {$IF Defined(IOS) or Defined(ANDROID)}
-exit;
+  exit;
+{$ELSE}
+{$IFDEF MACOS}
+  mnuFileQuit.Visible := false;
+  mnuHelpAbout.parent := mnuMacOS;
+  mnuTools.parent := mnuMacOS;
 {$ENDIF}
+  mnuToolsLanguage.Visible := CShowToolsLanguagesMenuItem;
+  mnuToolsStyle.Visible := CShowToolsStylesMenuItem;
+  mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
+  mnuProjectOptions.Visible := CShowProjectOptionsMenuItem;
+  mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
+
   if assigned(Menu) and (Menu.ItemsCount > 0) then
     for i := 0 to Menu.ItemsCount - 1 do
       if (Menu.Items[i] is TMenuItem) then
         (Menu.Items[i] as TMenuItem).Visible :=
           RefreshMenuItemsVisibility((Menu.Items[i] as TMenuItem), true);
+{$ENDIF}
 end;
 
 end.
