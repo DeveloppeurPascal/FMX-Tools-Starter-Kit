@@ -1,0 +1,265 @@
+inherited frmToolsStylesDialog: TfrmToolsStylesDialog
+  Caption = 'frmToolsStylesDialog'
+  OnCreate = FormCreate
+  OnClose = FormClose
+  OnResize = FormResize
+  DesignerMasterStyle = 0
+  object VertScrollBox1: TVertScrollBox
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 430.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 640.000000000000000000
+    Viewport.Height = 430.000000000000000000
+    object cbSystemStyle: TCheckBox
+      Align = MostTop
+      IsChecked = True
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'cbSystemStyle'
+      OnChange = cbSystemStyleChange
+    end
+    object cbCustomStyle: TCheckBox
+      Align = MostTop
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 34.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'cbCustomStyle'
+      OnChange = cbCustomStyleChange
+    end
+    object lCustomStyle: TLayout
+      Align = Top
+      Position.Y = 58.000000000000000000
+      Size.Width = 640.000000000000000000
+      Size.Height = 167.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      object lCSLight: TFlowLayout
+        Align = Top
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 630.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Justify = Left
+        JustifyLastLine = Left
+        FlowDirection = LeftToRight
+        object lblCSLight: TLabel
+          AutoSize = True
+          Size.Width = 120.000000000000000000
+          Size.Height = 16.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'lblCSLight'
+          TabOrder = 0
+        end
+        object FlowLayoutBreak1: TFlowLayoutBreak
+          ChangesRules = False
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+        end
+      end
+      object lCSDark: TFlowLayout
+        Align = Top
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 65.000000000000000000
+        Size.Width = 630.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Justify = Left
+        JustifyLastLine = Left
+        FlowDirection = LeftToRight
+        object lblCSDark: TLabel
+          AutoSize = True
+          Size.Width = 120.000000000000000000
+          Size.Height = 16.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'lblCSDark'
+          TabOrder = 0
+        end
+        object FlowLayoutBreak2: TFlowLayoutBreak
+          ChangesRules = False
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+        end
+      end
+      object lCSOthers: TFlowLayout
+        Align = Top
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 125.000000000000000000
+        Size.Width = 630.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 2
+        Justify = Left
+        JustifyLastLine = Left
+        FlowDirection = LeftToRight
+        object lblCSOthers: TLabel
+          AutoSize = True
+          Size.Width = 120.000000000000000000
+          Size.Height = 16.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'lblCSOthers'
+          TabOrder = 0
+        end
+        object FlowLayoutBreak3: TFlowLayoutBreak
+          ChangesRules = False
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+        end
+      end
+    end
+    object lSystemStyle: TLayout
+      Align = Top
+      Position.Y = 225.000000000000000000
+      Size.Width = 640.000000000000000000
+      Size.Height = 144.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 3
+      object lSSLight: TFlowLayout
+        Align = Top
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 65.000000000000000000
+        Size.Width = 630.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Justify = Left
+        JustifyLastLine = Left
+        FlowDirection = LeftToRight
+        object lblSSLight: TLabel
+          Text = 'lblSSLight'
+          TabOrder = 0
+        end
+        object FlowLayoutBreak4: TFlowLayoutBreak
+          ChangesRules = False
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+        end
+      end
+      object lSSDark: TFlowLayout
+        Align = Top
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 630.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Justify = Left
+        JustifyLastLine = Left
+        FlowDirection = LeftToRight
+        object lblSSDark: TLabel
+          Text = 'lblSSDark'
+          TabOrder = 0
+        end
+        object FlowLayoutBreak5: TFlowLayoutBreak
+          ChangesRules = False
+          Justify = Left
+          JustifyLastLine = Left
+          FlowDirection = LeftToRight
+        end
+      end
+    end
+  end
+  object GridPanelLayout1: TGridPanelLayout
+    Align = Bottom
+    Position.Y = 430.000000000000000000
+    Size.Width = 640.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = btnOk
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = btnCancel
+        Row = 0
+      end>
+    RowCollection = <
+      item
+        Value = 100.000000000000000000
+      end>
+    object btnOk: TButton
+      Align = Client
+      Default = True
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 310.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'btnOk'
+      TextSettings.Trimming = None
+      OnClick = btnOkClick
+    end
+    object btnCancel: TButton
+      Align = Client
+      Cancel = True
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 310.000000000000000000
+      Size.Height = 40.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      Text = 'btnCancel'
+      TextSettings.Trimming = None
+      OnClick = btnCancelClick
+    end
+  end
+end
