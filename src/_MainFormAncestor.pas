@@ -201,6 +201,11 @@ end;
 procedure T__MainFormAncestor.AfterConstruction;
 begin
   inherited;
+  // Menu
+{$IF Defined(IOS) or Defined(ANDROID)}
+  MainFormAncestorMenu.free;
+  // TODO -oDeveloppeurPascal : add a TToolBar for iOS/Android users
+{$ELSE}
 {$IFDEF MACOS}
   mnuFileQuit.Visible := false;
   mnuHelpAbout.parent := mnuMacOS;
@@ -211,7 +216,8 @@ begin
   mnuProjectOptions.Visible := CShowProjectOptionsMenuItem;
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
   RefreshMenuItemsVisibility(MainFormAncestorMenu);
-
+{$ENDIF}
+// Styles
 {$IFDEF MACOS}
   tthread.forcequeue(nil,
     procedure
@@ -246,6 +252,9 @@ function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem
 var
   i: integer;
 begin
+{$IF Defined(IOS) or Defined(ANDROID)}
+exit;
+{$ENDIF}
   if assigned(MenuItem) then
   begin
     if (MenuItem.ItemsCount > 0) then
@@ -268,15 +277,18 @@ end;
 procedure T__MainFormAncestor.TranslateTexts(const Language: string);
 begin
   inherited;
+{$IF Defined(IOS) or Defined(ANDROID)}
+{$ELSE}
   mnuFile.Text := 'File';
-  actQuit.Text := 'Quit';
   mnuProject.Text := 'Project';
-  actProjectOptions.Text := 'Options';
   mnuTools.Text := 'Tools';
+  mnuHelp.Text := 'Help';
+{$ENDIF}
+  actQuit.Text := 'Quit';
+  actProjectOptions.Text := 'Options';
   actLanguageChange.Text := 'Language';
   actStyleChange.Text := 'Style';
   actToolsOptions.Text := 'Options';
-  mnuHelp.Text := 'Help';
   actAbout.Text := TAboutBox.Current.GetCaption;
   actSupport.Text := 'Support site';
 end;
@@ -285,6 +297,9 @@ procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
 var
   i: integer;
 begin
+{$IF Defined(IOS) or Defined(ANDROID)}
+exit;
+{$ENDIF}
   if assigned(Menu) and (Menu.ItemsCount > 0) then
     for i := 0 to Menu.ItemsCount - 1 do
       if (Menu.Items[i] is TMenuItem) then
