@@ -62,7 +62,10 @@ uses
   Olf.RTL.SystemAppearance in '..\..\lib-externes\librairies\src\Olf.RTL.SystemAppearance.pas',
   fMain in 'fMain.pas' {frmMain},
   uStyleImpressiveLight in '..\..\_PRIVATE\src\uStyleImpressiveLight.pas' {StyleImpressiveLight: TDataModule},
-  uStyleImpressiveDark in '..\..\_PRIVATE\src\uStyleImpressiveDark.pas' {StyleImpressiveDark: TDataModule};
+  uStyleImpressiveDark in '..\..\_PRIVATE\src\uStyleImpressiveDark.pas' {StyleImpressiveDark: TDataModule},
+  fToolsStylesDialog in '..\..\src\fToolsStylesDialog.pas' {frmToolsStylesDialog},
+  uStylePolarDark in '..\..\_PRIVATE\src\uStylePolarDark.pas' {StylePolarDark: TDataModule},
+  uStylePolarLight in '..\..\_PRIVATE\src\uStylePolarLight.pas' {StylePolarLight: TDataModule};
 
 {$R *.res}
 
