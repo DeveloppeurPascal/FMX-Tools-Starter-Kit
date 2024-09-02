@@ -132,9 +132,9 @@ type
     /// Called by the actStyles action used for Tools/Styles menu option.
     /// </summary>
     /// <remarks>
-    /// Nothing is done by default. Overrire this method if you want to do something.
+    /// By default it show the Styls selection dialog box
     /// </remarks>
-    procedure DoStyleChangeAction(Sender: TObject); virtual; abstract;
+    procedure DoStyleChangeAction(Sender: TObject); virtual;
     /// <summary>
     /// Called by the actToolsOptions action used for Tools/Options menu option.
     /// </summary>
@@ -161,7 +161,8 @@ uses
   uDMAboutBox,
   u_urlOpen,
   uConsts,
-  uStyleManager;
+  uStyleManager,
+  fToolsStylesDialog;
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
@@ -231,12 +232,28 @@ begin
   close;
 end;
 
+procedure T__MainFormAncestor.DoStyleChangeAction(Sender: TObject);
+var
+  f: TfrmToolsStylesDialog;
+begin
+  f := TfrmToolsStylesDialog.create(self);
+{$IF Defined(IOS) or Defined(ANDROID)}
+  f.show;
+{$ELSE}
+  try
+    f.ShowModal;
+  finally
+    f.free;
+  end;
+{$ENDIF}
+end;
+
 procedure T__MainFormAncestor.DoSupportAction(Sender: TObject);
 begin
   if not CSupportURL.IsEmpty then
     url_Open_In_Browser(CSupportURL)
   else
-    raise exception.Create('Missing support website URL.');
+    raise exception.create('Missing support website URL.');
 end;
 
 function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem
@@ -290,6 +307,7 @@ begin
   actToolsOptions.Text := 'Options';
   actAbout.Text := TAboutBox.Current.GetCaption;
   actSupport.Text := 'Support site';
+  // TODO -oDeveloppeurPascal : translate texts
 end;
 
 procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
