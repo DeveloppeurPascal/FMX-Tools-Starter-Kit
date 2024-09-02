@@ -53,7 +53,7 @@ uses
 
 type
   T__MainFormAncestor = class(T__TFormAncestor)
-    MainMenu1: TMainMenu;
+    MainFormAncestorMenu: TMainMenu;
     mnuMacOS: TMenuItem;
     mnuFile: TMenuItem;
     mnuProject: TMenuItem;
@@ -66,7 +66,7 @@ type
     mnuToolsStyle: TMenuItem;
     mnuHelpAbout: TMenuItem;
     mnuHelpSupport: TMenuItem;
-    ActionList1: TActionList;
+    MainFormAncestorActionList: TActionList;
     actQuit: TAction;
     actAbout: TAction;
     actSupport: TAction;
@@ -93,6 +93,55 @@ type
     /// </summary>
     function RefreshMenuItemsVisibility(const MenuItem: TMenuItem;
       const FirstLevel: boolean): boolean; overload; virtual;
+    /// <summary>
+    /// Called by the actQuit action used for File/Quit menu option.
+    /// </summary>
+    /// <remarks>
+    /// By default this method close the main form and the program.
+    /// </remarks>
+    procedure DoQuitAction(Sender: TObject); virtual;
+    /// <summary>
+    /// Called by the actAbout action used for Help/About menu option.
+    /// </summary>
+    /// <remarks>
+    /// By default this method show the default About Box dialog.
+    /// </remarks>
+    procedure DoAboutAction(Sender: TObject); virtual;
+    /// <summary>
+    /// Called by the actSupport action used for Help/Support menu option.
+    /// </summary>
+    /// <remarks>
+    /// By default this method open the CSupportURL url in the default browser.
+    /// </remarks>
+    procedure DoSupportAction(Sender: TObject); virtual;
+    /// <summary>
+    /// Called by the actProjectOptions action used for Project/Options menu option.
+    /// </summary>
+    /// <remarks>
+    /// Nothing is done by default. Overrire this method if you want to do something.
+    /// </remarks>
+    procedure DoProjectOptionsAction(Sender: TObject); virtual; abstract;
+    /// <summary>
+    /// Called by the actLanguages action used for Tools/Languages menu option.
+    /// </summary>
+    /// <remarks>
+    /// Nothing is done by default. Overrire this method if you want to do something.
+    /// </remarks>
+    procedure DoLanguageChangeAction(Sender: TObject); virtual; abstract;
+    /// <summary>
+    /// Called by the actStyles action used for Tools/Styles menu option.
+    /// </summary>
+    /// <remarks>
+    /// Nothing is done by default. Overrire this method if you want to do something.
+    /// </remarks>
+    procedure DoStyleChangeAction(Sender: TObject); virtual; abstract;
+    /// <summary>
+    /// Called by the actToolsOptions action used for Tools/Options menu option.
+    /// </summary>
+    /// <remarks>
+    /// Nothing is done by default. Overrire this method if you want to do something.
+    /// </remarks>
+    procedure DoToolsOptionsAction(Sender: TObject); virtual; abstract;
   public
     procedure AfterConstruction; override;
     procedure TranslateTexts(const Language: string); override;
@@ -116,44 +165,37 @@ uses
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
-  TAboutBox.Current.ShowModal;
+  DoAboutAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actLanguageChangeExecute(Sender: TObject);
 begin
-  // TODO -oDeveloppeurPascal : à compléter
-  raise exception.Create('Not implemented.');
+  DoLanguageChangeAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actProjectOptionsExecute(Sender: TObject);
 begin
-  // Nothing to do here, fill it in your main form descendant
-  raise exception.Create('Not implemented in the starter kit.');
+  DoProjectOptionsAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actQuitExecute(Sender: TObject);
 begin
-  Close;
+  DoQuitAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actStyleChangeExecute(Sender: TObject);
 begin
-  // TODO -oDeveloppeurPascal : à compléter
-  raise exception.Create('Not implemented.');
+  DoStyleChangeAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actSupportExecute(Sender: TObject);
 begin
-  if not CSupportURL.IsEmpty then
-    url_Open_In_Browser(CSupportURL)
-  else
-    raise exception.Create('Missing support website URL.');
+  DoSupportAction(Sender)
 end;
 
 procedure T__MainFormAncestor.actToolsOptionsExecute(Sender: TObject);
 begin
-  // TODO -oDeveloppeurPascal : à compléter
-  raise exception.Create('Not implemented.');
+  DoToolsOptionsAction(Sender);
 end;
 
 procedure T__MainFormAncestor.AfterConstruction;
@@ -168,7 +210,7 @@ begin
   mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
   mnuProjectOptions.Visible := CShowProjectOptionsMenuItem;
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
-  RefreshMenuItemsVisibility(MainMenu1);
+  RefreshMenuItemsVisibility(MainFormAncestorMenu);
 
 {$IFDEF MACOS}
   tthread.forcequeue(nil,
@@ -179,6 +221,24 @@ begin
 {$ELSE}
   TProjectStyle.Current.EnableDefaultStyle;
 {$ENDIF}
+end;
+
+procedure T__MainFormAncestor.DoAboutAction(Sender: TObject);
+begin
+  TAboutBox.Current.ShowModal;
+end;
+
+procedure T__MainFormAncestor.DoQuitAction(Sender: TObject);
+begin
+  close;
+end;
+
+procedure T__MainFormAncestor.DoSupportAction(Sender: TObject);
+begin
+  if not CSupportURL.IsEmpty then
+    url_Open_In_Browser(CSupportURL)
+  else
+    raise exception.Create('Missing support website URL.');
 end;
 
 function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem

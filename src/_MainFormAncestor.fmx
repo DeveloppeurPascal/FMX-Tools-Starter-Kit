@@ -1,7 +1,7 @@
 inherited __MainFormAncestor: T__MainFormAncestor
   Caption = '__TFormAncestor1'
   DesignerMasterStyle = 0
-  object MainMenu1: TMainMenu
+  object MainFormAncestorMenu: TMainMenu
     Left = 520
     Top = 104
     object mnuMacOS: TMenuItem
@@ -55,7 +55,7 @@ inherited __MainFormAncestor: T__MainFormAncestor
       end
     end
   end
-  object ActionList1: TActionList
+  object MainFormAncestorActionList: TActionList
     Left = 520
     Top = 176
     object actQuit: TAction
