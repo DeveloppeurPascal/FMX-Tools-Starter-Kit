@@ -54,7 +54,6 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 {$R *.dfm}
-{ TStyleLightByDefault }
 
 class function TStyleLightByDefault.GetStyleName: string;
 begin
