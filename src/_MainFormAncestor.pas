@@ -163,6 +163,11 @@ begin
   mnuFileQuit.Visible := false;
   mnuHelpAbout.parent := mnuMacOS;
 {$ENDIF}
+  mnuToolsLanguage.Visible := CShowToolsLanguagesMenuItem;
+  mnuToolsStyle.Visible := CShowToolsStylesMenuItem;
+  mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
+  mnuProjectOptions.Visible := CShowProjectOptionsMenuItem;
+  mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
   RefreshMenuItemsVisibility(MainMenu1);
 
 {$IFDEF MACOS}
