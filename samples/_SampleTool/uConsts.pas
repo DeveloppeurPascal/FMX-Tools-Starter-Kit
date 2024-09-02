@@ -149,7 +149,7 @@ const
   /// <summary>
   /// Show (if true) / hide (if false) the Tool/Styles menu item
   /// </summary>
-  CShowToolsStylesMenuItem = false;
+  CShowToolsStylesMenuItem = true;
 
   /// <summary>
   /// Show (if true) / hide (if false) the Tool/Options menu item
@@ -230,7 +230,6 @@ try
   // Don't share the key file. If you need to modify it, you won't be able to
   // open the previous configuration file!
 {$I '..\_PRIVATE\src\DocumentsFileXORKey.inc'}
-
 {$ENDIF}
 except
   on e: Exception do
