@@ -148,7 +148,7 @@ const
   /// <summary>
   /// Name of the default style used when the user choose the custom mode.
   /// </summary>
-  CDefaultStyleCustom = 'light';
+  CDefaultStyleCustom = 'dark';
 
   /// <summary>
   /// Default style mode to use in the program.
@@ -158,7 +158,7 @@ const
   /// <summary>
   /// Show (if true) / hide (if false) the Tool/Styles menu item
   /// </summary>
-  CShowToolsStylesMenuItem = false;
+  CShowToolsStylesMenuItem = true;
 
   /// <summary>
   /// Show (if true) / hide (if false) the Tool/Options menu item
