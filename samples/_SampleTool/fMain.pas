@@ -50,16 +50,20 @@ uses
   System.Actions,
   FMX.ActnList,
   FMX.Menus,
-  FMX.Controls.Presentation;
+  FMX.Controls.Presentation,
+  Olf.FMX.AboutDialogForm;
 
 type
   TfrmMain = class(T__MainFormAncestor)
     Button1: TButton;
     procedure Button1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
-    { Déclarations privées }
+  protected
+    function DoGetLanguageName(const ISOCode: string): string; override;
+    function AboutBoxTranslateTexts(const Language: string;
+      const TxtID: TOlfAboutDialogTxtID): string;
   public
-    { Déclarations publiques }
   end;
 
 var
@@ -75,8 +79,31 @@ uses
 procedure TfrmMain.Button1Click(Sender: TObject);
 begin
   showmessage(tprojectstyle.current.stylename);
-  TProjectStyle.Current.StyleName:='impressive dark';
-//    TProjectStyle.Current.StyleName:='dark';
+  tprojectstyle.current.stylename := 'impressive dark';
+  // TProjectStyle.Current.StyleName:='dark';
+end;
+
+function TfrmMain.AboutBoxTranslateTexts(const Language: string;
+  const TxtID: TOlfAboutDialogTxtID): string;
+begin
+  if TxtID = TOlfAboutDialogTxtID.Version then
+    result := 'MyVersion '
+  else
+    result := '';
+end;
+
+function TfrmMain.DoGetLanguageName(const ISOCode: string): string;
+begin
+  if ISOCode = 'fr' then
+    result := 'Français'
+  else if ISOCode = 'it' then
+    result := 'Italiano';
+end;
+
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  inherited;
+  OnAboutBoxTranslateTexts := AboutBoxTranslateTexts;
 end;
 
 end.

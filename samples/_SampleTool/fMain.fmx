@@ -1,5 +1,6 @@
 inherited frmMain: TfrmMain
   Caption = '__MainFormAncestor1'
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object Button1: TButton [1]
     Position.X = 272.000000000000000000
