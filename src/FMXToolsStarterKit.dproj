@@ -551,6 +551,10 @@
             <Form>frmToolsStylesDialog</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="fToolsLanguagesDialog.pas">
+            <Form>frmToolsLanguagesDialog</Form>
+            <FormType>fmx</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

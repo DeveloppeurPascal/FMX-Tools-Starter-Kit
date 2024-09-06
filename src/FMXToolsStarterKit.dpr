@@ -60,7 +60,8 @@ uses
   uStyleLightByDefault in 'uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
   uStyleDarkByDefault in 'uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
   Olf.RTL.SystemAppearance in '..\lib-externes\librairies\src\Olf.RTL.SystemAppearance.pas',
-  fToolsStylesDialog in 'fToolsStylesDialog.pas' {frmToolsStylesDialog};
+  fToolsStylesDialog in 'fToolsStylesDialog.pas' {frmToolsStylesDialog},
+  fToolsLanguagesDialog in 'fToolsLanguagesDialog.pas' {frmToolsLanguagesDialog};
 
 {$R *.res}
 
