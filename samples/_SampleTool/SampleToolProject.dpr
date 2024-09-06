@@ -65,7 +65,8 @@ uses
   uStyleImpressiveDark in '..\..\_PRIVATE\src\uStyleImpressiveDark.pas' {StyleImpressiveDark: TDataModule},
   fToolsStylesDialog in '..\..\src\fToolsStylesDialog.pas' {frmToolsStylesDialog},
   uStylePolarDark in '..\..\_PRIVATE\src\uStylePolarDark.pas' {StylePolarDark: TDataModule},
-  uStylePolarLight in '..\..\_PRIVATE\src\uStylePolarLight.pas' {StylePolarLight: TDataModule};
+  uStylePolarLight in '..\..\_PRIVATE\src\uStylePolarLight.pas' {StylePolarLight: TDataModule},
+  fToolsLanguagesDialog in '..\..\src\fToolsLanguagesDialog.pas' {frmToolsLanguagesDialog};
 
 {$R *.res}
 
