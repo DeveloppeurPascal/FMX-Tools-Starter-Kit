@@ -49,7 +49,10 @@ uses
   _TFormAncestor,
   System.Actions,
   FMX.ActnList,
-  FMX.Menus;
+  FMX.Menus,
+  uDMAboutBox,
+  fToolsLanguagesDialog,
+  Olf.FMX.AboutDialogForm;
 
 type
   T__MainFormAncestor = class(T__TFormAncestor)
@@ -82,6 +85,11 @@ type
     procedure actStyleChangeExecute(Sender: TObject);
     procedure actToolsOptionsExecute(Sender: TObject);
   private
+    FonGetLanguageName: TOnGetLanguageName;
+    FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
+    procedure SetonGetLanguageName(const Value: TOnGetLanguageName);
+    procedure SetOnAboutBoxTranslateTexts(const Value
+      : TOnAboutBoxTranslateTexts);
   protected
     /// <summary>
     /// Show/hide TMainMenu items depending on there sub menus items visibility
@@ -127,7 +135,7 @@ type
     /// <remarks>
     /// Nothing is done by default. Overrire this method if you want to do something.
     /// </remarks>
-    procedure DoLanguageChangeAction(Sender: TObject); virtual; abstract;
+    procedure DoLanguageChangeAction(Sender: TObject); virtual;
     /// <summary>
     /// Called by the actStyles action used for Tools/Styles menu option.
     /// </summary>
@@ -142,8 +150,45 @@ type
     /// Nothing is done by default. Overrire this method if you want to do something.
     /// </remarks>
     procedure DoToolsOptionsAction(Sender: TObject); virtual; abstract;
+    /// <summary>
+    /// Used as onGetLanguageName event in the current language selection dialog
+    /// if onGetLanguageName property is not assigned.
+    /// </summary>
+    /// <remarks>
+    /// Override it in your main form or assign an other method to
+    /// onGetLanguageName if you added languages to the starter kit list of
+    /// languages.
+    /// </remarks>
+    function DoGetLanguageName(const ISOCode: string): string; virtual;
+    /// <summary>
+    /// Used as OnAboutBoxTranslateTexts event in the about box dialog
+    /// if OnAboutBoxTranslateTexts property is not assigned.
+    /// </summary>
+    /// <remarks>
+    /// Override it in your main form or assign an other method to
+    /// OnAboutBoxTranslateTexts
+    /// languages.
+    /// </remarks>
+    function DoAboutBoxTranslateTexts(const Language: string;
+      const TxtID: TOlfAboutDialogTxtID): string; virtual;
   public
+    /// <summary>
+    /// Called in the Tools/Languages dialog to get the language name for an ISO code.
+    /// </summary>
+    property onGetLanguageName: TOnGetLanguageName read FonGetLanguageName
+      write SetonGetLanguageName;
+    /// <summary>
+    /// Use it if you want to override about box texts translation or add yous languages.
+    /// </summary>
+    property OnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts
+      read FOnAboutBoxTranslateTexts write SetOnAboutBoxTranslateTexts;
+    /// <summary>
+    /// Execute some code after the form instance construction
+    /// </summary>
     procedure AfterConstruction; override;
+    /// <summary>
+    /// Translate texts for this form
+    /// </summary>
     procedure TranslateTexts(const Language: string); override;
   end;
 
@@ -158,7 +203,6 @@ implementation
 {$R *.fmx}
 
 uses
-  uDMAboutBox,
   u_urlOpen,
   uConsts,
   uStyleManager,
@@ -224,7 +268,44 @@ end;
 
 procedure T__MainFormAncestor.DoAboutAction(Sender: TObject);
 begin
+  if assigned(OnAboutBoxTranslateTexts) then
+    TAboutBox.Current.OnAboutBoxTranslateTexts := OnAboutBoxTranslateTexts
+  else
+    TAboutBox.Current.OnAboutBoxTranslateTexts := DoAboutBoxTranslateTexts;
   TAboutBox.Current.ShowModal;
+end;
+
+function T__MainFormAncestor.DoAboutBoxTranslateTexts(const Language: string;
+const TxtID: TOlfAboutDialogTxtID): string;
+begin
+  // Do nothing at this level
+  result := '';
+end;
+
+function T__MainFormAncestor.DoGetLanguageName(const ISOCode: string): string;
+begin
+  // Do nothing at this level
+  result := '';
+end;
+
+procedure T__MainFormAncestor.DoLanguageChangeAction(Sender: TObject);
+var
+  f: TfrmToolsLanguagesDialog;
+begin
+  f := TfrmToolsLanguagesDialog.create(self);
+  if assigned(onGetLanguageName) then
+    f.onGetLanguageName := onGetLanguageName
+  else
+    f.onGetLanguageName := DoGetLanguageName;
+{$IF Defined(IOS) or Defined(ANDROID)}
+  f.show;
+{$ELSE}
+  try
+    f.ShowModal;
+  finally
+    f.free;
+  end;
+{$ENDIF}
 end;
 
 procedure T__MainFormAncestor.DoQuitAction(Sender: TObject);
@@ -283,31 +364,63 @@ begin
     result := false;
 end;
 
+procedure T__MainFormAncestor.SetOnAboutBoxTranslateTexts
+  (const Value: TOnAboutBoxTranslateTexts);
+begin
+  FOnAboutBoxTranslateTexts := Value;
+end;
+
+procedure T__MainFormAncestor.SetonGetLanguageName
+  (const Value: TOnGetLanguageName);
+begin
+  FonGetLanguageName := Value;
+end;
+
 procedure T__MainFormAncestor.TranslateTexts(const Language: string);
 begin
   inherited;
+  if Language = 'fr' then
+  begin
 {$IF Defined(IOS) or Defined(ANDROID)}
 {$ELSE}
-  mnuFile.Text := 'File';
-  mnuProject.Text := 'Project';
+    mnuFile.Text := 'Fichier';
+    mnuProject.Text := 'Projet';
 {$IFDEF MACOS}
-  if Language = 'fr' then
-    mnuTools.Text := 'Réglages'
-  else
+    mnuTools.Text := 'Réglages';
+{$ELSE}
+    mnuTools.Text := 'Outils';
+{$ENDIF}
+    mnuHelp.Text := 'Aide';
+{$ENDIF}
+    actQuit.Text := 'Quitter';
+    actProjectOptions.Text := 'Options';
+    actLanguageChange.Text := 'Langue';
+    actStyleChange.Text := 'Style';
+    actToolsOptions.Text := 'Options';
+    actAbout.Text := TAboutBox.Current.GetCaption;
+    actSupport.Text := 'Aide en ligne';
+  end
+  else // default language
+  begin
+{$IF Defined(IOS) or Defined(ANDROID)}
+{$ELSE}
+    mnuFile.Text := 'File';
+    mnuProject.Text := 'Project';
+{$IFDEF MACOS}
     mnuTools.Text := 'Preferences';
 {$ELSE}
-  mnuTools.Text := 'Tools';
+    mnuTools.Text := 'Tools';
 {$ENDIF}
-  mnuHelp.Text := 'Help';
+    mnuHelp.Text := 'Help';
 {$ENDIF}
-  actQuit.Text := 'Quit';
-  actProjectOptions.Text := 'Options';
-  actLanguageChange.Text := 'Language';
-  actStyleChange.Text := 'Style';
-  actToolsOptions.Text := 'Options';
-  actAbout.Text := TAboutBox.Current.GetCaption;
-  actSupport.Text := 'Support site';
-  // TODO -oDeveloppeurPascal : translate texts
+    actQuit.Text := 'Quit';
+    actProjectOptions.Text := 'Options';
+    actLanguageChange.Text := 'Language';
+    actStyleChange.Text := 'Style';
+    actToolsOptions.Text := 'Options';
+    actAbout.Text := TAboutBox.Current.GetCaption;
+    actSupport.Text := 'Online help';
+  end;
 end;
 
 procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
