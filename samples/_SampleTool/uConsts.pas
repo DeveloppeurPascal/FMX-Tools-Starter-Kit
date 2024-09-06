@@ -85,14 +85,24 @@ const
   /// language, so use yours or English by default)
   /// </summary>
   /// <remarks>
-  /// use 2 letters ISO code
+  /// Use 2 letters ISO code
   /// </remarks>
   CDefaultLanguage = 'en';
 
   /// <summary>
   /// Show (if true) / hide (if false) the Tool/Languages menu item
   /// </summary>
-  CShowToolsLanguagesMenuItem = false;
+  CShowToolsLanguagesMenuItem = true;
+
+  /// <summary>
+  /// Available languages in this project as an array of 2 letters language ISO
+  /// code strings.
+  /// </summary>
+  /// <remarks>
+  /// If you want to define the languages list by code, fill the global variable "GLanguages".
+  /// If you don't use default language selection, you can ignore this constant.
+  /// </remarks>
+  CLanguages: array [0 .. 2] of string = ('en', 'fr', 'it');
 
   /// <summary>
   /// Used as a folder name to store your projects settings
@@ -161,9 +171,18 @@ const
   /// </summary>
   CShowProjectOptionsMenuItem = false;
 
-{$IF Defined(RELEASE)}
-
 var
+  /// <summary>
+  /// Contains the list of languages available in the program.
+  /// </summary>
+  /// <remarks>
+  /// By default it's filled by CLanguages but you can give an other value by
+  /// code in your program. It's used in the SelectLanguage screen called by
+  /// Tools/Languages default action.
+  /// If you don't use default language selection, you can ignore this variable.
+  /// </remarks>
+  GLanguages: TStringDynArray;
+{$IF Defined(RELEASE)}
   GConfigXORKey: TByteDynArray;
   GDocumentsXORKey: TByteDynArray;
 {$ENDIF}
@@ -174,9 +193,19 @@ uses
   System.Classes,
   System.SysUtils;
 
+procedure InitLanguages;
+var
+  i: integer;
+begin
+  setlength(GLanguages, length(CLanguages));
+  for i := 0 to length(GLanguages) - 1 do
+    GLanguages[i] := CLanguages[i];
+end;
+
 initialization
 
 try
+  InitLanguages;
   if CAboutTitle.Trim.IsEmpty then
     raise Exception.Create
       ('Please give a title to your project in CAboutTitle !');
