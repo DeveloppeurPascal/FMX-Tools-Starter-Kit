@@ -1,17 +1,19 @@
 inherited frmToolsStylesDialog: TfrmToolsStylesDialog
   Caption = 'frmToolsStylesDialog'
+  ClientHeight = 400
+  ClientWidth = 300
   OnCreate = FormCreate
   OnClose = FormClose
   OnResize = FormResize
   DesignerMasterStyle = 0
   object VertScrollBox1: TVertScrollBox
     Align = Client
-    Size.Width = 640.000000000000000000
-    Size.Height = 430.000000000000000000
+    Size.Width = 300.000000000000000000
+    Size.Height = 350.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Viewport.Width = 640.000000000000000000
-    Viewport.Height = 430.000000000000000000
+    Viewport.Width = 284.000000000000000000
+    Viewport.Height = 350.000000000000000000
     object cbSystemStyle: TCheckBox
       Align = MostTop
       IsChecked = True
@@ -21,7 +23,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
       Margins.Bottom = 5.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 5.000000000000000000
-      Size.Width = 630.000000000000000000
+      Size.Width = 274.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -36,7 +38,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
       Margins.Bottom = 5.000000000000000000
       Position.X = 5.000000000000000000
       Position.Y = 34.000000000000000000
-      Size.Width = 630.000000000000000000
+      Size.Width = 274.000000000000000000
       Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
@@ -46,7 +48,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
     object lCustomStyle: TLayout
       Align = Top
       Position.Y = 58.000000000000000000
-      Size.Width = 640.000000000000000000
+      Size.Width = 284.000000000000000000
       Size.Height = 167.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 2
@@ -58,7 +60,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 630.000000000000000000
+        Size.Width = 274.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -88,7 +90,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 65.000000000000000000
-        Size.Width = 630.000000000000000000
+        Size.Width = 274.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -118,7 +120,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 125.000000000000000000
-        Size.Width = 630.000000000000000000
+        Size.Width = 274.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 2
@@ -144,7 +146,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
     object lSystemStyle: TLayout
       Align = Top
       Position.Y = 225.000000000000000000
-      Size.Width = 640.000000000000000000
+      Size.Width = 284.000000000000000000
       Size.Height = 144.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 3
@@ -156,7 +158,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 65.000000000000000000
-        Size.Width = 630.000000000000000000
+        Size.Width = 274.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
@@ -182,7 +184,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
         Margins.Bottom = 5.000000000000000000
         Position.X = 5.000000000000000000
         Position.Y = 5.000000000000000000
-        Size.Width = 630.000000000000000000
+        Size.Width = 274.000000000000000000
         Size.Height = 50.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 1
@@ -204,8 +206,8 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
   end
   object GridPanelLayout1: TGridPanelLayout
     Align = Bottom
-    Position.Y = 430.000000000000000000
-    Size.Width = 640.000000000000000000
+    Position.Y = 350.000000000000000000
+    Size.Width = 300.000000000000000000
     Size.Height = 50.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 1
@@ -238,7 +240,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 310.000000000000000000
+      Size.Width = 140.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -253,7 +255,7 @@ inherited frmToolsStylesDialog: TfrmToolsStylesDialog
       Margins.Top = 5.000000000000000000
       Margins.Right = 5.000000000000000000
       Margins.Bottom = 5.000000000000000000
-      Size.Width = 310.000000000000000000
+      Size.Width = 140.000000000000000000
       Size.Height = 40.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1

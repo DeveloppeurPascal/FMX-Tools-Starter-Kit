@@ -120,8 +120,6 @@ procedure TfrmToolsStylesDialog.AddStylesToFlow(const Styles: TStringDynArray;
 var
   cb: TCheckBox;
   i: integer;
-  c: TControl;
-  h1, h2: single;
 begin
   if length(Styles) < 1 then
     FlowLayout.Visible := false
@@ -252,6 +250,7 @@ var
   c: TControl;
 begin
   h1 := 0;
+  h2 := 0;
   for i := 0 to Layout.ControlsCount - 1 do
   begin
     c := Layout.Controls[i];
@@ -311,17 +310,32 @@ end;
 procedure TfrmToolsStylesDialog.TranslateTexts(const Language: string);
 begin
   inherited;
-  // TODO -oDeveloppeurPascal : translate texts
-  caption := 'Styles options';
-  cbSystemStyle.Text := 'System default';
-  lblSSLight.Text := 'Light themes';
-  lblSSDark.Text := 'Dark themes';
-  cbCustomStyle.Text := 'Your choice';
-  lblCSLight.Text := 'Light themes';
-  lblCSDark.Text := 'Dark themes';
-  lblCSOthers.Text := 'Other themes';
-  btnOk.Text := 'Ok';
-  btnCancel.Text := 'Cancel';
+  if Language = 'fr' then
+  begin
+    caption := 'Choix du style';
+    cbSystemStyle.Text := 'Selon le système d''exploitation';
+    lblSSLight.Text := 'Thèmes clairs :';
+    lblSSDark.Text := 'Thèmes sombres :';
+    cbCustomStyle.Text := 'Personnalisé';
+    lblCSLight.Text := 'Thèmes clairs :';
+    lblCSDark.Text := 'Thèmes sombres :';
+    lblCSOthers.Text := 'Autres :';
+    btnOk.Text := 'Ok';
+    btnCancel.Text := 'Annuler';
+  end
+  else // default language
+  begin
+    caption := 'Styles options';
+    cbSystemStyle.Text := 'System default';
+    lblSSLight.Text := 'Light themes:';
+    lblSSDark.Text := 'Dark themes:';
+    cbCustomStyle.Text := 'Your choice';
+    lblCSLight.Text := 'Light themes:';
+    lblCSDark.Text := 'Dark themes:';
+    lblCSOthers.Text := 'Other themes:';
+    btnOk.Text := 'Ok';
+    btnCancel.Text := 'Cancel';
+  end;
 end;
 
 end.
