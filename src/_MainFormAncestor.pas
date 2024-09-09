@@ -178,7 +178,7 @@ type
     property onGetLanguageName: TOnGetLanguageName read FonGetLanguageName
       write SetonGetLanguageName;
     /// <summary>
-    /// Use it if you want to override about box texts translation or add yous languages.
+    /// Use it if you want to override about box texts translation or add your languages.
     /// </summary>
     property OnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts
       read FOnAboutBoxTranslateTexts write SetOnAboutBoxTranslateTexts;
