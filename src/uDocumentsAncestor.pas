@@ -68,6 +68,32 @@ type
   end;
 
   /// <summary>
+  /// Subscribe to this message if you need to be informed when a document is closing
+  /// </summary>
+  TDocumentClosingMessage = class(TMessage)
+  private
+    FDocument: TDocumentAncestor;
+  protected
+  public
+    property Document: TDocumentAncestor read FDocument;
+    constructor Create(const ADocument: TDocumentAncestor);
+    class procedure Broadcast(const ADocument: TDocumentAncestor);
+  end;
+
+  /// <summary>
+  /// Subscribe to this message if you need to be informed when we changed current document
+  /// </summary>
+  TCurrentDocumentChangedMessage = class(TMessage)
+  private
+    FCurrentDocument: TDocumentAncestor;
+  protected
+  public
+    property CurrentDocument: TDocumentAncestor read FCurrentDocument;
+    constructor Create(const ACurrentDocument: TDocumentAncestor);
+    class procedure Broadcast(const ACurrentDocument: TDocumentAncestor);
+  end;
+
+  /// <summary>
   /// Manage the document and have the ability to be saved/restored
   /// </summary>
   /// <remarks>
@@ -323,6 +349,51 @@ procedure TDocumentAncestor.SetPath(const Value: string);
 begin
   if Value.IsEmpty or tdirectory.exists(Value) then
     FPath := Value;
+end;
+
+{ TDocumentClosingMessage }
+
+class procedure TDocumentClosingMessage.Broadcast(const ADocument
+  : TDocumentAncestor);
+var
+  LDocument: TDocumentAncestor;
+begin
+  LDocument := ADocument;
+  tthread.Queue(nil,
+    procedure
+    begin
+      TMessageManager.DefaultManager.SendMessage(nil,
+        TDocumentClosingMessage.Create(LDocument));
+    end);
+end;
+
+constructor TDocumentClosingMessage.Create(const ADocument: TDocumentAncestor);
+begin
+  inherited Create;
+  FDocument := ADocument;
+end;
+
+{ TCurrentDocumentChangedMessage }
+
+class procedure TCurrentDocumentChangedMessage.Broadcast(const ACurrentDocument
+  : TDocumentAncestor);
+var
+  LCurrentDocument: TDocumentAncestor;
+begin
+  LCurrentDocument := ACurrentDocument;
+  tthread.Queue(nil,
+    procedure
+    begin
+      TMessageManager.DefaultManager.SendMessage(nil,
+        TDocumentClosingMessage.Create(LCurrentDocument));
+    end);
+end;
+
+constructor TCurrentDocumentChangedMessage.Create(const ACurrentDocument
+  : TDocumentAncestor);
+begin
+  inherited Create;
+  FCurrentDocument := ACurrentDocument;
 end;
 
 end.
