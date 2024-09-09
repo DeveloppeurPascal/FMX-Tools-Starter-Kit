@@ -195,11 +195,27 @@ const
   /// If the program has to manage documents (mode solo or multi), define if
   /// the default menus are visible or not.
   /// </summary>
-  CShowDocumentsMenuItems = true;
+  CShowDocumentsMenuItems = (CDocumentsMode <> TDocumentsMode.None);
   /// <summary>
   /// Show (if true) / hide (if false) the Project/Options menu item
   /// </summary>
   CShowDocumentOptionsMenuItem = false;
+
+  /// <summary>
+  /// Show the "File/Open recent" menu item
+  /// </summary>
+  CShowOpenPreviousDocumentMenuItem = CShowDocumentsMenuItems;
+  /// <summary>
+  /// Show the "File/Open recent/Properties" menu item
+  /// </summary>
+  CShowOpenPreviousDocumentOptions = CShowOpenPreviousDocumentMenuItem;
+  /// <summary>
+  /// Maximum number of documents listed in the "File/Open recent" menu item
+  /// </summary>
+  /// <remarks>
+  /// Used as a default config value
+  /// </remarks>
+  COpenPreviousDocumentsMaxCount = 10;
 
 var
   /// <summary>
