@@ -40,6 +40,8 @@ interface
 uses
   System.Types;
 
+{$SCOPEDENUMS ON}
+
 const
   /// <summary>
   /// Version number of your project, don't forget to update the
@@ -141,7 +143,6 @@ const
   CShowAboutBoxWithF1 = true;
 
 type
-{$SCOPEDENUMS ON}
   TStyleMode = (Light, Dark, System, Custom);
 
 const
@@ -179,6 +180,27 @@ const
   /// Show (if true) / hide (if false) the Project/Options menu item
   /// </summary>
   CShowProjectOptionsMenuItem = false;
+
+type
+  /// <summary>
+  /// None - no default options or features about documents editing.
+  /// Solo - edit only one document at a time, if "New" or "Open" are used,
+  /// current document is closed.
+  /// Multi - allow opening/creating more than one document at the same time
+  /// </summary>
+  TDocumentsMode = (None, Solo, Multi);
+
+const
+  /// <summary>
+  /// Define if the program manage documents wiuth default classes and their
+  /// descendants
+  /// </summary>
+  CDocumentsMode = TDocumentsMode.Multi;
+  /// <summary>
+  /// If the program has to manage documents (mode solo or multi), define if
+  /// the default menus are visible or not.
+  /// </summary>
+  CShowDocumentsMenuItems = true;
 
 var
   /// <summary>
