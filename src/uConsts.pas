@@ -183,7 +183,7 @@ type
   /// current document is closed.
   /// Multi - allow opening/creating more than one document at the same time
   /// </summary>
-  TDocumentsMode = (None, Solo, Multi);
+  TDocumentsMode = (None, Mono, Multi);
 
 const
   /// <summary>
