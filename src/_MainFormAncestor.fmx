@@ -10,36 +10,52 @@ inherited __MainFormAncestor: T__MainFormAncestor
     object mnuFile: TMenuItem
       Text = 'mnuFile'
       object mnuFileNew: TMenuItem
+        Action = actNewDocument
         Locked = True
-        Text = 'mnuFileNew'
+        ImageIndex = -1
       end
       object mnuFileOpen: TMenuItem
+        Action = actOpenDocument
         Locked = True
-        Text = 'mnuFileOpen'
+        ImageIndex = -1
       end
       object mnuFileOpenPrevious: TMenuItem
         Locked = True
         Text = 'mnuFileOpenPrevious'
+        object mnuFileOpenPreviousOptions: TMenuItem
+          Action = actRecentFilesOptions
+          Locked = True
+          ImageIndex = -1
+        end
+        object mnuFileOpenPreviousSeparator: TMenuItem
+          Locked = True
+          Text = '-'
+        end
       end
       object mnuFileSave: TMenuItem
+        Action = actSaveDocument
         Locked = True
-        Text = 'mnuFileSave'
+        ImageIndex = -1
       end
       object mnuFileSaveAs: TMenuItem
+        Action = actSaveDocumentAs
         Locked = True
-        Text = 'mnuFileSaveAs'
+        ImageIndex = -1
       end
       object mnuFileSaveAll: TMenuItem
+        Action = actSaveAllDocuments
         Locked = True
-        Text = 'mnuFileSaveAll'
+        ImageIndex = -1
       end
       object mnuFileClose: TMenuItem
+        Action = actCloseDocument
         Locked = True
-        Text = 'mnuFileClose'
+        ImageIndex = -1
       end
       object mnuFileCloseAll: TMenuItem
+        Action = actCloseAllDocuments
         Locked = True
-        Text = 'mnuFileCloseAll'
+        ImageIndex = -1
       end
       object mnuFileQuit: TMenuItem
         Action = actQuit
@@ -148,6 +164,10 @@ inherited __MainFormAncestor: T__MainFormAncestor
     object actCloseAllDocuments: TAction
       Text = 'actCloseAllDocuments'
       OnExecute = actCloseAllDocumentsExecute
+    end
+    object actRecentFilesOptions: TAction
+      Text = 'actRecentFilesOptions'
+      OnExecute = actRecentFilesOptionsExecute
     end
   end
 end

@@ -93,6 +93,9 @@ type
     actSaveAllDocuments: TAction;
     actCloseDocument: TAction;
     actCloseAllDocuments: TAction;
+    mnuFileOpenPreviousOptions: TMenuItem;
+    mnuFileOpenPreviousSeparator: TMenuItem;
+    actRecentFilesOptions: TAction;
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
@@ -107,6 +110,7 @@ type
     procedure actSaveAllDocumentsExecute(Sender: TObject);
     procedure actCloseDocumentExecute(Sender: TObject);
     procedure actCloseAllDocumentsExecute(Sender: TObject);
+    procedure actRecentFilesOptionsExecute(Sender: TObject);
   private
     FonGetLanguageName: TOnGetLanguageName;
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
@@ -203,6 +207,7 @@ type
     procedure DoOpenPreviousAction(Sender: TObject); virtual;
     procedure DoGoToDocAction(Sender: TObject); virtual;
     procedure DoCloseAllAction(Sender: TObject); virtual;
+    procedure DoRecentDocumentsOptionsAction(Sender: TObject); virtual;
   public
     /// <summary>
     /// Called in the Tools/Languages dialog to get the language name for an ISO code.
@@ -278,6 +283,11 @@ end;
 procedure T__MainFormAncestor.actQuitExecute(Sender: TObject);
 begin
   DoQuitAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actRecentFilesOptionsExecute(Sender: TObject);
+begin
+  DoRecentDocumentsOptionsAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actSaveAllDocumentsExecute(Sender: TObject);
@@ -420,6 +430,11 @@ begin
   close;
 end;
 
+procedure T__MainFormAncestor.DoRecentDocumentsOptionsAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
 procedure T__MainFormAncestor.DoSaveAllAction(Sender: TObject);
 begin
   // TODO -oDeveloppeurPacal : à compléter
@@ -520,6 +535,7 @@ begin
     actSaveAllDocuments.Text := 'Enregistrer tout';
     actCloseDocument.Text := 'Fermer';
     actCloseAllDocuments.Text := 'Fermer tout';
+    actRecentFilesOptions.Text := 'Options';
   end
   else // default language
   begin
@@ -550,6 +566,7 @@ begin
     actSaveAllDocuments.Text := 'Save all';
     actCloseDocument.Text := 'Close';
     actCloseAllDocuments.Text := 'Close all';
+    actRecentFilesOptions.Text := 'Options';
   end;
 end;
 
@@ -570,6 +587,23 @@ begin
   mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
   mnuDocumentOptions.Visible := CShowDocumentOptionsMenuItem;
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
+
+  mnuFileNew.Visible := CShowDocumentsMenuItems;
+  mnuFileOpen.Visible := CShowDocumentsMenuItems;
+  mnuFileOpenPrevious.Visible := CShowDocumentsMenuItems and
+    CShowOpenPreviousDocumentMenuItem;
+  mnuFileOpenPreviousOptions.Visible := mnuFileOpenPrevious.Visible and
+    CShowOpenPreviousDocumentOptions;
+  mnuFileOpenPreviousSeparator.Visible := mnuFileOpenPreviousOptions.Visible;
+  mnuFileSave.Visible := CShowDocumentsMenuItems;
+  mnuFileSaveAs.Visible := CShowDocumentsMenuItems;
+  mnuFileSaveAll.Visible := CShowDocumentsMenuItems and
+    (CDocumentsMode = TDocumentsMode.Multi);
+  mnuFileClose.Visible := CShowDocumentsMenuItems;
+  mnuFileCloseAll.Visible := CShowDocumentsMenuItems and
+    (CDocumentsMode = TDocumentsMode.Multi);
+  mnuWindows.Visible := CShowHelpSupportMenuItem and
+    (CDocumentsMode = TDocumentsMode.Multi);
 
   if assigned(Menu) and (Menu.ItemsCount > 0) then
     for i := 0 to Menu.ItemsCount - 1 do
