@@ -176,11 +176,6 @@ const
   /// </summary>
   CShowToolsOptionsMenuItem = false;
 
-  /// <summary>
-  /// Show (if true) / hide (if false) the Project/Options menu item
-  /// </summary>
-  CShowProjectOptionsMenuItem = false;
-
 type
   /// <summary>
   /// None - no default options or features about documents editing.
@@ -201,6 +196,10 @@ const
   /// the default menus are visible or not.
   /// </summary>
   CShowDocumentsMenuItems = true;
+  /// <summary>
+  /// Show (if true) / hide (if false) the Project/Options menu item
+  /// </summary>
+  CShowDocumentOptionsMenuItem = false;
 
 var
   /// <summary>
