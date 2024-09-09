@@ -30,7 +30,7 @@
 /// ***************************************************************************
 /// </summary>
 
-unit uProjectData;
+unit uDocumentsAncestor;
 
 interface
 
@@ -52,19 +52,19 @@ uses
   System.Classes;
 
 type
-  TDocument = class;
+  TDocumentAncestor = class;
 
   /// <summary>
   /// Subscribe to this message if you need to be informed about a document change
   /// </summary>
   TDocumentChangedMessage = class(TMessage)
   private
-    FDocument: TDocument;
+    FDocument: TDocumentAncestor;
   protected
   public
-    property Document: TDocument read FDocument;
-    constructor Create(const ADocument: TDocument);
-    class procedure Broadcast(const ADocument: TDocument);
+    property Document: TDocumentAncestor read FDocument;
+    constructor Create(const ADocument: TDocumentAncestor);
+    class procedure Broadcast(const ADocument: TDocumentAncestor);
   end;
 
   /// <summary>
@@ -75,7 +75,7 @@ type
   /// this class. It allow you to update thise file with the future templates
   /// updates.
   /// </remarks>
-  TDocument = class
+  TDocumentAncestor = class
   private const
     /// <summary>
     /// Version level of this class. It is used to check compatibility between
@@ -91,6 +91,7 @@ type
   protected
     FPath: string;
     FHasChanged: boolean;
+    procedure SetHasChanged(const Value: boolean); virtual;
   public
     /// <summary>
     /// Path to the folder where this document will be saved
@@ -142,13 +143,6 @@ type
     /// </summary>
     procedure SaveToStream(const AStream: TStream); virtual;
     /// <summary>
-    /// Get the instance of default document.
-    /// In most cases it's better to use it than creating a new instance
-    /// If you work on a descendnt of TDocument, don't call this method,
-    /// create your own or use the constructor.
-    /// </summary>
-    class function DefaultDocument: TDocument; virtual;
-    /// <summary>
     /// Used to clean current instance and reset all properties and fields to
     /// their default values
     /// </summary>
@@ -165,14 +159,12 @@ uses
   Olf.RTL.CryptDecrypt,
   uConsts;
 
-var
-  LDefaultDocument: TDocument;
+{ TDocumentChangedMessage }
 
-  { TDocumentChangedMessage }
-
-class procedure TDocumentChangedMessage.Broadcast(const ADocument: TDocument);
+class procedure TDocumentChangedMessage.Broadcast(const ADocument
+  : TDocumentAncestor);
 var
-  LDocument: TDocument;
+  LDocument: TDocumentAncestor;
 begin
   LDocument := ADocument;
   tthread.Queue(nil,
@@ -183,7 +175,7 @@ begin
     end);
 end;
 
-constructor TDocumentChangedMessage.Create(const ADocument: TDocument);
+constructor TDocumentChangedMessage.Create(const ADocument: TDocumentAncestor);
 begin
   inherited Create;
   FDocument := ADocument;
@@ -191,13 +183,13 @@ end;
 
 { TDocument }
 
-procedure TDocument.Clear;
+procedure TDocumentAncestor.Clear;
 begin
   FFilePath := '';
-  FHasChanged := false;
+  SetHasChanged(false);
 end;
 
-constructor TDocument.Create;
+constructor TDocumentAncestor.Create;
 begin
   inherited;
   FPath := '';
@@ -205,24 +197,17 @@ begin
   FHasChanged := false;
 end;
 
-class function TDocument.DefaultDocument: TDocument;
-begin
-  if not assigned(LDefaultDocument) then
-    LDefaultDocument := TDocument.Create;
-  result := LDefaultDocument;
-end;
-
-destructor TDocument.Destroy;
+destructor TDocumentAncestor.Destroy;
 begin
   inherited;
 end;
 
-function TDocument.GetFileName: string;
+function TDocumentAncestor.GetFileName: string;
 begin
   result := tpath.GetFileNameWithoutExtension(FFilePath);
 end;
 
-function TDocument.GetPath: string;
+function TDocumentAncestor.GetPath: string;
 begin
   if not FFilePath.IsEmpty then
     result := tpath.GetDirectoryName(FFilePath)
@@ -232,7 +217,7 @@ begin
     result := FPath;
 end;
 
-procedure TDocument.LoadFromFile(const AFilePath: string);
+procedure TDocumentAncestor.LoadFromFile(const AFilePath: string);
 var
   FS: tfilestream;
 begin
@@ -250,12 +235,12 @@ begin
     finally
       FS.Free;
       FFilePath := AFilePath;
-      FHasChanged := false;
+      SetHasChanged(false);
     end;
   end;
 end;
 
-procedure TDocument.LoadFromStream(const AStream: TStream);
+procedure TDocumentAncestor.LoadFromStream(const AStream: TStream);
 var
   Guid: string;
   VersionNum: integer;
@@ -274,10 +259,10 @@ begin
     raise exception.Create
       ('Can''t open this file. Please update the program before trying again.');
 
-  FHasChanged := false;
+  SetHasChanged(false);
 end;
 
-procedure TDocument.SaveToFile(const AFilePath: string);
+procedure TDocumentAncestor.SaveToFile(const AFilePath: string);
 var
   LFilePath: string;
   Folder: string;
@@ -308,12 +293,12 @@ begin
     finally
       FS.Free;
       FFilePath := LFilePath;
-      FHasChanged := false;
+      SetHasChanged(false);
     end;
   end;
 end;
 
-procedure TDocument.SaveToStream(const AStream: TStream);
+procedure TDocumentAncestor.SaveToStream(const AStream: TStream);
 var
   Guid: string;
   VersionNum: integer;
@@ -322,21 +307,22 @@ begin
   SaveStringToStream(Guid, AStream);
   VersionNum := CProjectDataVersion;
   AStream.Write(VersionNum, sizeof(VersionNum));
-  FHasChanged := false;
+  SetHasChanged(false);
 end;
 
-procedure TDocument.SetPath(const Value: string);
+procedure TDocumentAncestor.SetHasChanged(const Value: boolean);
+begin
+  if (FHasChanged <> Value) then
+  begin
+    FHasChanged := Value;
+    TDocumentChangedMessage.Broadcast(self);
+  end;
+end;
+
+procedure TDocumentAncestor.SetPath(const Value: string);
 begin
   if Value.IsEmpty or tdirectory.exists(Value) then
     FPath := Value;
 end;
-
-initialization
-
-LDefaultDocument := nil;
-
-finalization
-
-LDefaultDocument.Free;
 
 end.
