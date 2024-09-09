@@ -59,11 +59,11 @@ type
     MainFormAncestorMenu: TMainMenu;
     mnuMacOS: TMenuItem;
     mnuFile: TMenuItem;
-    mnuProject: TMenuItem;
+    mnuDocument: TMenuItem;
     mnuTools: TMenuItem;
     mnuHelp: TMenuItem;
     mnuFileQuit: TMenuItem;
-    mnuProjectOptions: TMenuItem;
+    mnuDocumentOptions: TMenuItem;
     mnuToolsOptions: TMenuItem;
     mnuToolsLanguage: TMenuItem;
     mnuToolsStyle: TMenuItem;
@@ -73,14 +73,23 @@ type
     actQuit: TAction;
     actAbout: TAction;
     actSupport: TAction;
-    actProjectOptions: TAction;
+    actDocumentOptions: TAction;
     actLanguageChange: TAction;
     actStyleChange: TAction;
     actToolsOptions: TAction;
+    mnuFileNew: TMenuItem;
+    mnuFileOpen: TMenuItem;
+    mnuFileOpenPrevious: TMenuItem;
+    mnuFileSave: TMenuItem;
+    mnuFileSaveAs: TMenuItem;
+    mnuFileClose: TMenuItem;
+    mnuWindows: TMenuItem;
+    mnuFileCloseAll: TMenuItem;
+    mnuFileSaveAll: TMenuItem;
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
-    procedure actProjectOptionsExecute(Sender: TObject);
+    procedure actDocumentOptionsExecute(Sender: TObject);
     procedure actLanguageChangeExecute(Sender: TObject);
     procedure actStyleChangeExecute(Sender: TObject);
     procedure actToolsOptionsExecute(Sender: TObject);
@@ -123,12 +132,12 @@ type
     /// </remarks>
     procedure DoSupportAction(Sender: TObject); virtual;
     /// <summary>
-    /// Called by the actProjectOptions action used for Project/Options menu option.
+    /// Called by the actDocumentOptions action used for Document/Options menu option.
     /// </summary>
     /// <remarks>
     /// Nothing is done by default. Overrire this method if you want to do something.
     /// </remarks>
-    procedure DoProjectOptionsAction(Sender: TObject); virtual; abstract;
+    procedure DoDocumentOptionsAction(Sender: TObject); virtual; abstract;
     /// <summary>
     /// Called by the actLanguages action used for Tools/Languages menu option.
     /// </summary>
@@ -218,9 +227,9 @@ begin
   DoLanguageChangeAction(Sender);
 end;
 
-procedure T__MainFormAncestor.actProjectOptionsExecute(Sender: TObject);
+procedure T__MainFormAncestor.actDocumentOptionsExecute(Sender: TObject);
 begin
-  DoProjectOptionsAction(Sender);
+  DoDocumentOptionsAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actQuitExecute(Sender: TObject);
@@ -384,16 +393,17 @@ begin
 {$IF Defined(IOS) or Defined(ANDROID)}
 {$ELSE}
     mnuFile.Text := 'Fichier';
-    mnuProject.Text := 'Projet';
+    mnuDocument.Text := 'Projet';
 {$IFDEF MACOS}
     mnuTools.Text := 'Réglages';
 {$ELSE}
     mnuTools.Text := 'Outils';
 {$ENDIF}
+    mnuWindows.Text := 'Fenêtres';
     mnuHelp.Text := 'Aide';
 {$ENDIF}
     actQuit.Text := 'Quitter';
-    actProjectOptions.Text := 'Options';
+    actDocumentOptions.Text := 'Options';
     actLanguageChange.Text := 'Langue';
     actStyleChange.Text := 'Style';
     actToolsOptions.Text := 'Options';
@@ -405,16 +415,17 @@ begin
 {$IF Defined(IOS) or Defined(ANDROID)}
 {$ELSE}
     mnuFile.Text := 'File';
-    mnuProject.Text := 'Project';
+    mnuDocument.Text := 'Document';
 {$IFDEF MACOS}
     mnuTools.Text := 'Preferences';
 {$ELSE}
     mnuTools.Text := 'Tools';
 {$ENDIF}
+    mnuWindows.Text := 'Windows';
     mnuHelp.Text := 'Help';
 {$ENDIF}
     actQuit.Text := 'Quit';
-    actProjectOptions.Text := 'Options';
+    actDocumentOptions.Text := 'Options';
     actLanguageChange.Text := 'Language';
     actStyleChange.Text := 'Style';
     actToolsOptions.Text := 'Options';
@@ -438,7 +449,7 @@ begin
   mnuToolsLanguage.Visible := CShowToolsLanguagesMenuItem;
   mnuToolsStyle.Visible := CShowToolsStylesMenuItem;
   mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
-  mnuProjectOptions.Visible := CShowProjectOptionsMenuItem;
+  mnuDocumentOptions.Visible := CShowDocumentOptionsMenuItem;
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
 
   if assigned(Menu) and (Menu.ItemsCount > 0) then

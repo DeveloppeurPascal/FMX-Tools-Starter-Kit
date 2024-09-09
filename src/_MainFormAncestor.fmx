@@ -9,16 +9,48 @@ inherited __MainFormAncestor: T__MainFormAncestor
     end
     object mnuFile: TMenuItem
       Text = 'mnuFile'
+      object mnuFileNew: TMenuItem
+        Locked = True
+        Text = 'mnuFileNew'
+      end
+      object mnuFileOpen: TMenuItem
+        Locked = True
+        Text = 'mnuFileOpen'
+      end
+      object mnuFileOpenPrevious: TMenuItem
+        Locked = True
+        Text = 'mnuFileOpenPrevious'
+      end
+      object mnuFileSave: TMenuItem
+        Locked = True
+        Text = 'mnuFileSave'
+      end
+      object mnuFileSaveAs: TMenuItem
+        Locked = True
+        Text = 'mnuFileSaveAs'
+      end
+      object mnuFileSaveAll: TMenuItem
+        Locked = True
+        Text = 'mnuFileSaveAll'
+      end
+      object mnuFileClose: TMenuItem
+        Locked = True
+        Text = 'mnuFileClose'
+      end
+      object mnuFileCloseAll: TMenuItem
+        Locked = True
+        Text = 'mnuFileCloseAll'
+      end
       object mnuFileQuit: TMenuItem
         Action = actQuit
         Locked = True
         ImageIndex = -1
       end
     end
-    object mnuProject: TMenuItem
-      Text = 'mnuProject'
-      object mnuProjectOptions: TMenuItem
-        Action = actProjectOptions
+    object mnuDocument: TMenuItem
+      Text = 'mnuDocument'
+      object mnuDocumentOptions: TMenuItem
+        Action = actDocumentOptions
         Locked = True
         ImageIndex = -1
       end
@@ -40,6 +72,9 @@ inherited __MainFormAncestor: T__MainFormAncestor
         Locked = True
         ImageIndex = -1
       end
+    end
+    object mnuWindows: TMenuItem
+      Text = 'mnuWindows'
     end
     object mnuHelp: TMenuItem
       Text = 'mnuHelp'
@@ -70,9 +105,9 @@ inherited __MainFormAncestor: T__MainFormAncestor
       Text = 'actSupport'
       OnExecute = actSupportExecute
     end
-    object actProjectOptions: TAction
-      Text = 'actProjectOptions'
-      OnExecute = actProjectOptionsExecute
+    object actDocumentOptions: TAction
+      Text = 'actDocumentOptions'
+      OnExecute = actDocumentOptionsExecute
     end
     object actLanguageChange: TAction
       Text = 'actLanguageChange'
