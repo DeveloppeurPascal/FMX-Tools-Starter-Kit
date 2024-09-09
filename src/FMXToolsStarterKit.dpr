@@ -52,7 +52,7 @@ uses
   _TFrameAncestor in '_TFrameAncestor.pas' {__TFrameAncestor: TFrame},
   _TFormAncestor in '_TFormAncestor.pas' {__TFormAncestor},
   _MainFormAncestor in '_MainFormAncestor.pas' {__MainFormAncestor},
-  uProjectData in 'uProjectData.pas',
+  uDocumentsAncestor in 'uDocumentsAncestor.pas',
   Olf.RTL.Streams in '..\lib-externes\librairies\src\Olf.RTL.Streams.pas',
   Olf.RTL.Maths.Conversions in '..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas',
   uStyleManager in 'uStyleManager.pas',
