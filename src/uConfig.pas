@@ -59,6 +59,12 @@ type
     function GetCustomStyleName: string;
     function GetDarkStyleName: string;
     function GetLightStyleName: string;
+    function GetRecentDocuments(const Index: integer): string;
+    procedure SetRecentDocuments(const Index: integer; const Value: string);
+    procedure SetRecentDocumentsCount(const Value: integer);
+    procedure SetRecentDocumentsMaxCount(const Value: integer);
+    function GetRecentDocumentsCount: integer;
+    function GetRecentDocumentsMaxCount: integer;
   protected
   public
     /// <summary>
@@ -91,6 +97,21 @@ type
     /// </summary>
     property CustomStyleName: string read GetCustomStyleName
       write SetCustomStyleName;
+    /// <summary>
+    /// Maximum number of recents documents
+    /// </summary>
+    property RecentDocumentsMaxCount: integer read GetRecentDocumentsMaxCount
+      write SetRecentDocumentsMaxCount;
+    /// <summary>
+    /// Current number of recent documents
+    /// </summary>
+    property RecentDocumentsCount: integer read GetRecentDocumentsCount
+      write SetRecentDocumentsCount;
+    /// <summary>
+    /// Recents documents path
+    /// </summary>
+    property RecentDocuments[const Index: integer]: string
+      read GetRecentDocuments write SetRecentDocuments;
     /// <summary>
     /// Return the instance to TConfig singleton
     /// </summary>
@@ -215,6 +236,21 @@ begin
   result := FParams.getFilePath;
 end;
 
+function TConfig.GetRecentDocuments(const Index: integer): string;
+begin
+  result := FParams.getValue('RD' + Index.ToString, '');
+end;
+
+function TConfig.GetRecentDocumentsCount: integer;
+begin
+  result := FParams.getValue('RDC', 0);
+end;
+
+function TConfig.GetRecentDocumentsMaxCount: integer;
+begin
+  result := FParams.getValue('RDMC', COpenPreviousDocumentsMaxCount);
+end;
+
 function TConfig.GetStyleMode: TStyleMode;
 begin
   result := TStyleMode(FParams.getValue('StyleMode', ord(CDefaultStyleMode)));
@@ -248,6 +284,24 @@ end;
 procedure TConfig.SetLightStyleName(const Value: string);
 begin
   FParams.setValue('LightStyleName', Value.Trim.ToLower);
+  FParams.Save;
+end;
+
+procedure TConfig.SetRecentDocuments(const Index: integer; const Value: string);
+begin
+  FParams.setValue('RD' + Index.ToString, Value);
+  FParams.Save;
+end;
+
+procedure TConfig.SetRecentDocumentsCount(const Value: integer);
+begin
+  FParams.setValue('RDC', Value);
+  FParams.Save;
+end;
+
+procedure TConfig.SetRecentDocumentsMaxCount(const Value: integer);
+begin
+  FParams.setValue('RDMC', Value);
   FParams.Save;
 end;
 
