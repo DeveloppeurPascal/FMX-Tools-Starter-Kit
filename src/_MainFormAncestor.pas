@@ -86,6 +86,13 @@ type
     mnuWindows: TMenuItem;
     mnuFileCloseAll: TMenuItem;
     mnuFileSaveAll: TMenuItem;
+    actNewDocument: TAction;
+    actOpenDocument: TAction;
+    actSaveDocument: TAction;
+    actSaveDocumentAs: TAction;
+    actSaveAllDocuments: TAction;
+    actCloseDocument: TAction;
+    actCloseAllDocuments: TAction;
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
@@ -93,6 +100,13 @@ type
     procedure actLanguageChangeExecute(Sender: TObject);
     procedure actStyleChangeExecute(Sender: TObject);
     procedure actToolsOptionsExecute(Sender: TObject);
+    procedure actNewDocumentExecute(Sender: TObject);
+    procedure actOpenDocumentExecute(Sender: TObject);
+    procedure actSaveDocumentExecute(Sender: TObject);
+    procedure actSaveDocumentAsExecute(Sender: TObject);
+    procedure actSaveAllDocumentsExecute(Sender: TObject);
+    procedure actCloseDocumentExecute(Sender: TObject);
+    procedure actCloseAllDocumentsExecute(Sender: TObject);
   private
     FonGetLanguageName: TOnGetLanguageName;
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
@@ -180,6 +194,15 @@ type
     /// </remarks>
     function DoAboutBoxTranslateTexts(const Language: string;
       const TxtID: TOlfAboutDialogTxtID): string; virtual;
+    procedure DoDocumentNewAction(Sender: TObject); virtual;
+    procedure DoDocumentOpenAction(Sender: TObject); virtual;
+    procedure DoDocumentSaveAction(Sender: TObject); virtual;
+    procedure DoDocumentSaveAsAction(Sender: TObject); virtual;
+    procedure DoDocumentCloseAction(Sender: TObject); virtual;
+    procedure DoSaveAllAction(Sender: TObject); virtual;
+    procedure DoOpenPreviousAction(Sender: TObject); virtual;
+    procedure DoGoToDocAction(Sender: TObject); virtual;
+    procedure DoCloseAllAction(Sender: TObject); virtual;
   public
     /// <summary>
     /// Called in the Tools/Languages dialog to get the language name for an ISO code.
@@ -227,6 +250,26 @@ begin
   DoLanguageChangeAction(Sender);
 end;
 
+procedure T__MainFormAncestor.actNewDocumentExecute(Sender: TObject);
+begin
+  DoDocumentNewAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actOpenDocumentExecute(Sender: TObject);
+begin
+  DoDocumentOpenAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actCloseAllDocumentsExecute(Sender: TObject);
+begin
+  DoCloseAllAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actCloseDocumentExecute(Sender: TObject);
+begin
+  DoDocumentCloseAction(Sender);
+end;
+
 procedure T__MainFormAncestor.actDocumentOptionsExecute(Sender: TObject);
 begin
   DoDocumentOptionsAction(Sender);
@@ -235,6 +278,21 @@ end;
 procedure T__MainFormAncestor.actQuitExecute(Sender: TObject);
 begin
   DoQuitAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actSaveAllDocumentsExecute(Sender: TObject);
+begin
+  DoSaveAllAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actSaveDocumentAsExecute(Sender: TObject);
+begin
+  DoDocumentSaveAsAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actSaveDocumentExecute(Sender: TObject);
+begin
+  DoDocumentSaveAction(Sender);
 end;
 
 procedure T__MainFormAncestor.actStyleChangeExecute(Sender: TObject);
@@ -291,10 +349,45 @@ begin
   result := '';
 end;
 
+procedure T__MainFormAncestor.DoCloseAllAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
+procedure T__MainFormAncestor.DoDocumentCloseAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
+procedure T__MainFormAncestor.DoDocumentNewAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
+procedure T__MainFormAncestor.DoDocumentOpenAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
+procedure T__MainFormAncestor.DoDocumentSaveAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
+procedure T__MainFormAncestor.DoDocumentSaveAsAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
 function T__MainFormAncestor.DoGetLanguageName(const ISOCode: string): string;
 begin
   // Do nothing at this level
   result := '';
+end;
+
+procedure T__MainFormAncestor.DoGoToDocAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
 end;
 
 procedure T__MainFormAncestor.DoLanguageChangeAction(Sender: TObject);
@@ -317,9 +410,19 @@ begin
 {$ENDIF}
 end;
 
+procedure T__MainFormAncestor.DoOpenPreviousAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
+end;
+
 procedure T__MainFormAncestor.DoQuitAction(Sender: TObject);
 begin
   close;
+end;
+
+procedure T__MainFormAncestor.DoSaveAllAction(Sender: TObject);
+begin
+  // TODO -oDeveloppeurPacal : à compléter
 end;
 
 procedure T__MainFormAncestor.DoStyleChangeAction(Sender: TObject);
@@ -393,6 +496,7 @@ begin
 {$IF Defined(IOS) or Defined(ANDROID)}
 {$ELSE}
     mnuFile.Text := 'Fichier';
+    mnuFileOpenPrevious.Text := 'Open recent';
     mnuDocument.Text := 'Projet';
 {$IFDEF MACOS}
     mnuTools.Text := 'Réglages';
@@ -409,12 +513,20 @@ begin
     actToolsOptions.Text := 'Options';
     actAbout.Text := TAboutBox.Current.GetCaption;
     actSupport.Text := 'Aide en ligne';
+    actNewDocument.Text := 'Nouveau';
+    actOpenDocument.Text := 'Ouvrir';
+    actSaveDocument.Text := 'Enregistrer';
+    actSaveDocumentAs.Text := 'Enregistrer sous';
+    actSaveAllDocuments.Text := 'Enregistrer tout';
+    actCloseDocument.Text := 'Fermer';
+    actCloseAllDocuments.Text := 'Fermer tout';
   end
   else // default language
   begin
 {$IF Defined(IOS) or Defined(ANDROID)}
 {$ELSE}
     mnuFile.Text := 'File';
+    mnuFileOpenPrevious.Text := 'Open ';
     mnuDocument.Text := 'Document';
 {$IFDEF MACOS}
     mnuTools.Text := 'Preferences';
@@ -431,6 +543,13 @@ begin
     actToolsOptions.Text := 'Options';
     actAbout.Text := TAboutBox.Current.GetCaption;
     actSupport.Text := 'Online help';
+    actNewDocument.Text := 'New';
+    actOpenDocument.Text := 'Open';
+    actSaveDocument.Text := 'Save';
+    actSaveDocumentAs.Text := 'Save as';
+    actSaveAllDocuments.Text := 'Save all';
+    actCloseDocument.Text := 'Close';
+    actCloseAllDocuments.Text := 'Close all';
   end;
 end;
 

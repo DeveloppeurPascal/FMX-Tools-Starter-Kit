@@ -121,5 +121,33 @@ inherited __MainFormAncestor: T__MainFormAncestor
       Text = 'actToolsOptions'
       OnExecute = actToolsOptionsExecute
     end
+    object actNewDocument: TAction
+      Text = 'actNewDocument'
+      OnExecute = actNewDocumentExecute
+    end
+    object actOpenDocument: TAction
+      Text = 'actOpenDocument'
+      OnExecute = actOpenDocumentExecute
+    end
+    object actSaveDocument: TAction
+      Text = 'actSaveDocument'
+      OnExecute = actSaveDocumentExecute
+    end
+    object actSaveDocumentAs: TAction
+      Text = 'actSaveDocumentAs'
+      OnExecute = actSaveDocumentAsExecute
+    end
+    object actSaveAllDocuments: TAction
+      Text = 'actSaveAllDocuments'
+      OnExecute = actSaveAllDocumentsExecute
+    end
+    object actCloseDocument: TAction
+      Text = 'actCloseDocument'
+      OnExecute = actCloseDocumentExecute
+    end
+    object actCloseAllDocuments: TAction
+      Text = 'actCloseAllDocuments'
+      OnExecute = actCloseAllDocumentsExecute
+    end
   end
 end
