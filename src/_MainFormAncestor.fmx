@@ -117,6 +117,11 @@ inherited __MainFormAncestor: T__MainFormAncestor
         Locked = True
         ImageIndex = -1
       end
+      object mnuHelpCheckForANewRelease: TMenuItem
+        Action = actCheckForANewRelease
+        Locked = True
+        ImageIndex = -1
+      end
     end
   end
   object MainFormAncestorActionList: TActionList
@@ -189,6 +194,10 @@ inherited __MainFormAncestor: T__MainFormAncestor
     object actRegisterALicense: TAction
       Text = 'actRegisterALicense'
       OnExecute = actRegisterALicenseExecute
+    end
+    object actCheckForANewRelease: TAction
+      Text = 'actCheckForANewRelease'
+      OnExecute = actCheckForANewReleaseExecute
     end
   end
 end

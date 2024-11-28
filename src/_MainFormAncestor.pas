@@ -101,6 +101,8 @@ type
     actBuyALicense: TAction;
     mnuHelpRegisterALicense: TMenuItem;
     actRegisterALicense: TAction;
+    actCheckForANewRelease: TAction;
+    mnuHelpCheckForANewRelease: TMenuItem;
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
@@ -121,6 +123,7 @@ type
     procedure actBuyALicenseExecute(Sender: TObject);
     procedure actRegisterALicenseExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure actCheckForANewReleaseExecute(Sender: TObject);
   private
     FonGetLanguageName: TOnGetLanguageName;
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
@@ -294,7 +297,11 @@ type
     /// It uses the CilTseg API, override it if you want an other key licensing
     /// system.
     /// </summary>
-    procedure DoCheckLicenseOnStartup; virtual;
+    procedure DoCheckLicenseOnStartup(Sender: TObject); virtual;
+    /// <summary>
+    /// Check if a new release is available for this program and allow to update
+    /// </summary>
+    procedure DoCheckForANewRelease(Sender: TObject); virtual;
     /// <summary>
     /// Returns a document instance.
     /// Override it in your main form descendant to create an instance of the good class (yours)
@@ -347,7 +354,10 @@ uses
   fToolsStylesDialog,
   System.IOUtils,
   uConfig,
-  fCiltsegRegisterOrShowLicense;
+  fCiltsegRegisterOrShowLicense,
+  Olf.CilTseg.ClientLib,
+  System.DateUtils,
+  FMX.DialogService;
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
@@ -372,6 +382,11 @@ end;
 procedure T__MainFormAncestor.actBuyALicenseExecute(Sender: TObject);
 begin
   DoBuyALicense(Sender);
+end;
+
+procedure T__MainFormAncestor.actCheckForANewReleaseExecute(Sender: TObject);
+begin
+  DoCheckForANewRelease(Sender);
 end;
 
 procedure T__MainFormAncestor.actCloseAllDocumentsExecute(Sender: TObject);
@@ -487,9 +502,10 @@ begin
     url_Open_In_Browser(CSoftwareBuyURL);
 end;
 
-procedure T__MainFormAncestor.DoCheckLicenseOnStartup;
+procedure T__MainFormAncestor.DoCheckLicenseOnStartup(Sender: TObject);
 begin
   if CNeedALicenseNumber and tconfig.Current.LicenseNumber.IsEmpty then
+    // TODO : attendre un nombre de lancement ou de jours avant de faire une nouvelle demande
     tthread.CreateAnonymousThread(
       procedure
       begin
@@ -504,6 +520,60 @@ begin
               DoAboutAction(self);
           end);
       end).Start;
+end;
+
+procedure T__MainFormAncestor.DoCheckForANewRelease(Sender: TObject);
+var
+  CilTsegAPI: TCilTsegClientLib;
+  result: TCilTsegLastRelease;
+  i: integer;
+  s: string;
+  Tab: TStringDynArray;
+  CurPlatform: string;
+  CurReleaseDate: TDate;
+  DownloadURL: string;
+begin
+  CilTsegAPI := TCilTsegClientLib.Create(CCiltsegServerURL, CCiltsegSoftwareID,
+    CCiltsegSoftwareToken);
+  try
+    result := CilTsegAPI.GetSoftwareLastRelease;
+    try
+      if result.Error then
+        ShowMessage('A technical problem prevents us from checking whether a ' +
+          'new version of the program is available. Please try again later or '
+          + 'contact the support if the problem persists.')
+        // TODO : à traduire
+      else
+      begin
+        CurReleaseDate := ISO8601ToDate(CAboutVersionDate);
+        CurPlatform := CSoftwareCurrentPlatform.ToLower;
+        DownloadURL := '';
+        Tab := result.GetPlatforms;
+        s := '';
+        for i := 0 to length(Tab) - 1 do
+          if Tab[i].ToLower = CurPlatform then
+          begin
+            DownloadURL := Tab[i];
+            break;
+          end;
+        if DownloadURL.IsEmpty then
+          ShowMessage('No new release available.') // TODO : à traduire
+        else
+          TDialogService.MessageDialog // TODO : à traduire
+            ('A new release is available, do you want to download it ?',
+            TMsgDlgType.mtConfirmation, mbYesNo, TMsgDlgBtn.mbYes, 0,
+            procedure(const AModalResult: TModalResult)
+            begin
+              if AModalResult = mrYes then
+                url_Open_In_Browser(DownloadURL);
+            end);
+      end;
+    finally
+      result.free;
+    end;
+  finally
+    CilTsegAPI.free;
+  end;
 end;
 
 procedure T__MainFormAncestor.DoCloseAllAction(Sender: TObject);
@@ -702,7 +772,7 @@ end;
 
 procedure T__MainFormAncestor.FormShow(Sender: TObject);
 begin
-  DoCheckLicenseOnStartup;
+  DoCheckLicenseOnStartup(Sender);
 end;
 
 function T__MainFormAncestor.GetNewDoc: TDocumentAncestor;
@@ -844,6 +914,7 @@ begin
     actCloseDocument.Text := 'Fermer';
     actCloseAllDocuments.Text := 'Fermer tout';
     actRecentFilesOptions.Text := 'Options';
+    actCheckForANewRelease.Text := 'Mettre à jour ' + CAboutTitle;
   end
   else // default language
   begin
@@ -877,6 +948,7 @@ begin
     actCloseDocument.Text := 'Close';
     actCloseAllDocuments.Text := 'Close all';
     actRecentFilesOptions.Text := 'Options';
+    actCheckForANewRelease.Text := 'Update ' + CAboutTitle;
   end;
 end;
 
@@ -901,6 +973,7 @@ begin
     tconfig.Current.LicenseNumber.IsEmpty;
   mnuHelpRegisterALicense.Visible := CNeedALicenseNumber and
     tconfig.Current.LicenseNumber.IsEmpty;
+  mnuHelpCheckForANewRelease.Visible := CShowHelpCheckForANewReleaseMenuItem;
 
   mnuFileNew.Visible := CShowDocumentsMenuItems;
   mnuFileOpen.Visible := CShowDocumentsMenuItems;
@@ -926,5 +999,9 @@ begin
           RefreshMenuItemsVisibility((Menu.Items[i] as TMenuItem), true);
 {$ENDIF}
 end;
+
+initialization
+
+TDialogService.PreferredMode := TDialogService.TPreferredMode.Async;
 
 end.
