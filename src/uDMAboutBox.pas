@@ -59,6 +59,7 @@ type
     procedure DataModuleDestroy(Sender: TObject);
     function OlfAboutDialog1GetText(const ALang: TOlfAboutDialogLang;
       const ATxtID: TOlfAboutDialogTxtID): string;
+    procedure OlfAboutDialog1ButtonBuyClick(Sender: TObject);
   private
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
     procedure SetOnAboutBoxTranslateTexts(const Value
@@ -84,7 +85,8 @@ uses
   uTxtAboutDescription,
   uTxtAboutLicense,
   uTranslate,
-  uConfig;
+  uConfig,
+  Olf.CilTseg.ClientLib;
 
 {$R *.dfm}
 
@@ -115,6 +117,10 @@ begin
   OlfAboutDialog1.ImageIndex := 0;
   OlfAboutDialog1.ReplaceMainFormCaption := true;
 
+  if (not CSoftwareBuyURL.IsEmpty) and (TConfig.Current.LicenseNumber.IsEmpty)
+  then
+    OlfAboutDialog1.onButtonBuyClickProc := OlfAboutDialog1ButtonBuyClick;
+
   TMessageManager.DefaultManager.SubscribeToMessage(TTranslateTextsMessage,
     TranslateTexts);
 end;
@@ -131,11 +137,16 @@ begin
   result := 'About ' + Current.OlfAboutDialog1.Titre;
 end;
 
+procedure TAboutBox.OlfAboutDialog1ButtonBuyClick(Sender: TObject);
+begin
+  url_Open_In_Browser(CSoftwareBuyURL);
+end;
+
 function TAboutBox.OlfAboutDialog1GetText(const ALang: TOlfAboutDialogLang;
   const ATxtID: TOlfAboutDialogTxtID): string;
 begin
   if assigned(OnAboutBoxTranslateTexts) then
-    result := OnAboutBoxTranslateTexts(tconfig.Current.Language, ATxtID)
+    result := OnAboutBoxTranslateTexts(TConfig.Current.Language, ATxtID)
   else
     result := '';
 end;
