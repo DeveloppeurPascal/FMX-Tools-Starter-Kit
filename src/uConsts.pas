@@ -70,6 +70,12 @@ const
   CAboutURL = 'https://fmxtoolsstarterkit.developpeur-pascal.fr/';
 
   /// <summary>
+  /// The URL where you can buy the software.
+  /// (if not empty, a "Buy" button is added in the About Box)
+  /// </summary>
+  CSoftwareBuyURL = CAboutURL;
+
+  /// <summary>
   /// Website open by Tools / Support menu option
   /// </summary>
   CSupportURL = CAboutURL + 'userhelp.html';
@@ -233,6 +239,18 @@ var
   GDocumentsXORKey: TByteDynArray;
 {$ENDIF}
 
+  // Path to the Pascal file where you fill CilTseg API settings.
+  //
+  // Template file is in ____PRIVATE\src\CilTseg.inc
+  // Copy it to a private folder (not in the code repository for security reasons)
+  // Customize it
+  // Update it's path to the Include directive
+  //
+  // Don't share the key file. If you need to modify it, you won't be able to
+  // open the previous configuration file!
+{$I '..\____PRIVATE\src\CilTseg.inc'}
+  // TODO : don't forget to change CilTseg.inc path before releasing your project
+
 implementation
 
 uses
@@ -297,7 +315,7 @@ try
 {$I '..\____PRIVATE\src\ConfigFileXORKey.inc'}
   // TODO : don't forget to change ConfigFileXORKey.inc path before releasing your project
 
-  // Path to the Pascal file where you fill GProjectDataXORKey variable.
+  // Path to the Pascal file where you fill GDocumentsXORKey variable.
   // This variable is used to crypt/decrypt the settings data in RELEASE mode.
   //
   // Template file is in ____PRIVATE\src\DocumentsFileXORKey.inc
@@ -308,7 +326,7 @@ try
   // Don't share the key file. If you need to modify it, you won't be able to
   // open the previous configuration file!
 {$I '..\____PRIVATE\src\DocumentsFileXORKey.inc'}
-  // TODO : don't forget to change ProjectDataFileXORKey.inc path before releasing your project
+  // TODO : don't forget to change DocumentsFileXORKey.inc path before releasing your project
 
 {$ENDIF}
 except
