@@ -59,13 +59,15 @@ type
     procedure DataModuleDestroy(Sender: TObject);
     function OlfAboutDialog1GetText(const ALang: TOlfAboutDialogLang;
       const ATxtID: TOlfAboutDialogTxtID): string;
-    procedure OlfAboutDialog1ButtonBuyClick(Sender: TObject);
   private
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
     procedure SetOnAboutBoxTranslateTexts(const Value
       : TOnAboutBoxTranslateTexts);
   protected
     procedure TranslateTexts(const Sender: TObject; const Msg: TMessage);
+    procedure DoButtonBuyClick(Sender: TObject); virtual;
+    procedure DoButtonRegisterClick(Sender: TObject); virtual;
+    procedure DoButtonLicenseClick(Sender: TObject); virtual;
   public
     property OnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts
       read FOnAboutBoxTranslateTexts write SetOnAboutBoxTranslateTexts;
@@ -86,7 +88,8 @@ uses
   uTxtAboutLicense,
   uTranslate,
   uConfig,
-  Olf.CilTseg.ClientLib;
+  Olf.CilTseg.ClientLib,
+  fCiltsegRegisterOrShowLicense;
 
 {$R *.dfm}
 
@@ -119,7 +122,15 @@ begin
 
   if (not CSoftwareBuyURL.IsEmpty) and (TConfig.Current.LicenseNumber.IsEmpty)
   then
-    OlfAboutDialog1.onButtonBuyClickProc := OlfAboutDialog1ButtonBuyClick;
+    OlfAboutDialog1.onButtonBuyClick := DoButtonBuyClick;
+
+  if CNeedALicenseNumber then
+  begin
+    if TConfig.Current.LicenseNumber.IsEmpty then
+      OlfAboutDialog1.onButtonRegisterClick := DoButtonRegisterClick
+    else
+      OlfAboutDialog1.onButtonLicenseClick := DoButtonLicenseClick;
+  end;
 
   TMessageManager.DefaultManager.SubscribeToMessage(TTranslateTextsMessage,
     TranslateTexts);
@@ -137,9 +148,41 @@ begin
   result := 'About ' + Current.OlfAboutDialog1.Titre;
 end;
 
-procedure TAboutBox.OlfAboutDialog1ButtonBuyClick(Sender: TObject);
+procedure TAboutBox.DoButtonBuyClick(Sender: TObject);
 begin
   url_Open_In_Browser(CSoftwareBuyURL);
+end;
+
+procedure TAboutBox.DoButtonLicenseClick(Sender: TObject);
+var
+  f: TfrmCilTsegRegisterOrShowLicense;
+begin
+  f := TfrmCilTsegRegisterOrShowLicense.create(self);
+  try
+{$IF Defined(IOS) or Defined(ANDROID)}
+    f.Show;
+{$ELSE}
+    f.ShowModal;
+{$ENDIF}
+  finally
+    f.free;
+  end;
+end;
+
+procedure TAboutBox.DoButtonRegisterClick(Sender: TObject);
+var
+  f: TfrmCilTsegRegisterOrShowLicense;
+begin
+  f := TfrmCilTsegRegisterOrShowLicense.create(self);
+  try
+{$IF Defined(IOS) or Defined(ANDROID)}
+    f.Show;
+{$ELSE}
+    f.ShowModal;
+{$ENDIF}
+  finally
+    f.free;
+  end;
 end;
 
 function TAboutBox.OlfAboutDialog1GetText(const ALang: TOlfAboutDialogLang;
