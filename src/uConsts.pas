@@ -259,6 +259,14 @@ var
   /// </summary>
 CNeedALicenseNumber = CCilTsegInUse;
 
+/// <summary>
+/// Enable an option to check if a new version if available and go to its URL.
+/// By default it's the same as CCilTseg (my license manager) but you can
+/// override all methods if you want to use an other system and set this
+/// constant to true.
+/// </summary>
+CShowHelpCheckForANewReleaseMenuItem = CCilTsegInUse;
+
 implementation
 
 uses
