@@ -99,6 +99,8 @@ type
     actRecentFilesOptions: TAction;
     mnuHelpBuyALicense: TMenuItem;
     actBuyALicense: TAction;
+    mnuHelpRegisterALicense: TMenuItem;
+    actRegisterALicense: TAction;
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
@@ -117,6 +119,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure actBuyALicenseExecute(Sender: TObject);
+    procedure actRegisterALicenseExecute(Sender: TObject);
   private
     FonGetLanguageName: TOnGetLanguageName;
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
@@ -161,6 +164,10 @@ type
     /// Called by the actBuyALicense used for "Help/Buy A License" menu option.
     /// </summary>
     procedure DoBuyALicense(Sender: TObject); virtual;
+    /// <summary>
+    /// Called when we need to register a license from the "Help/Register" menu option
+    /// </summary>
+    procedure DoRegisterALicense(Sender: TObject); virtual;
     /// <summary>
     /// Called by the actDocumentOptions action used for Document/Options menu option.
     /// </summary>
@@ -332,7 +339,8 @@ uses
   uStyleManager,
   fToolsStylesDialog,
   System.IOUtils,
-  uConfig;
+  uConfig,
+  fCiltsegRegisterOrShowLicense;
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
@@ -382,6 +390,11 @@ end;
 procedure T__MainFormAncestor.actRecentFilesOptionsExecute(Sender: TObject);
 begin
   DoRecentDocumentsOptionsAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actRegisterALicenseExecute(Sender: TObject);
+begin
+  DoRegisterALicense(Sender);
 end;
 
 procedure T__MainFormAncestor.actSaveAllDocumentsExecute(Sender: TObject);
@@ -604,6 +617,22 @@ begin
   // TODO -oDeveloppeurPascal : à compléter
 end;
 
+procedure T__MainFormAncestor.DoRegisterALicense(Sender: TObject);
+var
+  f: TfrmCilTsegRegisterOrShowLicense;
+begin
+  f := TfrmCilTsegRegisterOrShowLicense.Create(self);
+  try
+{$IF Defined(IOS) or Defined(ANDROID)}
+    f.show;
+{$ELSE}
+    f.ShowModal;
+{$ENDIF}
+  finally
+    f.free;
+  end;
+end;
+
 procedure T__MainFormAncestor.DoSaveAllAction(Sender: TObject);
 begin
   // TODO -oDeveloppeurPascal : boucler sur tous les documents ouvert et enregistrer ceux qui ne le sont pas
@@ -775,6 +804,7 @@ begin
     actAbout.Text := TAboutBox.Current.GetCaption;
     actSupport.Text := 'Aide en ligne';
     actBuyALicense.Text := 'Acheter une licence';
+    actRegisterALicense.Text := 'Enregistrer une licence';
     actNewDocument.Text := 'Nouveau';
     actOpenDocument.Text := 'Ouvrir';
     actSaveDocument.Text := 'Enregistrer';
@@ -807,6 +837,7 @@ begin
     actAbout.Text := TAboutBox.Current.GetCaption;
     actSupport.Text := 'Online help';
     actBuyALicense.Text := 'Buy a license';
+    actRegisterALicense.Text := 'Register a license';
     actNewDocument.Text := 'New';
     actOpenDocument.Text := 'Open';
     actSaveDocument.Text := 'Save';
@@ -836,6 +867,8 @@ begin
   mnuDocumentOptions.Visible := CShowDocumentOptionsMenuItem;
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
   mnuHelpBuyALicense.Visible := (not CSoftwareBuyURL.IsEmpty) and
+    tconfig.Current.LicenseNumber.IsEmpty;
+  mnuHelpRegisterALicense.Visible := CNeedALicenseNumber and
     tconfig.Current.LicenseNumber.IsEmpty;
 
   mnuFileNew.Visible := CShowDocumentsMenuItems;
