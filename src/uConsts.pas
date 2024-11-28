@@ -251,6 +251,14 @@ var
 {$I '..\____PRIVATE\src\CilTseg.inc'}
   // TODO : don't forget to change CilTseg.inc path before releasing your project
 
+  /// <summary>
+  /// Enable options to register or show a license for this program.
+  /// By default it's the same as CCilTseg (my license manager) but you can
+  /// override all methods if you want to use an other system and set this
+  /// constant to true.
+  /// </summary>
+CNeedALicenseNumber = CCilTsegInUse;
+
 implementation
 
 uses
