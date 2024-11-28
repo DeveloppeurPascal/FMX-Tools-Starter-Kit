@@ -120,6 +120,7 @@ type
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure actBuyALicenseExecute(Sender: TObject);
     procedure actRegisterALicenseExecute(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     FonGetLanguageName: TOnGetLanguageName;
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
@@ -288,6 +289,12 @@ type
     /// Override this method to change default behaviour
     /// </remarks>
     procedure DoRecentDocumentsOptionsAction(Sender: TObject); virtual;
+    /// <summary>
+    /// Check if a license in needed and if the program has been registered.
+    /// It uses the CilTseg API, override it if you want an other key licensing
+    /// system.
+    /// </summary>
+    procedure DoCheckLicenseOnStartup; virtual;
     /// <summary>
     /// Returns a document instance.
     /// Override it in your main form descendant to create an instance of the good class (yours)
@@ -480,6 +487,25 @@ begin
     url_Open_In_Browser(CSoftwareBuyURL);
 end;
 
+procedure T__MainFormAncestor.DoCheckLicenseOnStartup;
+begin
+  if CNeedALicenseNumber and tconfig.Current.LicenseNumber.IsEmpty then
+    tthread.CreateAnonymousThread(
+      procedure
+      begin
+        sleep(2000);
+        tthread.queue(nil,
+          procedure
+          begin
+            if CCilTsegInUse and tconfig.Current.LicenseActivationNumber.IsEmpty
+            then
+              DoRegisterALicense(self)
+            else
+              DoAboutAction(self);
+          end);
+      end).Start;
+end;
+
 procedure T__MainFormAncestor.DoCloseAllAction(Sender: TObject);
 begin
   // TODO -oDeveloppeurPascal : à compléter
@@ -659,7 +685,7 @@ begin
   if not CSupportURL.IsEmpty then
     url_Open_In_Browser(CSupportURL)
   else
-    raise exception.Create('Missing support website URL.');
+    raise Exception.Create('Missing support website URL.');
 end;
 
 procedure T__MainFormAncestor.FormClose(Sender: TObject;
@@ -674,10 +700,15 @@ begin
   // TODO -oDeveloppeurPascal : tester si des documents sont ouverts et non enregistrés
 end;
 
+procedure T__MainFormAncestor.FormShow(Sender: TObject);
+begin
+  DoCheckLicenseOnStartup;
+end;
+
 function T__MainFormAncestor.GetNewDoc: TDocumentAncestor;
 begin
 {$IFDEF RELEASE}
-  raise exception.Create
+  raise Exception.Create
     ('Don''t call ancestor GetNewDoc, override it with your own document class descendant !');
 {$ELSE}
   result := TDocumentAncestor.Create;

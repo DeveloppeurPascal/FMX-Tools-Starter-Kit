@@ -2,6 +2,7 @@ inherited __MainFormAncestor: T__MainFormAncestor
   Caption = '__TFormAncestor1'
   OnClose = FormClose
   OnCloseQuery = FormCloseQuery
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object MainFormAncestorMenu: TMainMenu
     Left = 520
