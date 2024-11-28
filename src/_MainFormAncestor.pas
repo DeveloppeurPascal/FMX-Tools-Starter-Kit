@@ -97,6 +97,8 @@ type
     mnuFileOpenPreviousOptions: TMenuItem;
     mnuFileOpenPreviousSeparator: TMenuItem;
     actRecentFilesOptions: TAction;
+    mnuHelpBuyALicense: TMenuItem;
+    actBuyALicense: TAction;
     procedure actQuitExecute(Sender: TObject);
     procedure actAboutExecute(Sender: TObject);
     procedure actSupportExecute(Sender: TObject);
@@ -114,6 +116,7 @@ type
     procedure actRecentFilesOptionsExecute(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure actBuyALicenseExecute(Sender: TObject);
   private
     FonGetLanguageName: TOnGetLanguageName;
     FOnAboutBoxTranslateTexts: TOnAboutBoxTranslateTexts;
@@ -154,6 +157,10 @@ type
     /// By default this method open the CSupportURL url in the default browser.
     /// </remarks>
     procedure DoSupportAction(Sender: TObject); virtual;
+    /// <summary>
+    /// Called by the actBuyALicense used for "Help/Buy A License" menu option.
+    /// </summary>
+    procedure DoBuyALicense(Sender: TObject); virtual;
     /// <summary>
     /// Called by the actDocumentOptions action used for Document/Options menu option.
     /// </summary>
@@ -324,7 +331,8 @@ uses
   uConsts,
   uStyleManager,
   fToolsStylesDialog,
-  System.IOUtils;
+  System.IOUtils,
+  uConfig;
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
@@ -344,6 +352,11 @@ end;
 procedure T__MainFormAncestor.actOpenDocumentExecute(Sender: TObject);
 begin
   DoDocumentOpenAction(Sender);
+end;
+
+procedure T__MainFormAncestor.actBuyALicenseExecute(Sender: TObject);
+begin
+  DoBuyALicense(Sender);
 end;
 
 procedure T__MainFormAncestor.actCloseAllDocumentsExecute(Sender: TObject);
@@ -448,6 +461,12 @@ begin
   result := '';
 end;
 
+procedure T__MainFormAncestor.DoBuyALicense(Sender: TObject);
+begin
+  if not CSoftwareBuyURL.IsEmpty then
+    url_Open_In_Browser(CSoftwareBuyURL);
+end;
+
 procedure T__MainFormAncestor.DoCloseAllAction(Sender: TObject);
 begin
   // TODO -oDeveloppeurPascal : à compléter
@@ -462,7 +481,7 @@ begin
 
   for i := mnuWindows.ItemsCount - 1 downto 0 do
     if (FCurrentDocument = mnuWindows.Items[i].TagObject) then
-      mnuWindows.Items[i].Free;
+      mnuWindows.Items[i].free;
 
   freeandnil(FCurrentDocument);
 
@@ -755,6 +774,7 @@ begin
     actToolsOptions.Text := 'Options';
     actAbout.Text := TAboutBox.Current.GetCaption;
     actSupport.Text := 'Aide en ligne';
+    actBuyALicense.Text := 'Acheter une licence';
     actNewDocument.Text := 'Nouveau';
     actOpenDocument.Text := 'Ouvrir';
     actSaveDocument.Text := 'Enregistrer';
@@ -786,6 +806,7 @@ begin
     actToolsOptions.Text := 'Options';
     actAbout.Text := TAboutBox.Current.GetCaption;
     actSupport.Text := 'Online help';
+    actBuyALicense.Text := 'Buy a license';
     actNewDocument.Text := 'New';
     actOpenDocument.Text := 'Open';
     actSaveDocument.Text := 'Save';
@@ -814,6 +835,8 @@ begin
   mnuToolsOptions.Visible := CShowToolsOptionsMenuItem;
   mnuDocumentOptions.Visible := CShowDocumentOptionsMenuItem;
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
+  mnuHelpBuyALicense.Visible := (not CSoftwareBuyURL.IsEmpty) and
+    tconfig.Current.LicenseNumber.IsEmpty;
 
   mnuFileNew.Visible := CShowDocumentsMenuItems;
   mnuFileOpen.Visible := CShowDocumentsMenuItems;

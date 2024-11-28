@@ -106,6 +106,11 @@ inherited __MainFormAncestor: T__MainFormAncestor
         Locked = True
         ImageIndex = -1
       end
+      object mnuHelpBuyALicense: TMenuItem
+        Action = actBuyALicense
+        Locked = True
+        ImageIndex = -1
+      end
     end
   end
   object MainFormAncestorActionList: TActionList
@@ -170,6 +175,10 @@ inherited __MainFormAncestor: T__MainFormAncestor
     object actRecentFilesOptions: TAction
       Text = 'actRecentFilesOptions'
       OnExecute = actRecentFilesOptionsExecute
+    end
+    object actBuyALicense: TAction
+      Text = 'actBuyALicense'
+      OnExecute = actBuyALicenseExecute
     end
   end
 end
