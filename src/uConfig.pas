@@ -65,6 +65,14 @@ type
     procedure SetRecentDocumentsMaxCount(const Value: integer);
     function GetRecentDocumentsCount: integer;
     function GetRecentDocumentsMaxCount: integer;
+    function GetLicenseActivationNumber: string;
+    function GetLicenseDeviceName: string;
+    function GetLicenseEmail: string;
+    function GetLicenseNumber: string;
+    procedure SetLicenseActivationNumber(const Value: string);
+    procedure SetLicenseDeviceName(const Value: string);
+    procedure SetLicenseEmail(const Value: string);
+    procedure SetLicenseNumber(const Value: string);
   protected
   public
     /// <summary>
@@ -113,6 +121,44 @@ type
     property RecentDocuments[const Index: integer]: string
       read GetRecentDocuments write SetRecentDocuments;
     /// <summary>
+    /// License number, given by the user with its email address when
+    /// registering the software
+    /// </summary>
+    /// <remarks>
+    /// This property is used by CilTseg license key manager API but you can use
+    /// it even if you don't use this licensing tool.
+    /// </remarks>
+    property LicenseNumber: string read GetLicenseNumber write SetLicenseNumber;
+    /// <summary>
+    /// User email, given by the user with its license number when registering
+    /// the software.
+    /// </summary>
+    /// <remarks>
+    /// This property is used by CilTseg license key manager API but you can use
+    /// it even if you don't use this licensing tool.
+    /// </remarks>
+    property LicenseEmail: string read GetLicenseEmail write SetLicenseEmail;
+    /// <summary>
+    /// Activation number, given by the server if the license has been activated.
+    /// </summary>
+    /// <remarks>
+    /// This property is used by CilTseg license key manager API but you can use
+    /// it even if you don't use this licensing tool.
+    /// </remarks>
+    property LicenseActivationNumber: string read GetLicenseActivationNumber
+      write SetLicenseActivationNumber;
+    /// <summary>
+    /// The device name used during the license activation.
+    /// Store it only to check if it's still the current one on your device.
+    /// (in case the settings have been copied to an other computer)
+    /// </summary>
+    /// <remarks>
+    /// This property is used by CilTseg license key manager API but you can use
+    /// it even if you don't use this licensing tool.
+    /// </remarks>
+    property LicenseDeviceName: string read GetLicenseDeviceName
+      write SetLicenseDeviceName;
+    /// <summary>
     /// Return the instance to TConfig singleton
     /// </summary>
     class function Current: TConfig; Virtual;
@@ -128,6 +174,10 @@ type
     /// Don't use the destructor, it's for internal use only
     /// </summary>
     destructor Destroy; override;
+    /// <summary>
+    /// Save current settings.
+    /// </summary>
+    procedure Save;
   end;
 
 implementation
@@ -226,6 +276,26 @@ begin
   result := FParams.getValue('Language', lng);
 end;
 
+function TConfig.GetLicenseActivationNumber: string;
+begin
+  result := FParams.getValue('LicenseActivation', '');
+end;
+
+function TConfig.GetLicenseDeviceName: string;
+begin
+  result := FParams.getValue('LicenseDeviceName', '');
+end;
+
+function TConfig.GetLicenseEmail: string;
+begin
+  result := FParams.getValue('LicenseUserEmail', '');
+end;
+
+function TConfig.GetLicenseNumber: string;
+begin
+  result := FParams.getValue('LicenseNumber', '');
+end;
+
 function TConfig.GetLightStyleName: string;
 begin
   result := FParams.getValue('LightStyleName', CDefaultStyleLight);
@@ -256,16 +326,21 @@ begin
   result := TStyleMode(FParams.getValue('StyleMode', ord(CDefaultStyleMode)));
 end;
 
+procedure TConfig.Save;
+begin
+  FParams.Save;
+end;
+
 procedure TConfig.SetCustomStyleName(const Value: string);
 begin
   FParams.setValue('CustomStyleName', Value.Trim.ToLower);
-  FParams.Save;
+  Save;
 end;
 
 procedure TConfig.SetDarkStyleName(const Value: string);
 begin
   FParams.setValue('DarkStyleName', Value.Trim.ToLower);
-  FParams.Save;
+  Save;
 end;
 
 procedure TConfig.SetLanguage(const Value: string);
@@ -277,38 +352,62 @@ begin
     lng := CDefaultLanguage;
 
   FParams.setValue('Language', Value);
-  FParams.Save;
+  Save;
   TTranslateTextsMessage.Broadcast(Value);
+end;
+
+procedure TConfig.SetLicenseActivationNumber(const Value: string);
+begin
+  FParams.setValue('LicenseActivation', Value);
+  Save;
+end;
+
+procedure TConfig.SetLicenseDeviceName(const Value: string);
+begin
+  FParams.setValue('LicenseDeviceName', Value);
+  Save;
+end;
+
+procedure TConfig.SetLicenseEmail(const Value: string);
+begin
+  FParams.setValue('LicenseUserEmail', Value);
+  Save;
+end;
+
+procedure TConfig.SetLicenseNumber(const Value: string);
+begin
+  FParams.setValue('LicenseNumber', Value);
+  Save;
 end;
 
 procedure TConfig.SetLightStyleName(const Value: string);
 begin
   FParams.setValue('LightStyleName', Value.Trim.ToLower);
-  FParams.Save;
+  Save;
 end;
 
 procedure TConfig.SetRecentDocuments(const Index: integer; const Value: string);
 begin
   FParams.setValue('RD' + Index.ToString, Value);
-  FParams.Save;
+  Save;
 end;
 
 procedure TConfig.SetRecentDocumentsCount(const Value: integer);
 begin
   FParams.setValue('RDC', Value);
-  FParams.Save;
+  Save;
 end;
 
 procedure TConfig.SetRecentDocumentsMaxCount(const Value: integer);
 begin
   FParams.setValue('RDMC', Value);
-  FParams.Save;
+  Save;
 end;
 
 procedure TConfig.SetStyleMode(const Value: TStyleMode);
 begin
   FParams.setValue('StyleMode', ord(Value));
-  FParams.Save;
+  Save;
 end;
 
 initialization
