@@ -65,6 +65,12 @@ const
   CAboutURL = 'https://fmxtoolsstarterkit.developpeur-pascal.fr/';
 
   /// <summary>
+  /// The URL where you can buy the software.
+  /// (if not empty, a "Buy" button is added in the About Box)
+  /// </summary>
+  CSoftwareBuyURL = CAboutURL;
+
+  /// <summary>
   /// Website open by Tools / Support menu option
   /// </summary>
   CSupportURL = CAboutURL + 'userhelp.html';
@@ -166,10 +172,46 @@ const
   /// </summary>
   CShowToolsOptionsMenuItem = true;
 
+type
+  /// <summary>
+  /// None - no default options or features about documents editing.
+  /// Solo - edit only one document at a time, if "New" or "Open" are used,
+  /// current document is closed.
+  /// Multi - allow opening/creating more than one document at the same time
+  /// </summary>
+  TDocumentsMode = (None, Mono, Multi);
+
+const
+  /// <summary>
+  /// Define if the program manage documents wiuth default classes and their
+  /// descendants
+  /// </summary>
+  CDocumentsMode = TDocumentsMode.None;
+  /// <summary>
+  /// If the program has to manage documents (mode solo or multi), define if
+  /// the default menus are visible or not.
+  /// </summary>
+  CShowDocumentsMenuItems = (CDocumentsMode <> TDocumentsMode.None);
   /// <summary>
   /// Show (if true) / hide (if false) the Project/Options menu item
   /// </summary>
-  CShowProjectOptionsMenuItem = false;
+  CShowDocumentOptionsMenuItem = false;
+
+  /// <summary>
+  /// Show the "File/Open recent" menu item
+  /// </summary>
+  CShowOpenPreviousDocumentMenuItem = CShowDocumentsMenuItems;
+  /// <summary>
+  /// Show the "File/Open recent/Properties" menu item
+  /// </summary>
+  CShowOpenPreviousDocumentOptions = CShowOpenPreviousDocumentMenuItem;
+  /// <summary>
+  /// Maximum number of documents listed in the "File/Open recent" menu item
+  /// </summary>
+  /// <remarks>
+  /// Used as a default config value
+  /// </remarks>
+  COpenPreviousDocumentsMaxCount = 10;
 
 var
   /// <summary>
@@ -186,6 +228,34 @@ var
   GConfigXORKey: TByteDynArray;
   GDocumentsXORKey: TByteDynArray;
 {$ENDIF}
+
+  // Path to the Pascal file where you fill CilTseg API settings.
+  //
+  // Template file is in ____PRIVATE\src\CilTseg.inc
+  // Copy it to a private folder (not in the code repository for security reasons)
+  // Customize it
+  // Update it's path to the Include directive
+  //
+  // Don't share the key file. If you need to modify it, you won't be able to
+  // open the previous configuration file!
+{$I '..\..\_PRIVATE\src\CilTseg.inc'}
+  // TODO : don't forget to change CilTseg.inc path before releasing your project
+
+  /// <summary>
+  /// Enable options to register or show a license for this program.
+  /// By default it's the same as CCilTseg (my license manager) but you can
+  /// override all methods if you want to use an other system and set this
+  /// constant to true.
+  /// </summary>
+CNeedALicenseNumber = CCilTsegInUse;
+
+/// <summary>
+/// Enable an option to check if a new version if available and go to its URL.
+/// By default it's the same as CCilTseg (my license manager) but you can
+/// override all methods if you want to use an other system and set this
+/// constant to true.
+/// </summary>
+CShowHelpCheckForANewReleaseMenuItem = CCilTsegInUse;
 
 implementation
 

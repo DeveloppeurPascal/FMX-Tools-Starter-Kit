@@ -52,7 +52,6 @@ uses
   _TFrameAncestor in '..\..\src\_TFrameAncestor.pas' {__TFrameAncestor: TFrame},
   _TFormAncestor in '..\..\src\_TFormAncestor.pas' {__TFormAncestor},
   _MainFormAncestor in '..\..\src\_MainFormAncestor.pas' {__MainFormAncestor},
-  uProjectData in '..\..\src\uProjectData.pas',
   Olf.RTL.Streams in '..\..\lib-externes\librairies\src\Olf.RTL.Streams.pas',
   Olf.RTL.Maths.Conversions in '..\..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas',
   uStyleManager in '..\..\src\uStyleManager.pas',
@@ -66,7 +65,12 @@ uses
   fToolsStylesDialog in '..\..\src\fToolsStylesDialog.pas' {frmToolsStylesDialog},
   uStylePolarDark in '..\..\_PRIVATE\src\uStylePolarDark.pas' {StylePolarDark: TDataModule},
   uStylePolarLight in '..\..\_PRIVATE\src\uStylePolarLight.pas' {StylePolarLight: TDataModule},
-  fToolsLanguagesDialog in '..\..\src\fToolsLanguagesDialog.pas' {frmToolsLanguagesDialog};
+  fToolsLanguagesDialog in '..\..\src\fToolsLanguagesDialog.pas' {frmToolsLanguagesDialog},
+  Olf.CilTseg.ClientLib in '..\..\lib-externes\CilTseg4Delphi\src\Olf.CilTseg.ClientLib.pas',
+  Olf.RTL.Checksum in '..\..\lib-externes\librairies\src\Olf.RTL.Checksum.pas',
+  u_md5 in '..\..\lib-externes\librairies\src\u_md5.pas',
+  fCiltsegRegisterOrShowLicense in '..\..\lib-externes\CilTseg4Delphi\src\FMX\fCiltsegRegisterOrShowLicense.pas' {frmCilTsegRegisterOrShowLicense},
+  uDocumentsAncestor in '..\..\src\uDocumentsAncestor.pas';
 
 {$R *.res}
 
