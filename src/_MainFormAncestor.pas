@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-11-28T21:19:52.000+01:00
-/// Signature : 3c2d18094e1f2d6dd715106b9f628c10e3fc8034
+/// File last update : 2025-01-17T21:02:54.000+01:00
+/// Signature : 23dcbe8cfeefdb1d2c61e6a827384b450bffa1e4
 /// ***************************************************************************
 /// </summary>
 
@@ -714,19 +714,8 @@ begin
 end;
 
 procedure T__MainFormAncestor.DoRegisterALicense(Sender: TObject);
-var
-  f: TfrmCilTsegRegisterOrShowLicense;
 begin
-  f := TfrmCilTsegRegisterOrShowLicense.Create(self);
-  try
-{$IF Defined(IOS) or Defined(ANDROID)}
-    f.show;
-{$ELSE}
-    f.ShowModal;
-{$ENDIF}
-  finally
-    f.free;
-  end;
+  TfrmCilTsegRegisterOrShowLicense.Execute(self);
 end;
 
 procedure T__MainFormAncestor.DoSaveAllAction(Sender: TObject);
