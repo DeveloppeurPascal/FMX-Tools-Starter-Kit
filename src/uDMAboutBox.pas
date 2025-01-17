@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-11-28T20:39:18.000+01:00
-/// Signature : cb0486bd4da32c076a7837330b19b77693b35ea5
+/// File last update : 2025-01-17T20:58:54.000+01:00
+/// Signature : 47a90c63ce82817a88f04d69f45e93d485a0e01e
 /// ***************************************************************************
 /// </summary>
 
@@ -154,35 +154,13 @@ begin
 end;
 
 procedure TAboutBox.DoButtonLicenseClick(Sender: TObject);
-var
-  f: TfrmCilTsegRegisterOrShowLicense;
 begin
-  f := TfrmCilTsegRegisterOrShowLicense.create(self);
-  try
-{$IF Defined(IOS) or Defined(ANDROID)}
-    f.Show;
-{$ELSE}
-    f.ShowModal;
-{$ENDIF}
-  finally
-    f.free;
-  end;
+  TfrmCilTsegRegisterOrShowLicense.Execute(self);
 end;
 
 procedure TAboutBox.DoButtonRegisterClick(Sender: TObject);
-var
-  f: TfrmCilTsegRegisterOrShowLicense;
 begin
-  f := TfrmCilTsegRegisterOrShowLicense.create(self);
-  try
-{$IF Defined(IOS) or Defined(ANDROID)}
-    f.Show;
-{$ELSE}
-    f.ShowModal;
-{$ENDIF}
-  finally
-    f.free;
-  end;
+  TfrmCilTsegRegisterOrShowLicense.Execute(self);
 end;
 
 function TAboutBox.OlfAboutDialog1GetText(const ALang: TOlfAboutDialogLang;
