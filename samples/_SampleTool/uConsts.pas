@@ -123,6 +123,7 @@ const
   /// <summary>
   /// Used as a subfolder name to store your projects settings
   /// </summary>
+  /// <remarks>
   /// Don't use a path, only a name to use a a folder name.
   /// The real paths are calculated automatically depending on the platform.
   /// </remarks>
