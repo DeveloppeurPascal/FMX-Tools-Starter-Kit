@@ -30,7 +30,7 @@
     </Output>
     <Output Type="CHM">
       <Active>true</Active>
-      <OutputFileName>.\ProjectGroup.chm</OutputFileName>
+      <OutputFileName>.\FMXToolsStarterKit.chm</OutputFileName>
     </Output>
     <Output Type="MSHELP2">
       <Active>false</Active>
