@@ -7,7 +7,7 @@ const
 	/// <remarks>
 	/// True if you want to use CilTseg
 	/// False if not
-	/// <remarks>
+	/// </remarks>
 	CCilTsegInUse = false;
 
 	/// <summary>
