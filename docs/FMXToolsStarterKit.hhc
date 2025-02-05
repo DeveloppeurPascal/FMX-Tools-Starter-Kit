@@ -6785,6 +6785,14 @@
                           </OBJECT>
                           <UL>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CNeedALicenseNumber">
+                                  <param name="Local" value="uConsts.CNeedALicenseNumber.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CShowHelpCheckForANewReleaseMenuItem">
+                                  <param name="Local" value="uConsts.CShowHelpCheckForANewReleaseMenuItem.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="GLanguages">
                                   <param name="Local" value="uConsts.GLanguages.html">
                                   </OBJECT>
@@ -6812,22 +6820,6 @@
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CAboutVersionNumber">
                                   <param name="Local" value="uConsts.CAboutVersionNumber.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CCilTsegInUse">
-                                  <param name="Local" value="uConsts.CCilTsegInUse.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CCiltsegServerURL">
-                                  <param name="Local" value="uConsts.CCiltsegServerURL.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CCiltsegSoftwareID">
-                                  <param name="Local" value="uConsts.CCiltsegSoftwareID.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CCiltsegSoftwareToken">
-                                  <param name="Local" value="uConsts.CCiltsegSoftwareToken.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CDefaultLanguage">
@@ -6862,10 +6854,6 @@
                                   <param name="Local" value="uConsts.CLanguages.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CNeedALicenseNumber">
-                                  <param name="Local" value="uConsts.CNeedALicenseNumber.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="COpenPreviousDocumentsMaxCount">
                                   <param name="Local" value="uConsts.COpenPreviousDocumentsMaxCount.html">
                                   </OBJECT>
@@ -6888,10 +6876,6 @@
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CShowDocumentsMenuItems">
                                   <param name="Local" value="uConsts.CShowDocumentsMenuItems.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CShowHelpCheckForANewReleaseMenuItem">
-                                  <param name="Local" value="uConsts.CShowHelpCheckForANewReleaseMenuItem.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CShowHelpSupportMenuItem">
@@ -6920,10 +6904,6 @@
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CSoftwareBuyURL">
                                   <param name="Local" value="uConsts.CSoftwareBuyURL.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CSoftwareCurrentPlatform">
-                                  <param name="Local" value="uConsts.CSoftwareCurrentPlatform.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CSupportURL">
@@ -7269,66 +7249,6 @@
                           </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
-                  <param name="Name" value="uStyleImpressiveDark">
-                  <param name="Local" value="uStyleImpressiveDark.html">
-                  </OBJECT>
-                  <UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Classes">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="TStyleImpressiveDark">
-                                  <param name="Local" value="uStyleImpressiveDark.TStyleImpressiveDark.html">
-                                  </OBJECT>
-                                  <UL>
-                                      <LI> <OBJECT type="text/sitemap">
-                                          <param name="Name" value="Methods">
-                                          </OBJECT>
-                                          <UL>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleName">
-                                                  <param name="Local" value="uStyleImpressiveDark.TStyleImpressiveDark.GetStyleName.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleType">
-                                                  <param name="Local" value="uStyleImpressiveDark.TStyleImpressiveDark.GetStyleType.html">
-                                                  </OBJECT>
-                                          </UL>
-                                  </UL>
-                          </UL>
-                  </UL>
-              <LI> <OBJECT type="text/sitemap">
-                  <param name="Name" value="uStyleImpressiveLight">
-                  <param name="Local" value="uStyleImpressiveLight.html">
-                  </OBJECT>
-                  <UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Classes">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="TStyleImpressiveLight">
-                                  <param name="Local" value="uStyleImpressiveLight.TStyleImpressiveLight.html">
-                                  </OBJECT>
-                                  <UL>
-                                      <LI> <OBJECT type="text/sitemap">
-                                          <param name="Name" value="Methods">
-                                          </OBJECT>
-                                          <UL>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleName">
-                                                  <param name="Local" value="uStyleImpressiveLight.TStyleImpressiveLight.GetStyleName.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleType">
-                                                  <param name="Local" value="uStyleImpressiveLight.TStyleImpressiveLight.GetStyleType.html">
-                                                  </OBJECT>
-                                          </UL>
-                                  </UL>
-                          </UL>
-                  </UL>
-              <LI> <OBJECT type="text/sitemap">
                   <param name="Name" value="uStyleLightByDefault">
                   <param name="Local" value="uStyleLightByDefault.html">
                   </OBJECT>
@@ -7482,66 +7402,6 @@
                                           <param name="Name" value="other">
                                           <param name="Local" value="uStyleManager.TProjectStyleType.other.html">
                                           </OBJECT>
-                                  </UL>
-                          </UL>
-                  </UL>
-              <LI> <OBJECT type="text/sitemap">
-                  <param name="Name" value="uStylePolarDark">
-                  <param name="Local" value="uStylePolarDark.html">
-                  </OBJECT>
-                  <UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Classes">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="TStylePolarDark">
-                                  <param name="Local" value="uStylePolarDark.TStylePolarDark.html">
-                                  </OBJECT>
-                                  <UL>
-                                      <LI> <OBJECT type="text/sitemap">
-                                          <param name="Name" value="Methods">
-                                          </OBJECT>
-                                          <UL>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleName">
-                                                  <param name="Local" value="uStylePolarDark.TStylePolarDark.GetStyleName.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleType">
-                                                  <param name="Local" value="uStylePolarDark.TStylePolarDark.GetStyleType.html">
-                                                  </OBJECT>
-                                          </UL>
-                                  </UL>
-                          </UL>
-                  </UL>
-              <LI> <OBJECT type="text/sitemap">
-                  <param name="Name" value="uStylePolarLight">
-                  <param name="Local" value="uStylePolarLight.html">
-                  </OBJECT>
-                  <UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Classes">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="TStylePolarLight">
-                                  <param name="Local" value="uStylePolarLight.TStylePolarLight.html">
-                                  </OBJECT>
-                                  <UL>
-                                      <LI> <OBJECT type="text/sitemap">
-                                          <param name="Name" value="Methods">
-                                          </OBJECT>
-                                          <UL>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleName">
-                                                  <param name="Local" value="uStylePolarLight.TStylePolarLight.GetStyleName.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="GetStyleType">
-                                                  <param name="Local" value="uStylePolarLight.TStylePolarLight.GetStyleType.html">
-                                                  </OBJECT>
-                                          </UL>
                                   </UL>
                           </UL>
                   </UL>

@@ -3,8 +3,8 @@ Auto Index=Yes
 Binary Index=Yes
 Binary TOC=No
 Compatibility=1.1 or later
-Compiled File=C:\Users\patrickpremartin\Documents\Embarcadero\Studio\Projets\___templates\FMX-Tools-Starter-Kit\ProjectGroup.chm
-Contents File=ProjectGroup.hhc
+Compiled File=C:\Users\patrickpremartin\Documents\DevDelphi\___templates\FMX-Tools-Starter-Kit\FMXToolsStarterKit.chm
+Contents File=FMXToolsStarterKit.hhc
 Create CHI file=No
 Default Font=Segoe UI,9,0
 Default Topic=FMX-Tools-Starter-Kit.html
@@ -19,7 +19,7 @@ Language=0x409
 Title=FMX Tools Starter Kit
 
 [WINDOWS]
-Main="FMX Tools Starter Kit","ProjectGroup.hhc","","FMX-Tools-Starter-Kit.html",,,,,"0x42520",0x61520,400,0x386e,[100,100,1124,868],,,,,,,0
+Main="FMX Tools Starter Kit","FMXToolsStarterKit.hhc","","FMX-Tools-Starter-Kit.html",,,,,"0x42520",0x61520,400,0x386e,[100,100,1124,868],,,,,,,0
 
 [Files]
 themes/legacy\css/compact.css
