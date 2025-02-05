@@ -33,7 +33,7 @@ I regularly use the [DocInsight](https://devjetsoftware.com/products/documentati
 
 Documentation is exported in HTML by [DocInsight](https://devjetsoftware.com/products/documentation-insight/) or [PasDoc](https://pasdoc.github.io) to the /docs folder of the repository. You can also [access it online](https://developpeurpascal.github.io/FMX-Tools-Starter-Kit) through the hosting offered by GitHub Pages.
 
-Further information (tutorials, articles, videos, FAQ, talks and links) can be found on [the project website](https://fmxtoolsstarterkit.developpeur-pascal.fr/) or [the project devlog](https://developpeur-pascal.fr/fmt-tools-starter-kit.html).
+Further information (tutorials, articles, videos, FAQ, talks and links) can be found on [the project website](https://fmxtoolsstarterkit.developpeur-pascal.fr/) or [the project devlog](https://developpeur-pascal.fr/fmx-tools-starter-kit.html).
 
 If you need explanations or help in understanding or using parts of this project in yours, please [contact me](https://developpeur-pascal.fr/nous-contacter.php). I can either direct you to an online resource, or offer you assistance in the form of a paid or free service, depending on the case. You can also contact me at a conference or during an online presentation.
 
