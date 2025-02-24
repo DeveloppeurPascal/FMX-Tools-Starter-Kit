@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-11-28T21:16:00.000+01:00
-/// Signature : f6bb336a3c9e95055d5747d6a2311afda18f967d
+/// File last update : 2025-02-24T20:32:10.000+01:00
+/// Signature : e07e37002b46565f1cae79f59cdaa9721c1d628e
 /// ***************************************************************************
 /// </summary>
 
@@ -52,7 +52,7 @@ const
   /// <summary>
   /// Version date of your project, change it when you publish a new public release
   /// </summary>
-  CAboutVersionDate = '20240824';
+  CAboutVersionDate = '20250224';
 
   /// <summary>
   /// Title of your project used in the About box and as the main form caption
@@ -62,7 +62,7 @@ const
   /// <summary>
   /// The copyright to show in the About box
   /// </summary>
-  CAboutCopyright = ''; // 2024 your name or anything else
+  CAboutCopyright = ''; // (c) Year(s) YourNameOrAnythingElse
 
   /// <summary>
   /// The website URL of your project (used in the About box)
@@ -137,7 +137,7 @@ const
 
   /// <summary>
   /// The GUID to use for this project when saving/loading files like a project
-  /// documentto check they are from this program and not an other one.
+  /// document to check they are from this program and not an other one.
   /// </summary>
   // Use Shift+Ctrl+G to generate a new GUID and replace current value by the new one
   // TODO : Set your GUID. Each project must have it's GUID, don't use the same !
@@ -194,7 +194,7 @@ type
 
 const
   /// <summary>
-  /// Define if the program manage documents wiuth default classes and their
+  /// Define if the program manage documents with default classes and their
   /// descendants
   /// </summary>
   CDocumentsMode = TDocumentsMode.Multi;
