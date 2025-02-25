@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-11-28T18:50:26.000+01:00
-/// Signature : 217282849bb3e613fcc308491121a8f4abf265c8
+/// File last update : 2025-02-25T18:06:36.000+01:00
+/// Signature : 75374bcf19a3b883e56f142230240c529731b24c
 /// ***************************************************************************
 /// </summary>
 
@@ -65,12 +65,13 @@ uses
   Olf.CilTseg.ClientLib in '..\lib-externes\CilTseg4Delphi\src\Olf.CilTseg.ClientLib.pas',
   Olf.RTL.Checksum in '..\lib-externes\librairies\src\Olf.RTL.Checksum.pas',
   u_md5 in '..\lib-externes\librairies\src\u_md5.pas',
-  fCiltsegRegisterOrShowLicense in '..\lib-externes\CilTseg4Delphi\src\FMX\fCiltsegRegisterOrShowLicense.pas' {frmCilTsegRegisterOrShowLicense};
+  fCiltsegRegisterOrShowLicense in '..\lib-externes\CilTseg4Delphi\src\FMX\fCiltsegRegisterOrShowLicense.pas' {frmCilTsegRegisterOrShowLicense},
+  fMainForm in 'fMainForm.pas' {MainForm};
 
 {$R *.res}
 
 begin
   Application.Initialize;
-  Application.CreateForm(T__MainFormAncestor, __MainFormAncestor);
+  Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
