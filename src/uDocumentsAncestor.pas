@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-11-03T18:41:52.000+01:00
-/// Signature : b31df97a2ed7c74211161012b244c83b4b608150
+/// File last update : 2025-02-25T18:11:28.000+01:00
+/// Signature : 80098381e548617d71a17bf36b99fd33958014b8
 /// ***************************************************************************
 /// </summary>
 
@@ -40,14 +40,15 @@ interface
 // In this case, we suggest you open a ticket on the code repository to explain
 // your needs and the changes to be made to the template.
 //
-// If you want to add features to TDocument, don't change this file, simply use
+// If you want to add features to TDocumentAncestor, don't change this file, simply use
 // the helpers.
 //
 // If you want to add fields or properties, create a new class in your project
-// and inherits from current TDocument. Override all needed methods and add what
+// and inherits from current TDocumentAncestor. Override all needed methods and add what
 // you have to manage for your project.
 
 uses
+  System.Types,
   System.Messaging,
   System.Classes;
 
@@ -94,11 +95,11 @@ type
   end;
 
   /// <summary>
-  /// Manage the document and have the ability to be saved/restored
+  /// Manage a document and had the ability to be saved and restored.
   /// </summary>
   /// <remarks>
   /// To add new features and store other things, it's better to inherits from
-  /// this class. It allow you to update thise file with the future templates
+  /// this class. It allows you to update these file with the future starter kit
   /// updates.
   /// </remarks>
   TDocumentAncestor = class
@@ -120,10 +121,12 @@ type
     procedure SetHasChanged(const Value: boolean); virtual;
   public
     /// <summary>
-    /// Path to the folder where this document will be saved
+    /// Path to the folder where this document will be saved.
     /// </summary>
     /// <remarks>
-    /// Default value is based on TConfig saving path combined to "Projects" folder
+    /// If the document has been loaded or saved, the returned path if the
+    /// current document path. If this document has been saved before, the
+    /// default path is the system "Documents" path.
     /// </remarks>
     property Path: string read GetPath write SetPath;
     /// <summary>
@@ -173,6 +176,29 @@ type
     /// their default values
     /// </summary>
     procedure Clear; virtual;
+
+    /// <summary>
+    /// Returns the unique identifier used in the document jeader to check if
+    /// the file is compatible with this project.
+    /// </summary>
+    /// <remarks>
+    /// Override this method in your TDocument class descendant.
+    /// </remarks>
+    function GetDocumentGUID: string; virtual; abstract;
+    /// <summary>
+    /// Returns the file extension for the storrage file of this document.
+    /// </summary>
+    /// <remarks>
+    /// Override this method in your TDocument class descendant.
+    /// </remarks>
+    function GetDocumentExtension: string; virtual; abstract;
+    /// <summary>
+    /// Returns the XOR Key to use in RELEASE mode to crypt/uncrypt the document file.
+    /// </summary>
+    /// <remarks>
+    /// Override this method in your TDocument class descendant.
+    /// </remarks>
+    function GetDocumentXorKey: TByteDynArray; virtual; abstract;
   end;
 
 implementation
@@ -237,15 +263,18 @@ function TDocumentAncestor.GetPath: string;
 begin
   if not FFilePath.IsEmpty then
     result := tpath.GetDirectoryName(FFilePath)
-  else if FPath.IsEmpty or (not tdirectory.exists(FPath)) then
-    result := tpath.GetDirectoryName(tconfig.current.GetPath)
+  else if (not FPath.IsEmpty) and tdirectory.exists(FPath) then
+    result := FPath
   else
-    result := FPath;
+    result := tpath.getdocumentspath;
 end;
 
 procedure TDocumentAncestor.LoadFromFile(const AFilePath: string);
 var
   FS: tfilestream;
+{$IFDEF RELEASE}
+  MS: TMemoryStream;
+{$ENDIF}
 begin
   if (not AFilePath.IsEmpty) and tfile.exists(AFilePath) then
   begin
@@ -253,8 +282,13 @@ begin
     FS := tfilestream.Create(AFilePath, fmOpenRead);
     try
 {$IFDEF RELEASE}
-      // TODO -oDeveloppeurPascal -cTODO : traiter le chiffrement des données de backup
-{$MESSAGE FATAL 'code missing'}
+      MS := TOlfCryptDecrypt.XORDecrypt(FS, GetDocumentXorKey);
+      try
+        MS.Position := 0;
+        LoadFromStream(MS);
+      finally
+        MS.Free;
+      end;
 {$ELSE}
       LoadFromStream(FS);
 {$ENDIF}
@@ -273,17 +307,20 @@ var
 begin
   // Check is this document file is for current project.
   Guid := LoadStringFromStream(AStream);
-  if (Guid <> CProjectGUID) then
+  if (Guid <> GetDocumentGUID) then
     raise exception.Create('This file is not recognized !');
+  // TODO -oDeveloppeurPascal : à traduire
 
   // Check if the document file has a block version number.
   if (sizeof(VersionNum) <> AStream.read(VersionNum, sizeof(VersionNum))) then
     raise exception.Create('Wrong File format !');
+  // TODO -oDeveloppeurPascal : à traduire
 
   // Check if the program can open this document.
   if (VersionNum > CProjectDataVersion) then
     raise exception.Create
       ('Can''t open this file. Please update the program before trying again.');
+  // TODO -oDeveloppeurPascal : à traduire
 
   SetHasChanged(false);
 end;
@@ -293,6 +330,9 @@ var
   LFilePath: string;
   Folder: string;
   FS: tfilestream;
+{$IFDEF RELEASE}
+  MS, MS2: TMemoryStream;
+{$ENDIF}
 begin
   if AFilePath.IsEmpty then
     LFilePath := FFilePath
@@ -302,6 +342,7 @@ begin
   if LFilePath.IsEmpty then
     raise exception.Create
       ('Specify a file path where to save current document.');
+  // TODO -oDeveloppeurPascal : à traduire
 
   Folder := tpath.GetDirectoryName(LFilePath);
   if (not Folder.IsEmpty) then
@@ -311,8 +352,20 @@ begin
     FS := tfilestream.Create(LFilePath, fmcreate + fmOpenWrite);
     try
 {$IFDEF RELEASE}
-      // TODO -oDeveloppeurPascal -cTODO : traiter le chiffrement des données de backup
-{$MESSAGE FATAL 'code missing'}
+      MS := TMemoryStream.Create;
+      try
+        SaveToStream(MS);
+        MS.Position := 0;
+        MS2 := TOlfCryptDecrypt.XORcrypt(MS, GetDocumentXorKey);
+        try
+          MS2.Position := 0;
+          FS.CopyFrom(MS2);
+        finally
+          MS2.Free;
+        end;
+      finally
+        MS.Free;
+      end;
 {$ELSE}
       SaveToStream(FS);
 {$ENDIF}
@@ -329,7 +382,7 @@ var
   Guid: string;
   VersionNum: integer;
 begin
-  Guid := CProjectGUID;
+  Guid := GetDocumentGUID;
   SaveStringToStream(Guid, AStream);
   VersionNum := CProjectDataVersion;
   AStream.Write(VersionNum, sizeof(VersionNum));
