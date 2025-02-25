@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-17T20:58:54.000+01:00
-/// Signature : 47a90c63ce82817a88f04d69f45e93d485a0e01e
+/// File last update : 2025-02-25T19:27:54.000+01:00
+/// Signature : b86b678bd4adb7e510d1575dac48fed9e23ce34c
 /// ***************************************************************************
 /// </summary>
 
@@ -124,7 +124,7 @@ begin
   then
     OlfAboutDialog1.onButtonBuyClick := DoButtonBuyClick;
 
-  if CNeedALicenseNumber then
+  if CUsedLicenseManager <> TLicenseManagers.None then
   begin
     if TConfig.Current.LicenseNumber.IsEmpty then
       OlfAboutDialog1.onButtonRegisterClick := DoButtonRegisterClick
