@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-11-28T19:56:50.000+01:00
-/// Signature : feb26f599fa67e8452b06b98faaeed99801332f1
+/// File last update : 2025-02-25T18:13:36.000+01:00
+/// Signature : 4e137f6631b5fe625e3a86570eede42a68f159c5
 /// ***************************************************************************
 /// </summary>
 
@@ -44,7 +44,6 @@ uses
   Olf.RTL.Params,
   uConsts;
 
-// TODO : -oDeveloppeurPascal : add a BeginUpdate/EndUpdate on TConfig to call the SAVE only once
 type
   TConfig = class
   private
@@ -178,6 +177,22 @@ type
     /// Save current settings.
     /// </summary>
     procedure Save;
+    /// <summary>
+    /// Allow parameters changes but delay the Save operation to the EndUpdate call.
+    /// </summary>
+    /// <remarks>
+    /// If you call BeginUpdate you MUST call its EndUpdate.
+    /// Use a try... finally... end !
+    /// </remarks>
+    procedure BeginUpdate;
+    /// <summary>
+    /// Closes the block of code started with BeginUpdate. If you did some changes, it saves them by default.
+    /// </summary>
+    /// <remarks>
+    /// If you call BeginUpdate you MUST call its EndUpdate.
+    /// Use a try... finally... end !
+    /// </remarks>
+    procedure EndUpdate(const AutoSaveChanges: boolean = true);
   end;
 
 implementation
@@ -196,6 +211,11 @@ var
   ConfigInstance: TConfig;
 
   { TConfig }
+
+procedure TConfig.BeginUpdate;
+begin
+  FParams.BeginUpdate;
+end;
 
 constructor TConfig.Create;
 begin
@@ -253,6 +273,11 @@ destructor TConfig.Destroy;
 begin
   FParams.free;
   inherited;
+end;
+
+procedure TConfig.EndUpdate(const AutoSaveChanges: boolean);
+begin
+  FParams.EndUpdate(AutoSaveChanges);
 end;
 
 function TConfig.GetCustomStyleName: string;
