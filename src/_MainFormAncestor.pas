@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-01-17T21:02:54.000+01:00
-/// Signature : 23dcbe8cfeefdb1d2c61e6a827384b450bffa1e4
+/// File last update : 2025-02-25T20:02:32.000+01:00
+/// Signature : 269d1c9376b8fd1c3777dd5f6bd6b90265258c34
 /// ***************************************************************************
 /// </summary>
 
@@ -56,6 +56,13 @@ uses
   uDocumentsAncestor;
 
 type
+  /// <summary>
+  /// Ancestor for your main form.
+  /// </summary>
+  /// <remarks>
+  /// Never change anything in this unit if you want to follow the starter kit
+  /// updates.
+  /// </remarks>
   T__MainFormAncestor = class(T__TFormAncestor)
     MainFormAncestorMenu: TMainMenu;
     mnuMacOS: TMenuItem;
@@ -306,7 +313,7 @@ type
     /// Returns a document instance.
     /// Override it in your main form descendant to create an instance of the good class (yours)
     /// </summary>
-    function GetNewDoc: TDocumentAncestor; virtual;
+    function GetNewDoc: TDocumentAncestor; virtual; abstract;
   public
     /// <summary>
     /// Current opened document
@@ -336,12 +343,6 @@ type
     /// </summary>
     procedure TranslateTexts(const Language: string); override;
   end;
-
-{$IFDEF DEBUG}
-
-var
-  __MainFormAncestor: T__MainFormAncestor;
-{$ENDIF}
 
 implementation
 
@@ -499,12 +500,15 @@ end;
 procedure T__MainFormAncestor.DoBuyALicense(Sender: TObject);
 begin
   if not CSoftwareBuyURL.IsEmpty then
-    url_Open_In_Browser(CSoftwareBuyURL);
+    url_Open_In_Browser(CSoftwareBuyURL)
+  else
+    DoSupportAction(Sender);
 end;
 
 procedure T__MainFormAncestor.DoCheckLicenseOnStartup(Sender: TObject);
 begin
-  if CNeedALicenseNumber and tconfig.Current.LicenseNumber.IsEmpty then
+  if (CUsedLicenseManager = TLicenseManagers.CilTseg) and
+    tconfig.Current.LicenseNumber.IsEmpty then
     // TODO : attendre un nombre de lancement ou de jours avant de faire une nouvelle demande
     tthread.CreateAnonymousThread(
       procedure
@@ -513,13 +517,14 @@ begin
         tthread.queue(nil,
           procedure
           begin
-            if CCilTsegInUse and tconfig.Current.LicenseActivationNumber.IsEmpty
-            then
+            if tconfig.Current.LicenseActivationNumber.IsEmpty then
               DoRegisterALicense(self)
             else
               DoAboutAction(self);
           end);
-      end).Start;
+      end).Start
+  else if (CUsedLicenseManager <> TLicenseManagers.None) then
+    raise exception.Create('Not implemented.');
 end;
 
 procedure T__MainFormAncestor.DoCheckForANewRelease(Sender: TObject);
@@ -533,52 +538,57 @@ var
   CurReleaseDate: TDate;
   DownloadURL: string;
 begin
-  CilTsegAPI := TCilTsegClientLib.Create(CCiltsegServerURL, CCiltsegSoftwareID,
-    CCiltsegSoftwareToken);
-  try
-    result := CilTsegAPI.GetSoftwareLastRelease;
+  if CUsedProgramUpdatesManager = TProgramUpdatesManagers.CilTseg then
+  begin
+    CilTsegAPI := TCilTsegClientLib.Create(CCiltsegServerURL,
+      CCiltsegSoftwareID, CCiltsegSoftwareToken);
     try
-      if result.Error then
-        ShowMessage('A technical problem prevents us from checking whether a ' +
-          'new version of the program is available. Please try again later or '
-          + 'contact the support if the problem persists.')
-        // TODO : à traduire
-      else
-      begin
-        CurReleaseDate := ISO8601ToDate(CAboutVersionDate);
-        CurPlatform := CSoftwareCurrentPlatform.ToLower;
-        DownloadURL := '';
-        Tab := result.GetPlatforms;
-        s := '';
-        for i := 0 to length(Tab) - 1 do
-          if Tab[i].ToLower = CurPlatform then
-          begin
-            DownloadURL := Tab[i];
-            break;
-          end;
-        if DownloadURL.IsEmpty then
-          ShowMessage('No new release available.') // TODO : à traduire
+      result := CilTsegAPI.GetSoftwareLastRelease;
+      try
+        if result.Error then
+          ShowMessage('A technical problem prevents us from checking whether a '
+            + 'new version of the program is available. Please try again later or '
+            + 'contact the support if the problem persists.')
+          // TODO : à traduire
         else
-          TDialogService.MessageDialog // TODO : à traduire
-            ('A new release is available, do you want to download it ?',
-            TMsgDlgType.mtConfirmation, mbYesNo, TMsgDlgBtn.mbYes, 0,
-            procedure(const AModalResult: TModalResult)
+        begin
+          CurReleaseDate := ISO8601ToDate(CAboutVersionDate);
+          CurPlatform := CciltsegSoftwareCurrentPlatform.ToLower;
+          DownloadURL := '';
+          Tab := result.GetPlatforms;
+          s := '';
+          for i := 0 to length(Tab) - 1 do
+            if Tab[i].ToLower = CurPlatform then
             begin
-              if AModalResult = mrYes then
-                url_Open_In_Browser(DownloadURL);
-            end);
+              DownloadURL := Tab[i];
+              break;
+            end;
+          if DownloadURL.IsEmpty then
+            ShowMessage('No new release available.') // TODO : à traduire
+          else if (CurReleaseDate < result.ReleaseDate) then
+            TDialogService.MessageDialog // TODO : à traduire
+              ('A new release is available, do you want to download it ?',
+              TMsgDlgType.mtConfirmation, mbYesNo, TMsgDlgBtn.mbYes, 0,
+              procedure(const AModalResult: TModalResult)
+              begin
+                if AModalResult = mrYes then
+                  url_Open_In_Browser(DownloadURL);
+              end);
+        end;
+      finally
+        result.free;
       end;
     finally
-      result.free;
+      CilTsegAPI.free;
     end;
-  finally
-    CilTsegAPI.free;
-  end;
+  end
+  else if (CUsedProgramUpdatesManager <> TProgramUpdatesManagers.None) then
+    raise exception.Create('Not implemented.');
 end;
 
 procedure T__MainFormAncestor.DoCloseAllAction(Sender: TObject);
 begin
-  // TODO -oDeveloppeurPascal : à compléter
+  // TODO -oDeveloppeurPascal : boucler sur la liste des documents pour tous les fermer
 end;
 
 procedure T__MainFormAncestor.DoDocumentCloseAction(Sender: TObject;
@@ -586,6 +596,9 @@ const Proc: TProc);
 var
   i: integer;
 begin
+  if not assigned(FCurrentDocument) then
+    exit;
+
   // TODO -oDeveloppeurPascal : à compléter
 
   for i := mnuWindows.ItemsCount - 1 downto 0 do
@@ -629,6 +642,9 @@ end;
 
 procedure T__MainFormAncestor.DoDocumentSaveAction(Sender: TObject);
 begin
+  if not assigned(FCurrentDocument) then
+    exit;
+
   if FCurrentDocument.FileName.IsEmpty then
     DoDocumentSaveAsAction(Sender)
   else
@@ -639,6 +655,9 @@ procedure T__MainFormAncestor.DoDocumentSaveAsAction(Sender: TObject);
 var
   i: integer;
 begin
+  if not assigned(FCurrentDocument) then
+    exit;
+
   // TODO -oDeveloppeurPascal : choisir le dossier et nom de fichier de stockage
   // TODO -oDeveloppeurPascal : faire l'enregistrement du fichier
   // TODO -oDeveloppeurPascal : ajouter le nouveau nom/chemin aux fichiers récents
@@ -715,7 +734,8 @@ end;
 
 procedure T__MainFormAncestor.DoRegisterALicense(Sender: TObject);
 begin
-  TfrmCilTsegRegisterOrShowLicense.Execute(self);
+  if CUsedLicenseManager = TLicenseManagers.CilTseg then
+    TfrmCilTsegRegisterOrShowLicense.Execute(self);
 end;
 
 procedure T__MainFormAncestor.DoSaveAllAction(Sender: TObject);
@@ -744,7 +764,7 @@ begin
   if not CSupportURL.IsEmpty then
     url_Open_In_Browser(CSupportURL)
   else
-    raise Exception.Create('Missing support website URL.');
+    raise exception.Create('Missing support website URL.');
 end;
 
 procedure T__MainFormAncestor.FormClose(Sender: TObject;
@@ -762,16 +782,6 @@ end;
 procedure T__MainFormAncestor.FormShow(Sender: TObject);
 begin
   DoCheckLicenseOnStartup(Sender);
-end;
-
-function T__MainFormAncestor.GetNewDoc: TDocumentAncestor;
-begin
-{$IFDEF RELEASE}
-  raise Exception.Create
-    ('Don''t call ancestor GetNewDoc, override it with your own document class descendant !');
-{$ELSE}
-  result := TDocumentAncestor.Create;
-{$ENDIF}
 end;
 
 function T__MainFormAncestor.RefreshMenuItemsVisibility(const MenuItem
@@ -960,9 +970,13 @@ begin
   mnuHelpSupport.Visible := CShowHelpSupportMenuItem;
   mnuHelpBuyALicense.Visible := (not CSoftwareBuyURL.IsEmpty) and
     tconfig.Current.LicenseNumber.IsEmpty;
-  mnuHelpRegisterALicense.Visible := CNeedALicenseNumber and
-    tconfig.Current.LicenseNumber.IsEmpty;
-  mnuHelpCheckForANewRelease.Visible := CShowHelpCheckForANewReleaseMenuItem;
+  if (CUsedLicenseManager = TLicenseManagers.CilTseg) then
+    mnuHelpRegisterALicense.Visible := tconfig.Current.LicenseNumber.IsEmpty
+  else
+    mnuHelpRegisterALicense.Visible :=
+      (CUsedLicenseManager <> TLicenseManagers.None);
+  mnuHelpCheckForANewRelease.Visible :=
+    (CUsedProgramUpdatesManager <> TProgramUpdatesManagers.None);
 
   mnuFileNew.Visible := CShowDocumentsMenuItems;
   mnuFileOpen.Visible := CShowDocumentsMenuItems;
