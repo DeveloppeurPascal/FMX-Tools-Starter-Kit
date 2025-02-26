@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-12-25T17:21:48.000+01:00
-/// Signature : 237acbfe65749c6f3a49ceb035d09e8046828efe
+/// File last update : 2025-02-26T19:24:00.000+01:00
+/// Signature : 86c000332c56dc5f73820eed6e4e36bbd74e2fcb
 /// ***************************************************************************
 /// </summary>
 
@@ -38,10 +38,10 @@ uses
   uConfig in '..\..\src\uConfig.pas',
   uConsts in 'uConsts.pas',
   uDMAboutBox in '..\..\src\uDMAboutBox.pas' {AboutBox: TDataModule},
-  uDMAboutBoxLogoStorrage in '..\..\src\uDMAboutBoxLogoStorrage.pas' {dmAboutBoxLogo: TDataModule},
+  uDMAboutBoxLogoStorrage in 'uDMAboutBoxLogoStorrage.pas' {dmAboutBoxLogo: TDataModule},
   uTranslate in '..\..\src\uTranslate.pas',
-  uTxtAboutDescription in '..\..\src\uTxtAboutDescription.pas',
-  uTxtAboutLicense in '..\..\src\uTxtAboutLicense.pas',
+  uTxtAboutDescription in 'uTxtAboutDescription.pas',
+  uTxtAboutLicense in 'uTxtAboutLicense.pas',
   Olf.FMX.AboutDialog in '..\..\lib-externes\AboutDialog-Delphi-Component\src\Olf.FMX.AboutDialog.pas',
   Olf.FMX.AboutDialogForm in '..\..\lib-externes\AboutDialog-Delphi-Component\src\Olf.FMX.AboutDialogForm.pas' {OlfAboutDialogForm},
   Olf.FMX.SelectDirectory in '..\..\lib-externes\Delphi-FMXExtend-Library\src\Olf.FMX.SelectDirectory.pas',
