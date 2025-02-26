@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-12-25T17:22:46.000+01:00
-/// Signature : 1d477adce0756ab4dcaa1a655b1ca53c74a036ea
+/// File last update : 2025-02-26T19:52:24.000+01:00
+/// Signature : 1067cec42b47f7897ce44a6e94351f2b5b2b84b0
 /// ***************************************************************************
 /// </summary>
 
@@ -37,27 +37,38 @@ interface
 uses
   System.Types;
 
+{$SCOPEDENUMS ON}
+{ ******************************************************************************
+  Projects and version settings
+  **************************************************************************** }
+
 const
   /// <summary>
-  /// Version number of your project, don't forget to update the
-  /// Project/Options/Versions infos before compiling a public RELEASE
+  /// Version number of your project.
   /// </summary>
-  CAboutVersionNumber = '0.0';
+  /// <remarks>
+  /// To update when you publish a new release of this project.
+  /// Don't forget to update the Version Infos in the Project/Options dialog.
+  /// </remarks>
+  CAboutVersionNumber = '1.0';
 
   /// <summary>
-  /// Version date of your project, change it when you publish a new public release
+  /// Version date of your project.
   /// </summary>
-  CAboutVersionDate = '20240824';
+  /// <remarks>
+  /// To update when you publish a new release of this project.
+  /// </remarks>
+  CAboutVersionDate = '20250226';
 
   /// <summary>
   /// Title of your project used in the About box and as the main form caption
   /// </summary>
-  CAboutTitle = 'FMX Tools Starter Kit';
+  CAboutTitle = 'FMX Tools Starter Kit (sample)';
 
   /// <summary>
   /// The copyright to show in the About box
   /// </summary>
-  CAboutCopyright = ''; // 2024 your name or anything else
+  CAboutCopyright = '(c) 2025 Patrick Prémartin';
 
   /// <summary>
   /// The website URL of your project (used in the About box)
@@ -73,42 +84,7 @@ const
   /// <summary>
   /// Website open by Tools / Support menu option
   /// </summary>
-  CSupportURL = CAboutURL + 'userhelp.html';
-
-  /// <summary>
-  /// Show (if true) / hide (if false) the Help/Support menu item
-  /// </summary>
-  /// <remarks>
-  /// By default its conditionned by the existence of CSupportURL constant but
-  /// you can replace it by a boolean and override the DoHelpSupport method in
-  /// your main form.
-  /// </remarks>
-  CShowHelpSupportMenuItem = (CSupportURL <> '');
-
-  /// <summary>
-  /// Default language used if the system language is not supported
-  /// (of course you have to translate all textes of the program in this
-  /// language, so use yours or English by default)
-  /// </summary>
-  /// <remarks>
-  /// Use 2 letters ISO code
-  /// </remarks>
-  CDefaultLanguage = 'en';
-
-  /// <summary>
-  /// Show (if true) / hide (if false) the Tool/Languages menu item
-  /// </summary>
-  CShowToolsLanguagesMenuItem = true;
-
-  /// <summary>
-  /// Available languages in this project as an array of 2 letters language ISO
-  /// code strings.
-  /// </summary>
-  /// <remarks>
-  /// If you want to define the languages list by code, fill the global variable "GLanguages".
-  /// If you don't use default language selection, you can ignore this constant.
-  /// </remarks>
-  CLanguages: array [0 .. 2] of string = ('en', 'fr', 'it');
+  CSupportURL = 'https://developpeur-pascal.fr/nous-contacter.php';
 
   /// <summary>
   /// Used as a folder name to store your projects settings
@@ -116,8 +92,8 @@ const
   /// <remarks>
   /// Don't use a path, only a name to use as a folder name.
   /// The real paths are calculated automatically depending on the platform.
+  /// for example your name, label or company name (avoid spaces, accents and special characters)
   /// </remarks>
-  // for example your name, label or company name (avoid spaces, accents and special characters)
   CEditorFolderName = 'Test';
 
   /// <summary>
@@ -126,93 +102,27 @@ const
   /// <remarks>
   /// Don't use a path, only a name to use a a folder name.
   /// The real paths are calculated automatically depending on the platform.
+  /// for exemple your project title (avoid spaces, accents and special characters)
   /// </remarks>
-  // for exemple your project title (avoid spaces, accents and special characters)
   CProjectFolderName = 'Test';
 
-  /// <summary>
-  /// The GUID to use for this project when saving/loading files like a project
-  /// documentto check they are from this program and not an other one.
-  /// </summary>
-  CProjectGUID = '{693BAC31-C3C8-4023-BFC5-51C8EC51C5C5}';
-
-  /// <summary>
-  /// Show the About box dialog when F1 key is used
-  /// </summary>
-  CShowAboutBoxWithF1 = true;
-
-type
-{$SCOPEDENUMS ON}
-  TStyleMode = (Light, Dark, System, Custom);
+  { ****************************************************************************
+    Managed languages settings
+    ************************************************************************** }
 
 const
   /// <summary>
-  /// Name of the default style used when the user choose the light mode.
-  /// </summary>
-  CDefaultStyleLight = 'impressive light';
-  /// <summary>
-  /// Name of the default style used when the user choose the dark mode.
-  /// </summary>
-  CDefaultStyleDark = 'impressive dark';
-  /// <summary>
-  /// Name of the default style used when the user choose the custom mode.
-  /// </summary>
-  CDefaultStyleCustom = 'dark';
-  /// <summary>
-  /// Default style mode to use in the program.
-  /// </summary>
-  CDefaultStyleMode = TStyleMode.System;
-
-  /// <summary>
-  /// Show (if true) / hide (if false) the Tool/Styles menu item
-  /// </summary>
-  CShowToolsStylesMenuItem = true;
-
-  /// <summary>
-  /// Show (if true) / hide (if false) the Tool/Options menu item
-  /// </summary>
-  CShowToolsOptionsMenuItem = true;
-
-type
-  /// <summary>
-  /// None - no default options or features about documents editing.
-  /// Solo - edit only one document at a time, if "New" or "Open" are used,
-  /// current document is closed.
-  /// Multi - allow opening/creating more than one document at the same time
-  /// </summary>
-  TDocumentsMode = (None, Mono, Multi);
-
-const
-  /// <summary>
-  /// Define if the program manage documents wiuth default classes and their
-  /// descendants
-  /// </summary>
-  CDocumentsMode = TDocumentsMode.None;
-  /// <summary>
-  /// If the program has to manage documents (mode solo or multi), define if
-  /// the default menus are visible or not.
-  /// </summary>
-  CShowDocumentsMenuItems = (CDocumentsMode <> TDocumentsMode.None);
-  /// <summary>
-  /// Show (if true) / hide (if false) the Project/Options menu item
-  /// </summary>
-  CShowDocumentOptionsMenuItem = false;
-
-  /// <summary>
-  /// Show the "File/Open recent" menu item
-  /// </summary>
-  CShowOpenPreviousDocumentMenuItem = CShowDocumentsMenuItems;
-  /// <summary>
-  /// Show the "File/Open recent/Properties" menu item
-  /// </summary>
-  CShowOpenPreviousDocumentOptions = CShowOpenPreviousDocumentMenuItem;
-  /// <summary>
-  /// Maximum number of documents listed in the "File/Open recent" menu item
+  /// Available languages in this project as an array of 2 letters language ISO
+  /// code strings.
   /// </summary>
   /// <remarks>
-  /// Used as a default config value
+  /// To define the languages list by code, fill the global variable
+  /// "GLanguages". By default it will contain the same values than
+  /// "CLanguages".
+  /// If you don't use default language selection, translation or options
+  /// dialog, ignore this constant.
   /// </remarks>
-  COpenPreviousDocumentsMaxCount = 10;
+  CLanguages: array [0 .. 2] of string = ('en', 'fr', 'it');
 
 var
   /// <summary>
@@ -225,38 +135,241 @@ var
   /// If you don't use default language selection, you can ignore this variable.
   /// </remarks>
   GLanguages: TStringDynArray;
-{$IF Defined(RELEASE)}
-  GConfigXORKey: TByteDynArray;
-  GDocumentsXORKey: TByteDynArray;
-{$ENDIF}
 
-  // Path to the Pascal file where you fill CilTseg API settings.
-  //
-  // Template file is in ____PRIVATE\src\CilTseg.inc
-  // Copy it to a private folder (not in the code repository for security reasons)
-  // Customize it
-  // Update it's path to the Include directive
-  //
-  // Don't share the key file. If you need to modify it, you won't be able to
-  // open the previous configuration file!
-{$I '..\..\_PRIVATE\src\CilTseg.inc'}
-  // TODO : don't forget to change CilTseg.inc path before releasing your project
+const
+  /// <summary>
+  /// Default language used if the system language is not supported
+  /// (of course you have to translate all textes of the program in this
+  /// language, so use yours or English by default)
+  /// </summary>
+  /// <remarks>
+  /// Use 2 letters ISO code
+  /// </remarks>
+  CDefaultLanguage = 'en';
+
+  { ****************************************************************************
+    User interface theme settings
+    ************************************************************************** }
+type
+  /// <summary>
+  /// Available modes for the user interface style.
+  /// </summary>
+  TStyleMode = (
+    /// <summary>
+    /// Use the light theme
+    /// </summary>
+    Light,
+    /// <summary>
+    /// Use the dark theme
+    /// </summary>
+    Dark,
+    /// <summary>
+    /// Use light or dark theme depending on the current system value
+    /// </summary>
+    System,
+    /// <summary>
+    /// Use the theme choiced by the user of this program
+    /// </summary>
+    Custom);
+
+const
+  /// <summary>
+  /// Name of the default style used when the user choose the light mode.
+  /// </summary>
+  CDefaultStyleLight = 'impressive light';
 
   /// <summary>
-  /// Enable options to register or show a license for this program.
-  /// By default it's the same as CCilTseg (my license manager) but you can
-  /// override all methods if you want to use an other system and set this
-  /// constant to true.
+  /// Name of the default style used when the user choose the dark mode.
   /// </summary>
-CNeedALicenseNumber = CCilTsegInUse;
+  CDefaultStyleDark = 'impressive dark';
 
-/// <summary>
-/// Enable an option to check if a new version if available and go to its URL.
-/// By default it's the same as CCilTseg (my license manager) but you can
-/// override all methods if you want to use an other system and set this
-/// constant to true.
-/// </summary>
-CShowHelpCheckForANewReleaseMenuItem = CCilTsegInUse;
+  /// <summary>
+  /// Name of the default style used when the user choose the custom mode.
+  /// </summary>
+  CDefaultStyleCustom = 'dark';
+
+  /// <summary>
+  /// Default style mode to use in the program.
+  /// </summary>
+  CDefaultStyleMode = TStyleMode.System;
+
+  { ****************************************************************************
+    Documents settings
+    ************************************************************************** }
+type
+  /// <summary>
+  /// How to manage project documents ?
+  /// None - no default options or features about documents editing.
+  /// Solo - edit only one document at a time, if "New" or "Open" are used,
+  /// current document is closed.
+  /// Multi - allow opening/creating more than one document at the same time
+  /// </summary>
+  TDocumentsMode = (None, Mono, Multi);
+
+const
+  /// <summary>
+  /// Define if the program manage documents with default classes and their
+  /// descendants
+  /// </summary>
+  CDocumentsMode = TDocumentsMode.None;
+
+  /// <summary>
+  /// Maximum number of documents listed in the "File/Open recent" menu item
+  /// </summary>
+  /// <remarks>
+  /// Used as a default config value.
+  /// If "0" then the "open recents documents" menu is disabled by default.
+  /// </remarks>
+  COpenPreviousDocumentsMaxCount = 10;
+
+  { ****************************************************************************
+    API and external SaaS settings
+    ************************************************************************** }
+
+  // Import CilTseg API settings.
+  //
+  // If you want to use CilTseg API in this project :
+  // - copy the CilTseg.inc template file to a private folder
+  // (outside your code repository for security reasons)
+  // - update the path in the $I comment
+  // - fill its content with your API settings
+
+{$I '..\..\_PRIVATE\src\CilTseg.inc'}
+  { ****************************************************************************
+    License management settings
+    ************************************************************************** }
+
+type
+  /// <summary>
+  /// List of available license systems managed by this Starter Kit.
+  /// </summary>
+  TLicenseManagers = (
+    /// <summary>
+    /// Don't use default behaviour to manage license keys
+    /// </summary>
+    None,
+    /// <summary>
+    /// Allow options to manage license keys, but you have to code it !
+    /// </summary>
+    Manual,
+    /// <summary>
+    /// Use CilTseg API to manage licenses keys
+    /// </summary>
+    CilTseg);
+
+const
+  CUsedLicenseManager = TLicenseManagers.CilTseg;
+
+  { ****************************************************************************
+    Program updates management settings
+    ************************************************************************** }
+
+type
+  /// <summary>
+  /// List of available programs updates systems managed by this Starter Kit.
+  /// </summary>
+  TProgramUpdatesManagers = (
+    /// <summary>
+    /// Don't use default behaviour to check if new releases are available
+    /// </summary>
+    None,
+    /// <summary>
+    /// Allow options to check and download new versions of this program,
+    /// but you have to code it !
+    /// </summary>
+    Manual,
+    /// <summary>
+    /// Use CilTseg API to check and download new releases of this program
+    /// </summary>
+    CilTseg);
+
+const
+  CUsedProgramUpdatesManager = TProgramUpdatesManagers.CilTseg;
+
+  { ****************************************************************************
+    Main menu options settings
+    ************************************************************************** }
+
+const
+  /// <summary>
+  /// Show (if true) / hide (if false) the Help/Support menu item
+  /// </summary>
+  /// <remarks>
+  /// By default its conditionned by the existence of CSupportURL constant but
+  /// you can replace it by a boolean and override the DoHelpSupport method in
+  /// your main form.
+  /// </remarks>
+  CShowHelpSupportMenuItem = (CSupportURL <> '');
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Tools/Languages menu item
+  /// </summary>
+  CShowToolsLanguagesMenuItem = length(CLanguages) > 1;
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Tool/Styles menu item
+  /// </summary>
+  CShowToolsStylesMenuItem = true;
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Tool/Options menu item
+  /// </summary>
+  CShowToolsOptionsMenuItem = false;
+  // TODO -oDeveloppeurPascal : add a system to manage a Tools/Options dialog box
+
+  /// <summary>
+  /// If the program has to manage documents (mode solo or multi), define if
+  /// the default menus are visible or not.
+  /// </summary>
+  CShowDocumentsMenuItems = (CDocumentsMode <> TDocumentsMode.None);
+
+  /// <summary>
+  /// Show (if true) / hide (if false) the Project/Options menu item
+  /// </summary>
+  CShowDocumentOptionsMenuItem = false;
+  // TODO -oDeveloppeurPascal : add a system to manage a Document/Options dialog box
+
+  /// <summary>
+  /// Show the "File/Open recent" menu item
+  /// </summary>
+  CShowOpenPreviousDocumentMenuItem = (COpenPreviousDocumentsMaxCount > 0) and
+    (CDocumentsMode <> TDocumentsMode.None);
+
+  /// <summary>
+  /// Show the "File/Open recent/Properties" menu item
+  /// </summary>
+  CShowOpenPreviousDocumentOptions = false;
+  // TODO -oDeveloppeurPascal : add a system to manage a File/Recent files/Options dialog box
+
+  { ****************************************************************************
+    Other settings
+    ************************************************************************** }
+const
+  /// <summary>
+  /// Show the About box dialog when F1 key is used
+  /// </summary>
+  CShowAboutBoxWithF1 = true;
+
+  /// <summary>
+  /// Close active form with ESCape key
+  /// (and close the program if you are on the main form)
+  /// </summary>
+  CExitWithEscapeKey = true;
+
+  /// <summary>
+  /// Enable or disable the memory leaks report on shutdown for Windows platform.
+  /// </summary>
+  CReportMemoryLeaksOnShutdown = {$IFDEF DEBUG}true{$ELSE}false{$ENDIF};
+
+var
+  /// <summary>
+  /// This variable must contains the XOR key to crypt/uncrypt the program
+  /// settings file in RELEASE mode.
+  /// </summary>
+  /// <remarks>
+  /// By default it's filled by an include in this unit implementation.
+  /// </remarks>
+  GConfigXORKey: TByteDynArray;
 
 implementation
 
@@ -277,6 +390,7 @@ initialization
 
 try
   InitLanguages;
+
   if CAboutTitle.Trim.IsEmpty then
     raise Exception.Create
       ('Please give a title to your project in CAboutTitle !');
@@ -297,39 +411,10 @@ try
     raise Exception.Create('Please use "' + CDefaultLanguage.Trim.ToLower +
       '" as CDefaultLanguage value.');
 
-{$IFDEF RELEASE}
-  if (CProjectGUID = '{8346EB88-E9AB-4578-A416-DA1D904229D4}') then
-    raise Exception.Create('Wrong GUID. Change it in project settings !');
-{$ENDIF}
-{$IFDEF DEBUG}
-  ReportMemoryLeaksOnShutdown := true;
-{$ELSE}
-  ReportMemoryLeaksOnShutdown := false;
-{$ENDIF}
-{$IF Defined(RELEASE)}
-  // Path to the Pascal file where you fill GConfigXORKey variable.
-  // This variable is used to crypt/decrypt the settings data in RELEASE mode.
-  //
-  // Template file is in ____PRIVATE\src\ConfigFileXORKey.inc
-  // Copy it to a private folder (not in the code repository for security reasons)
-  // Customize it
-  // Update it's path to the Include directive
-  //
-  // Don't share the key file. If you need to modify it, you won't be able to
-  // open the previous configuration file!
-{$I '..\_PRIVATE\src\ConfigFileXORKey.inc'}
+  ReportMemoryLeaksOnShutdown := CReportMemoryLeaksOnShutdown;
 
-  // Path to the Pascal file where you fill GProjectDataXORKey variable.
-  // This variable is used to crypt/decrypt the settings data in RELEASE mode.
-  //
-  // Template file is in ____PRIVATE\src\DocumentsFileXORKey.inc
-  // Copy it to a private folder (not in the code repository for security reasons)
-  // Customize it
-  // Update it's path to the Include directive
-  //
-  // Don't share the key file. If you need to modify it, you won't be able to
-  // open the previous configuration file!
-{$I '..\_PRIVATE\src\DocumentsFileXORKey.inc'}
+{$IF Defined(RELEASE)}
+{$I '..\..\_PRIVATE\src\ConfigFileXORKey.inc'}
 {$ENDIF}
 except
   on e: Exception do
