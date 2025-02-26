@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-25T19:59:50.000+01:00
-/// Signature : 5e7696974741eba3701abb62f68d61361ef7d512
+/// File last update : 2025-02-26T19:44:50.000+01:00
+/// Signature : 25dbf63a65bcff621432575aebd3c930bf376dec
 /// ***************************************************************************
 /// </summary>
 
@@ -335,7 +335,8 @@ const
   /// <summary>
   /// Show the "File/Open recent" menu item
   /// </summary>
-  CShowOpenPreviousDocumentMenuItem = (COpenPreviousDocumentsMaxCount > 0);
+  CShowOpenPreviousDocumentMenuItem = (COpenPreviousDocumentsMaxCount > 0) and
+    (CDocumentsMode <> TDocumentsMode.None);
 
   /// <summary>
   /// Show the "File/Open recent/Properties" menu item
@@ -351,6 +352,12 @@ const
   /// Show the About box dialog when F1 key is used
   /// </summary>
   CShowAboutBoxWithF1 = true;
+
+  /// <summary>
+  /// Close active form with ESCape key
+  /// (and close the program if you are on the main form)
+  /// </summary>
+  CExitWithEscapeKey = true;
 
   /// <summary>
   /// Enable or disable the memory leaks report on shutdown for Windows platform.
