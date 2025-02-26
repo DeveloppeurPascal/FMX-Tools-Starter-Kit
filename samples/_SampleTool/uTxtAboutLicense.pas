@@ -3,7 +3,7 @@
 ///
 /// FMX Tools Starter Kit
 ///
-/// Copyright 2024 Patrick Prémartin under AGPL 3.0 license.
+/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
 ///
 /// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 /// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2024-08-28T12:18:58.000+02:00
-/// Signature : bd2770ed78b9d8977c24a60d7ae02be189f1015e
+/// File last update : 2025-02-26T19:23:34.000+01:00
+/// Signature : a089e09135d72883ce00602a8912c9db49f8d377
 /// ***************************************************************************
 /// </summary>
 
