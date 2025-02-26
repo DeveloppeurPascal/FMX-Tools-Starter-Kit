@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-25T18:11:28.000+01:00
-/// Signature : 80098381e548617d71a17bf36b99fd33958014b8
+/// File last update : 2025-02-26T18:34:34.000+01:00
+/// Signature : 5d05e8a168747e1b04bff7c58054ffa3e783db4e
 /// ***************************************************************************
 /// </summary>
 
@@ -34,23 +34,12 @@ unit uDocumentsAncestor;
 
 interface
 
-// If you want to be able to update the template files in your project,
-// we recommend that you don't modify this file. Its operation should support
-// all standard use cases. Save the file in your project and work on the copy.
-// In this case, we suggest you open a ticket on the code repository to explain
-// your needs and the changes to be made to the template.
-//
-// If you want to add features to TDocumentAncestor, don't change this file, simply use
-// the helpers.
-//
-// If you want to add fields or properties, create a new class in your project
-// and inherits from current TDocumentAncestor. Override all needed methods and add what
-// you have to manage for your project.
-
 uses
   System.Types,
   System.Messaging,
-  System.Classes;
+  System.Classes,
+  System.SysUtils,
+  System.JSON;
 
 type
   TDocumentAncestor = class;
@@ -95,29 +84,20 @@ type
   end;
 
   /// <summary>
-  /// Manage a document and had the ability to be saved and restored.
+  /// Manage an abstracted document file.
   /// </summary>
   /// <remarks>
-  /// To add new features and store other things, it's better to inherits from
-  /// this class. It allows you to update these file with the future starter kit
-  /// updates.
+  /// Descend from its descendants for your real documents.
   /// </remarks>
   TDocumentAncestor = class
-  private const
-    /// <summary>
-    /// Version level of this class. It is used to check compatibility between
-    /// the program and the files it saves or tries to load.
-    /// </summary>
-    CProjectDataVersion = 1;
-
-  var
+  private
+    FHasChanged: boolean;
     FFilePath: string;
+    FPath: string;
     function GetFileName: string;
     function GetPath: string;
     procedure SetPath(const Value: string);
   protected
-    FPath: string;
-    FHasChanged: boolean;
     procedure SetHasChanged(const Value: boolean); virtual;
   public
     /// <summary>
@@ -147,36 +127,18 @@ type
     /// </summary>
     constructor Create; virtual;
     /// <summary>
-    /// Never call it, use only "Free" or "FreeAndNil" if you called the
-    /// Create() method to get a new instance of this document.
-    /// </summary>
-    destructor Destroy; override;
-    /// <summary>
     /// Used to load the document from a file after clearing the instance.
     /// </summary>
-    procedure LoadFromFile(const AFilePath: string);
+    procedure LoadFromFile(const AFilePath: string); virtual; abstract;
     /// <summary>
     /// Used to save current document to a file
     /// </summary>
-    procedure SaveToFile(const AFilePath: string = '');
-    /// <summary>
-    /// Used to load the document from a stream.
-    /// </summary>
-    /// <remarks>
-    /// No Clear() is called, it only loads the saved fields, it doesn't initialize
-    /// other things from your document.
-    /// </remarks>
-    procedure LoadFromStream(const AStream: TStream); virtual;
-    /// <summary>
-    /// Used to save current document to a stream
-    /// </summary>
-    procedure SaveToStream(const AStream: TStream); virtual;
+    procedure SaveToFile(const AFilePath: string = ''); virtual; abstract;
     /// <summary>
     /// Used to clean current instance and reset all properties and fields to
     /// their default values
     /// </summary>
     procedure Clear; virtual;
-
     /// <summary>
     /// Returns the unique identifier used in the document jeader to check if
     /// the file is compatible with this project.
@@ -193,18 +155,135 @@ type
     /// </remarks>
     function GetDocumentExtension: string; virtual; abstract;
     /// <summary>
-    /// Returns the XOR Key to use in RELEASE mode to crypt/uncrypt the document file.
+    /// Return True if this document is crypted.
+    /// </summary>
+    function IsCrypted: boolean; virtual; abstract;
+  end;
+
+  /// <summary>
+  /// Manage documents as binary files. If you provide a private key they are
+  /// encrypted with a XOR algorithm.
+  /// </summary>
+  /// <remarks>
+  /// In your descendants, don't forget to override the methods
+  /// GetDocumentGUID, GetDocumentExtension and GetPrivateXORKey
+  /// </remarks>
+  TBinaryDocumentAncestor = class(TDocumentAncestor)
+  private const
+    /// <summary>
+    /// Version level of this class. It is used to check compatibility between
+    /// the program and the files it saves or tries to load.
+    /// </summary>
+    CBinaryDocumentVersion = 1;
+
+  protected
+  public
+    /// <summary>
+    /// Load this document from a file.
+    /// </summary>
+    /// <remarks>
+    /// This method manage the physical document file and uncrypt it if needed.
+    /// </remarks>
+    procedure LoadFromFile(const AFilePath: string); override;
+    /// <summary>
+    /// Load the document content in this instance.
+    /// </summary>
+    /// <remarks>
+    /// No Clear() is called, it only loads the saved fields, it doesn't initialize
+    /// other things from your document.
+    /// </remarks>
+    procedure LoadFromStream(const AStream: TStream); virtual;
+    /// <summary>
+    /// Save this document to a file.
+    /// </summary>
+    /// <remarks>
+    /// This method manage the physical document file and crypt it if needed.
+    /// </remarks>
+    procedure SaveToFile(const AFilePath: string = ''); override;
+    /// <summary>
+    /// Save this instance to the given stream.
+    /// </summary>
+    procedure SaveToStream(const AStream: TStream); virtual;
+    /// <summary>
+    /// Returns the optional key to use to crypt/uncrypt the document file.
     /// </summary>
     /// <remarks>
     /// Override this method in your TDocument class descendant.
     /// </remarks>
-    function GetDocumentXorKey: TByteDynArray; virtual; abstract;
+    function GetPrivateXORKey: TByteDynArray; virtual;
+    /// <summary>
+    /// Returns True if this document as a Private XOR Key and should by crypted
+    /// </summary>
+    function IsCrypted: boolean; override;
+  end;
+
+  /// <summary>
+  /// Manage documents as JSON files. If you provide a private key they are
+  /// encrypted with a ??? algorithm.
+  /// </summary>
+  /// <remarks>
+  /// In your descendants, don't forget to override the methods
+  /// GetDocumentGUID, GetDocumentExtension and GetPrivateKey
+  /// </remarks>
+  TJSONDocumentAncestor = class(TDocumentAncestor)
+  private const
+    /// <summary>
+    /// Version level of this class. It is used to check compatibility between
+    /// the program and the files it saves or tries to load.
+    /// </summary>
+    CJSONDocumentVersion = 1;
+  protected
+  public
+    /// <summary>
+    /// Load this document from a file.
+    /// </summary>
+    /// <remarks>
+    /// This method manage the physical document file and uncrypt it if needed.
+    /// </remarks>
+    procedure LoadFromFile(const AFilePath: string); override;
+    /// <summary>
+    /// Fill this instance from a JSON object.
+    /// </summary>
+    procedure LoadFromJSONObject(const JSO: TJSONObject); virtual;
+    /// <summary>
+    /// Save this document to a file.
+    /// </summary>
+    /// <remarks>
+    /// This method manage the physical document file and crypt it if needed.
+    /// </remarks>
+    procedure SaveToFile(const AFilePath: string = ''); override;
+    /// <summary>
+    /// Get the JSON object version of this instance.
+    /// </summary>
+    function AsJSON: TJSONObject; virtual;
+    /// <summary>
+    /// Get the JSON source version of this instance.
+    /// </summary>
+    function ToJSON: string; virtual;
+    /// <summary>
+    /// Returns the optional key to use to crypt/uncrypt the document file.
+    /// </summary>
+    /// <remarks>
+    /// Override this method in your TDocument class descendant.
+    /// </remarks>
+    function GetPrivateXORKey: TByteDynArray; virtual;
+    /// <summary>
+    /// Returns True if this document as a Private XOR Key and should by crypted
+    /// </summary>
+    function IsCrypted: boolean; override;
+    /// <summary>
+    /// Returns the encoding format of the JSON document source string
+    /// </summary>
+    /// <remarks>
+    /// Changing the encoding can have side effects during a document load with previous files.
+    /// By default the JSON is encoded in UTF8.
+    /// </remarks>
+    function GetEncoding: TEncoding; virtual;
   end;
 
 implementation
 
 uses
-  System.SysUtils,
   System.IOUtils,
   uConfig,
   Olf.RTL.Streams,
@@ -233,65 +312,40 @@ begin
   FDocument := ADocument;
 end;
 
-{ TDocument }
+{ TBinaryDocumentAncestor }
 
-procedure TDocumentAncestor.Clear;
+function TBinaryDocumentAncestor.GetPrivateXORKey: TByteDynArray;
 begin
-  FFilePath := '';
-  SetHasChanged(false);
+  setlength(result, 0);
 end;
 
-constructor TDocumentAncestor.Create;
+function TBinaryDocumentAncestor.IsCrypted: boolean;
 begin
-  inherited;
-  FPath := '';
-  FFilePath := '';
-  FHasChanged := false;
+  result := length(GetPrivateXORKey) > 0;
 end;
 
-destructor TDocumentAncestor.Destroy;
-begin
-  inherited;
-end;
-
-function TDocumentAncestor.GetFileName: string;
-begin
-  result := tpath.GetFileNameWithoutExtension(FFilePath);
-end;
-
-function TDocumentAncestor.GetPath: string;
-begin
-  if not FFilePath.IsEmpty then
-    result := tpath.GetDirectoryName(FFilePath)
-  else if (not FPath.IsEmpty) and tdirectory.exists(FPath) then
-    result := FPath
-  else
-    result := tpath.getdocumentspath;
-end;
-
-procedure TDocumentAncestor.LoadFromFile(const AFilePath: string);
+procedure TBinaryDocumentAncestor.LoadFromFile(const AFilePath: string);
 var
   FS: tfilestream;
-{$IFDEF RELEASE}
   MS: TMemoryStream;
-{$ENDIF}
 begin
   if (not AFilePath.IsEmpty) and tfile.exists(AFilePath) then
   begin
     Clear;
     FS := tfilestream.Create(AFilePath, fmOpenRead);
     try
-{$IFDEF RELEASE}
-      MS := TOlfCryptDecrypt.XORDecrypt(FS, GetDocumentXorKey);
-      try
-        MS.Position := 0;
-        LoadFromStream(MS);
-      finally
-        MS.Free;
-      end;
-{$ELSE}
-      LoadFromStream(FS);
-{$ENDIF}
+      if IsCrypted then
+      begin
+        MS := TOlfCryptDecrypt.XORDecrypt(FS, GetPrivateXORKey);
+        try
+          MS.Position := 0;
+          LoadFromStream(MS);
+        finally
+          MS.Free;
+        end;
+      end
+      else
+        LoadFromStream(FS);
     finally
       FS.Free;
       FFilePath := AFilePath;
@@ -300,7 +354,7 @@ begin
   end;
 end;
 
-procedure TDocumentAncestor.LoadFromStream(const AStream: TStream);
+procedure TBinaryDocumentAncestor.LoadFromStream(const AStream: TStream);
 var
   Guid: string;
   VersionNum: integer;
@@ -317,22 +371,18 @@ begin
   // TODO -oDeveloppeurPascal : à traduire
 
   // Check if the program can open this document.
-  if (VersionNum > CProjectDataVersion) then
+  if (VersionNum > CBinaryDocumentVersion) then
     raise exception.Create
       ('Can''t open this file. Please update the program before trying again.');
   // TODO -oDeveloppeurPascal : à traduire
-
-  SetHasChanged(false);
 end;
 
-procedure TDocumentAncestor.SaveToFile(const AFilePath: string);
+procedure TBinaryDocumentAncestor.SaveToFile(const AFilePath: string);
 var
   LFilePath: string;
   Folder: string;
   FS: tfilestream;
-{$IFDEF RELEASE}
   MS, MS2: TMemoryStream;
-{$ENDIF}
 begin
   if AFilePath.IsEmpty then
     LFilePath := FFilePath
@@ -351,24 +401,25 @@ begin
       tdirectory.CreateDirectory(Folder);
     FS := tfilestream.Create(LFilePath, fmcreate + fmOpenWrite);
     try
-{$IFDEF RELEASE}
-      MS := TMemoryStream.Create;
-      try
-        SaveToStream(MS);
-        MS.Position := 0;
-        MS2 := TOlfCryptDecrypt.XORcrypt(MS, GetDocumentXorKey);
+      if IsCrypted then
+      begin
+        MS := TMemoryStream.Create;
         try
-          MS2.Position := 0;
-          FS.CopyFrom(MS2);
+          SaveToStream(MS);
+          MS.Position := 0;
+          MS2 := TOlfCryptDecrypt.XORcrypt(MS, GetPrivateXORKey);
+          try
+            MS2.Position := 0;
+            FS.CopyFrom(MS2);
+          finally
+            MS2.Free;
+          end;
         finally
-          MS2.Free;
+          MS.Free;
         end;
-      finally
-        MS.Free;
-      end;
-{$ELSE}
-      SaveToStream(FS);
-{$ENDIF}
+      end
+      else
+        SaveToStream(FS);
     finally
       FS.Free;
       FFilePath := LFilePath;
@@ -377,31 +428,15 @@ begin
   end;
 end;
 
-procedure TDocumentAncestor.SaveToStream(const AStream: TStream);
+procedure TBinaryDocumentAncestor.SaveToStream(const AStream: TStream);
 var
   Guid: string;
   VersionNum: integer;
 begin
   Guid := GetDocumentGUID;
   SaveStringToStream(Guid, AStream);
-  VersionNum := CProjectDataVersion;
+  VersionNum := CBinaryDocumentVersion;
   AStream.Write(VersionNum, sizeof(VersionNum));
-  SetHasChanged(false);
-end;
-
-procedure TDocumentAncestor.SetHasChanged(const Value: boolean);
-begin
-  if (FHasChanged <> Value) then
-  begin
-    FHasChanged := Value;
-    TDocumentChangedMessage.Broadcast(self);
-  end;
-end;
-
-procedure TDocumentAncestor.SetPath(const Value: string);
-begin
-  if Value.IsEmpty or tdirectory.exists(Value) then
-    FPath := Value;
 end;
 
 { TDocumentClosingMessage }
@@ -447,6 +482,213 @@ constructor TCurrentDocumentChangedMessage.Create(const ACurrentDocument
 begin
   inherited Create;
   FCurrentDocument := ACurrentDocument;
+end;
+
+{ TDocumentAncestor }
+
+procedure TDocumentAncestor.Clear;
+begin
+  FFilePath := '';
+  SetHasChanged(false);
+end;
+
+constructor TDocumentAncestor.Create;
+begin
+  inherited;
+  FPath := '';
+  FFilePath := '';
+  FHasChanged := false;
+end;
+
+function TDocumentAncestor.GetFileName: string;
+begin
+  result := tpath.GetFileNameWithoutExtension(FFilePath);
+end;
+
+function TDocumentAncestor.GetPath: string;
+begin
+  if not FFilePath.IsEmpty then
+    result := tpath.GetDirectoryName(FFilePath)
+  else if (not FPath.IsEmpty) and tdirectory.exists(FPath) then
+    result := FPath
+  else
+    result := tpath.getdocumentspath;
+end;
+
+procedure TDocumentAncestor.SetHasChanged(const Value: boolean);
+begin
+  if (FHasChanged <> Value) then
+  begin
+    FHasChanged := Value;
+    TDocumentChangedMessage.Broadcast(self);
+  end;
+end;
+
+procedure TDocumentAncestor.SetPath(const Value: string);
+begin
+  if Value.IsEmpty or tdirectory.exists(Value) then
+    FPath := Value;
+end;
+
+{ TJSONDocumentAncestor }
+
+function TJSONDocumentAncestor.AsJSON: TJSONObject;
+begin
+  result := TJSONObject.Create;
+  result.addpair('JSONDocumentGUID', GetDocumentGUID);
+  result.addpair('JSONDocumentVersion', CJSONDocumentVersion);
+end;
+
+function TJSONDocumentAncestor.ToJSON: string;
+var
+  JSO: TJSONObject;
+begin
+  JSO := AsJSON;
+  try
+    result := JSO.ToJSON;
+    // TODO -oDeveloppeurPascal : add an option to get a JSON source compatible with a code versioning system
+  finally
+    JSO.Free;
+  end;
+end;
+
+function TJSONDocumentAncestor.GetEncoding: TEncoding;
+begin
+  result := TEncoding.UTF8;
+end;
+
+function TJSONDocumentAncestor.GetPrivateXORKey: TByteDynArray;
+begin
+  setlength(result, 0);
+end;
+
+function TJSONDocumentAncestor.IsCrypted: boolean;
+begin
+  result := length(GetPrivateXORKey) > 0;
+end;
+
+procedure TJSONDocumentAncestor.LoadFromFile(const AFilePath: string);
+var
+  FileStream: tfilestream;
+  MemoryStream: TMemoryStream;
+  StringStream: TStringStream;
+  S: string;
+  JSO: TJSONObject;
+begin
+  if (not AFilePath.IsEmpty) and tfile.exists(AFilePath) then
+    try
+      Clear;
+      if IsCrypted then
+      begin
+        FileStream := tfilestream.Create(AFilePath, fmOpenRead);
+        try
+          MemoryStream := TOlfCryptDecrypt.XORDecrypt(FileStream,
+            GetPrivateXORKey);
+          try
+            MemoryStream.Position := 0;
+            StringStream := TStringStream.Create;
+            try
+              StringStream.CopyFrom(MemoryStream);
+              S := StringStream.DataString;
+            finally
+              StringStream.Free;
+            end;
+          finally
+            MemoryStream.Free;
+          end;
+        finally
+          FileStream.Free;
+        end;
+      end
+      else
+        S := tfile.ReadAllText(AFilePath, GetEncoding);
+      JSO := TJSONObject.ParseJSONValue(S) as TJSONObject;
+      try
+        LoadFromJSONObject(JSO);
+      finally
+        JSO.Free;
+      end;
+    finally
+      FFilePath := AFilePath;
+      SetHasChanged(false);
+    end;
+end;
+
+procedure TJSONDocumentAncestor.LoadFromJSONObject(const JSO: TJSONObject);
+var
+  Guid: string;
+  VersionNum: integer;
+begin
+  // Check is this document file is for current project.
+  if not JSO.TryGetValue<string>('JSONDocumentGUID', Guid) then
+    Guid := '';
+
+  if (Guid <> GetDocumentGUID) then
+    raise exception.Create('This file is not recognized !');
+  // TODO -oDeveloppeurPascal : à traduire
+
+  // Check if the document file has a version number.
+  if not JSO.TryGetValue<integer>('JSONDocumentVersion', VersionNum) then
+    VersionNum := maxint;
+
+  // Check if the program can open this document.
+  if (VersionNum > CJSONDocumentVersion) then
+    raise exception.Create
+      ('Can''t open this file. Please update the program before trying again.');
+  // TODO -oDeveloppeurPascal : à traduire
+end;
+
+procedure TJSONDocumentAncestor.SaveToFile(const AFilePath: string);
+var
+  LFilePath: string;
+  Folder: string;
+  FileStream: tfilestream;
+  StringStream: TStringStream;
+  MemoryStream: TMemoryStream;
+begin
+  if AFilePath.IsEmpty then
+    LFilePath := FFilePath
+  else
+    LFilePath := AFilePath;
+
+  if LFilePath.IsEmpty then
+    raise exception.Create
+      ('Specify a file path where to save current document.');
+  // TODO -oDeveloppeurPascal : à traduire
+
+  Folder := tpath.GetDirectoryName(LFilePath);
+  if (not Folder.IsEmpty) then
+    try
+      if not tdirectory.exists(Folder) then
+        tdirectory.CreateDirectory(Folder);
+      if IsCrypted then
+      begin
+        FileStream := tfilestream.Create(LFilePath, fmcreate + fmOpenWrite);
+        try
+          StringStream := TStringStream.Create(ToJSON, GetEncoding);
+          try
+            StringStream.Position := 0;
+            MemoryStream := TOlfCryptDecrypt.XORcrypt(StringStream,
+              GetPrivateXORKey);
+            try
+              MemoryStream.Position := 0;
+              FileStream.CopyFrom(MemoryStream);
+            finally
+              MemoryStream.Free;
+            end;
+          finally
+            StringStream.Free;
+          end;
+        finally
+          FileStream.Free;
+        end;
+      end
+      else
+        tfile.WriteAllText(LFilePath, ToJSON, GetEncoding);
+    finally
+      FFilePath := LFilePath;
+      SetHasChanged(false);
+    end;
 end;
 
 end.
