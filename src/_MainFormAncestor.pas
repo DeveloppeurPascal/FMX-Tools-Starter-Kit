@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-25T20:02:32.000+01:00
-/// Signature : 269d1c9376b8fd1c3777dd5f6bd6b90265258c34
+/// File last update : 2025-02-27T21:50:47.717+01:00
+/// Signature : 356bb40ededab8991862a2c9e030cde6004eab52
 /// ***************************************************************************
 /// </summary>
 
@@ -560,7 +560,7 @@ begin
           for i := 0 to length(Tab) - 1 do
             if Tab[i].ToLower = CurPlatform then
             begin
-              DownloadURL := Tab[i];
+              DownloadURL := result.GetDownloadURL(Tab[i]);
               break;
             end;
           if DownloadURL.IsEmpty then
