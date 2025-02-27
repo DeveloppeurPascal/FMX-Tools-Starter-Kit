@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-26T19:44:50.000+01:00
-/// Signature : 25dbf63a65bcff621432575aebd3c930bf376dec
+/// File last update : 2025-02-27T11:45:20.000+01:00
+/// Signature : 1be0ef6ac64a8fe6183cf3bddc8c8bf23d99e827
 /// ***************************************************************************
 /// </summary>
 
@@ -261,6 +261,9 @@ type
     CilTseg);
 
 const
+  /// <summary>
+  /// What license manager is used by the starter kit in this project ?
+  /// </summary>
   CUsedLicenseManager = TLicenseManagers.None;
 
   { ****************************************************************************
@@ -287,6 +290,10 @@ type
     CilTseg);
 
 const
+  /// <summary>
+  /// What system is used by the starter kit to detect and download new
+  /// releases of this program ?
+  /// </summary>
   CUsedProgramUpdatesManager = TProgramUpdatesManagers.None;
 
   { ****************************************************************************
