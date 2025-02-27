@@ -2502,6 +2502,10 @@
                                                   <param name="Local" value="fCiltsegRegisterOrShowLicense.TfrmCilTsegRegisterOrShowLicense.Execute.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormClose">
+                                                  <param name="Local" value="fCiltsegRegisterOrShowLicense.TfrmCilTsegRegisterOrShowLicense.FormClose.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="FormCreate">
                                                   <param name="Local" value="fCiltsegRegisterOrShowLicense.TfrmCilTsegRegisterOrShowLicense.FormCreate.html">
                                                   </OBJECT>
@@ -2572,6 +2576,41 @@
                                                   </OBJECT>
                                           </UL>
                                   </UL>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="fMainForm">
+                  <param name="Local" value="fMainForm.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TMainForm">
+                                  <param name="Local" value="fMainForm.TMainForm.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewDoc">
+                                                  <param name="Local" value="fMainForm.TMainForm.GetNewDoc.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="MainForm">
+                                  <param name="Local" value="fMainForm.MainForm.html">
+                                  </OBJECT>
                           </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
@@ -2928,8 +2967,16 @@
                                           </OBJECT>
                                           <UL>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="BeginUpdate">
+                                                  <param name="Local" value="uConfig.TConfig.BeginUpdate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="Current">
                                                   <param name="Local" value="uConfig.TConfig.Current.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="EndUpdate">
+                                                  <param name="Local" value="uConfig.TConfig.EndUpdate.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="GetPath">
@@ -2971,6 +3018,42 @@
                                           </OBJECT>
                                   </UL>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TLicenseManagers">
+                                  <param name="Local" value="uConsts.TLicenseManagers.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="None">
+                                          <param name="Local" value="uConsts.TLicenseManagers.None.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Manual">
+                                          <param name="Local" value="uConsts.TLicenseManagers.Manual.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="CilTseg">
+                                          <param name="Local" value="uConsts.TLicenseManagers.CilTseg.html">
+                                          </OBJECT>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TProgramUpdatesManagers">
+                                  <param name="Local" value="uConsts.TProgramUpdatesManagers.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="None">
+                                          <param name="Local" value="uConsts.TProgramUpdatesManagers.None.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Manual">
+                                          <param name="Local" value="uConsts.TProgramUpdatesManagers.Manual.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="CilTseg">
+                                          <param name="Local" value="uConsts.TProgramUpdatesManagers.CilTseg.html">
+                                          </OBJECT>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="TStyleMode">
                                   <param name="Local" value="uConsts.TStyleMode.html">
                                   </OBJECT>
@@ -2997,6 +3080,10 @@
                           <param name="Name" value="Variables">
                           </OBJECT>
                           <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="GConfigXORKey">
+                                  <param name="Local" value="uConsts.GConfigXORKey.html">
+                                  </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="GLanguages">
                                   <param name="Local" value="uConsts.GLanguages.html">
@@ -3027,12 +3114,12 @@
                                   <param name="Local" value="uConsts.CAboutVersionNumber.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CCilTsegInUse">
-                                  <param name="Local" value="uConsts.CCilTsegInUse.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CCiltsegServerURL">
                                   <param name="Local" value="uConsts.CCiltsegServerURL.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CCiltsegSoftwareCurrentPlatform">
+                                  <param name="Local" value="uConsts.CCiltsegSoftwareCurrentPlatform.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CCiltsegSoftwareID">
@@ -3071,12 +3158,12 @@
                                   <param name="Local" value="uConsts.CEditorFolderName.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CLanguages">
-                                  <param name="Local" value="uConsts.CLanguages.html">
+                                  <param name="Name" value="CExitWithEscapeKey">
+                                  <param name="Local" value="uConsts.CExitWithEscapeKey.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CNeedALicenseNumber">
-                                  <param name="Local" value="uConsts.CNeedALicenseNumber.html">
+                                  <param name="Name" value="CLanguages">
+                                  <param name="Local" value="uConsts.CLanguages.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="COpenPreviousDocumentsMaxCount">
@@ -3087,8 +3174,8 @@
                                   <param name="Local" value="uConsts.CProjectFolderName.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CProjectGUID">
-                                  <param name="Local" value="uConsts.CProjectGUID.html">
+                                  <param name="Name" value="CReportMemoryLeaksOnShutdown">
+                                  <param name="Local" value="uConsts.CReportMemoryLeaksOnShutdown.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CShowAboutBoxWithF1">
@@ -3101,10 +3188,6 @@
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CShowDocumentsMenuItems">
                                   <param name="Local" value="uConsts.CShowDocumentsMenuItems.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CShowHelpCheckForANewReleaseMenuItem">
-                                  <param name="Local" value="uConsts.CShowHelpCheckForANewReleaseMenuItem.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CShowHelpSupportMenuItem">
@@ -3135,12 +3218,16 @@
                                   <param name="Local" value="uConsts.CSoftwareBuyURL.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CSoftwareCurrentPlatform">
-                                  <param name="Local" value="uConsts.CSoftwareCurrentPlatform.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CSupportURL">
                                   <param name="Local" value="uConsts.CSupportURL.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CUsedLicenseManager">
+                                  <param name="Local" value="uConsts.CUsedLicenseManager.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CUsedProgramUpdatesManager">
+                                  <param name="Local" value="uConsts.CUsedProgramUpdatesManager.html">
                                   </OBJECT>
                           </UL>
                   </UL>
@@ -3273,6 +3360,41 @@
                           </OBJECT>
                           <UL>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TBinaryDocumentAncestor">
+                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetPrivateXORKey">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.GetPrivateXORKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="IsCrypted">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.IsCrypted.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.LoadFromFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.SaveToFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="TCurrentDocumentChangedMessage">
                                   <param name="Local" value="uDocumentsAncestor.TCurrentDocumentChangedMessage.html">
                                   </OBJECT>
@@ -3318,10 +3440,6 @@
                                                   <param name="Name" value="Create">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.Create.html">
                                                   </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="Destroy">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.Destroy.html">
-                                                  </OBJECT>
                                           </UL>
                                       <LI> <OBJECT type="text/sitemap">
                                           <param name="Name" value="Properties">
@@ -3349,37 +3467,28 @@
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.Clear.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="LoadFromFile">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.LoadFromFile.html">
+                                                  <param name="Name" value="GetDocumentExtension">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.GetDocumentExtension.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="LoadFromStream">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.LoadFromStream.html">
+                                                  <param name="Name" value="GetDocumentGUID">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.GetDocumentGUID.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="IsCrypted">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.IsCrypted.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.LoadFromFile.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="SaveToFile">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.SaveToFile.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="SaveToStream">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.SaveToStream.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="SetHasChanged">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.SetHasChanged.html">
-                                                  </OBJECT>
-                                          </UL>
-                                      <LI> <OBJECT type="text/sitemap">
-                                          <param name="Name" value="Fields">
-                                          </OBJECT>
-                                          <UL>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="FHasChanged">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.FHasChanged.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="FPath">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.FPath.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>
@@ -3446,6 +3555,49 @@
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="Broadcast">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentClosingMessage.Broadcast.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TJSONDocumentAncestor">
+                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AsJSON">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.AsJSON.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetEncoding">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.GetEncoding.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetPrivateXORKey">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.GetPrivateXORKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="IsCrypted">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.IsCrypted.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.LoadFromFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromJSONObject">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.LoadFromJSONObject.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.SaveToFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ToJSON">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.ToJSON.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>
@@ -6233,6 +6385,10 @@
                                                   <param name="Local" value="fCiltsegRegisterOrShowLicense.TfrmCilTsegRegisterOrShowLicense.Execute.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormClose">
+                                                  <param name="Local" value="fCiltsegRegisterOrShowLicense.TfrmCilTsegRegisterOrShowLicense.FormClose.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="FormCreate">
                                                   <param name="Local" value="fCiltsegRegisterOrShowLicense.TfrmCilTsegRegisterOrShowLicense.FormCreate.html">
                                                   </OBJECT>
@@ -6715,8 +6871,16 @@
                                           </OBJECT>
                                           <UL>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="BeginUpdate">
+                                                  <param name="Local" value="uConfig.TConfig.BeginUpdate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="Current">
                                                   <param name="Local" value="uConfig.TConfig.Current.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="EndUpdate">
+                                                  <param name="Local" value="uConfig.TConfig.EndUpdate.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="GetPath">
@@ -6758,6 +6922,42 @@
                                           </OBJECT>
                                   </UL>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TLicenseManagers">
+                                  <param name="Local" value="uConsts.TLicenseManagers.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="None">
+                                          <param name="Local" value="uConsts.TLicenseManagers.None.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Manual">
+                                          <param name="Local" value="uConsts.TLicenseManagers.Manual.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="CilTseg">
+                                          <param name="Local" value="uConsts.TLicenseManagers.CilTseg.html">
+                                          </OBJECT>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TProgramUpdatesManagers">
+                                  <param name="Local" value="uConsts.TProgramUpdatesManagers.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="None">
+                                          <param name="Local" value="uConsts.TProgramUpdatesManagers.None.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Manual">
+                                          <param name="Local" value="uConsts.TProgramUpdatesManagers.Manual.html">
+                                          </OBJECT>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="CilTseg">
+                                          <param name="Local" value="uConsts.TProgramUpdatesManagers.CilTseg.html">
+                                          </OBJECT>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="TStyleMode">
                                   <param name="Local" value="uConsts.TStyleMode.html">
                                   </OBJECT>
@@ -6785,12 +6985,8 @@
                           </OBJECT>
                           <UL>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CNeedALicenseNumber">
-                                  <param name="Local" value="uConsts.CNeedALicenseNumber.html">
-                                  </OBJECT>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CShowHelpCheckForANewReleaseMenuItem">
-                                  <param name="Local" value="uConsts.CShowHelpCheckForANewReleaseMenuItem.html">
+                                  <param name="Name" value="GConfigXORKey">
+                                  <param name="Local" value="uConsts.GConfigXORKey.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="GLanguages">
@@ -6850,6 +7046,10 @@
                                   <param name="Local" value="uConsts.CEditorFolderName.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CExitWithEscapeKey">
+                                  <param name="Local" value="uConsts.CExitWithEscapeKey.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CLanguages">
                                   <param name="Local" value="uConsts.CLanguages.html">
                                   </OBJECT>
@@ -6862,8 +7062,8 @@
                                   <param name="Local" value="uConsts.CProjectFolderName.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="CProjectGUID">
-                                  <param name="Local" value="uConsts.CProjectGUID.html">
+                                  <param name="Name" value="CReportMemoryLeaksOnShutdown">
+                                  <param name="Local" value="uConsts.CReportMemoryLeaksOnShutdown.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CShowAboutBoxWithF1">
@@ -6908,6 +7108,14 @@
                               <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CSupportURL">
                                   <param name="Local" value="uConsts.CSupportURL.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CUsedLicenseManager">
+                                  <param name="Local" value="uConsts.CUsedLicenseManager.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CUsedProgramUpdatesManager">
+                                  <param name="Local" value="uConsts.CUsedProgramUpdatesManager.html">
                                   </OBJECT>
                           </UL>
                   </UL>
@@ -7040,6 +7248,41 @@
                           </OBJECT>
                           <UL>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TBinaryDocumentAncestor">
+                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetPrivateXORKey">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.GetPrivateXORKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="IsCrypted">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.IsCrypted.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.LoadFromFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.SaveToFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="uDocumentsAncestor.TBinaryDocumentAncestor.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="TCurrentDocumentChangedMessage">
                                   <param name="Local" value="uDocumentsAncestor.TCurrentDocumentChangedMessage.html">
                                   </OBJECT>
@@ -7085,10 +7328,6 @@
                                                   <param name="Name" value="Create">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.Create.html">
                                                   </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="Destroy">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.Destroy.html">
-                                                  </OBJECT>
                                           </UL>
                                       <LI> <OBJECT type="text/sitemap">
                                           <param name="Name" value="Properties">
@@ -7116,37 +7355,28 @@
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.Clear.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="LoadFromFile">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.LoadFromFile.html">
+                                                  <param name="Name" value="GetDocumentExtension">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.GetDocumentExtension.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="LoadFromStream">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.LoadFromStream.html">
+                                                  <param name="Name" value="GetDocumentGUID">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.GetDocumentGUID.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="IsCrypted">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.IsCrypted.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.LoadFromFile.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="SaveToFile">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.SaveToFile.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="SaveToStream">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.SaveToStream.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="SetHasChanged">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.SetHasChanged.html">
-                                                  </OBJECT>
-                                          </UL>
-                                      <LI> <OBJECT type="text/sitemap">
-                                          <param name="Name" value="Fields">
-                                          </OBJECT>
-                                          <UL>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="FHasChanged">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.FHasChanged.html">
-                                                  </OBJECT>
-                                              <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="FPath">
-                                                  <param name="Local" value="uDocumentsAncestor.TDocumentAncestor.FPath.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>
@@ -7213,6 +7443,49 @@
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="Broadcast">
                                                   <param name="Local" value="uDocumentsAncestor.TDocumentClosingMessage.Broadcast.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TJSONDocumentAncestor">
+                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AsJSON">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.AsJSON.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetEncoding">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.GetEncoding.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetPrivateXORKey">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.GetPrivateXORKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="IsCrypted">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.IsCrypted.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.LoadFromFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromJSONObject">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.LoadFromJSONObject.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToFile">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.SaveToFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ToJSON">
+                                                  <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.ToJSON.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>
