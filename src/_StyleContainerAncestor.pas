@@ -116,9 +116,11 @@ begin
   begin
     dm := Create(nil);
     try
-{$IFDEF MACOS}
+{$IFNDEF MSWINDOWS}
+      // All platforms except Windows
       TStyleManager.SetStyle(dm.StyleBook1.Style.clone(dm));
 {$ELSE}
+      // Only for Windows
       TStyleManager.SetStyle(dm.StyleBook1.Style.clone(nil));
 {$ENDIF}
     finally
