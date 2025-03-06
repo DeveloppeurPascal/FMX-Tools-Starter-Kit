@@ -421,29 +421,9 @@
             <Form>frmMain</Form>
             <FormType>fmx</FormType>
         </DCCReference>
-        <DCCReference Include="..\..\_PRIVATE\src\uStyleImpressiveLight.pas">
-            <Form>StyleImpressiveLight</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\_PRIVATE\src\uStyleImpressiveDark.pas">
-            <Form>StyleImpressiveDark</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\..\src\fToolsStylesDialog.pas">
             <Form>frmToolsStylesDialog</Form>
             <FormType>fmx</FormType>
-        </DCCReference>
-        <DCCReference Include="..\..\_PRIVATE\src\uStylePolarDark.pas">
-            <Form>StylePolarDark</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\_PRIVATE\src\uStylePolarLight.pas">
-            <Form>StylePolarLight</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\src\fToolsLanguagesDialog.pas">
             <Form>frmToolsLanguagesDialog</Form>
