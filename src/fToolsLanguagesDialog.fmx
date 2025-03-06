@@ -3,6 +3,7 @@ inherited frmToolsLanguagesDialog: TfrmToolsLanguagesDialog
   ClientHeight = 400
   ClientWidth = 300
   OnCreate = FormCreate
+  OnClose = FormClose
   OnShow = FormShow
   DesignerMasterStyle = 0
   object VertScrollBox1: TVertScrollBox

@@ -62,6 +62,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure btnCancelClick(Sender: TObject);
     procedure btnOkClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     FOldLanguage: string;
     FonGetLanguageName: TOnGetLanguageName;
@@ -118,6 +119,18 @@ begin
       BringToFront;
     end;
   end;
+end;
+
+procedure TfrmToolsLanguagesDialog.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+{$IF Defined(IOS) or Defined(ANDROID)}
+  tthread.ForceQueue(nil,
+    procedure
+    begin
+      self.free;
+    end);
+{$ENDIF}
 end;
 
 procedure TfrmToolsLanguagesDialog.FormCreate(Sender: TObject);
