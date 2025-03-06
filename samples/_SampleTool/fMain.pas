@@ -78,9 +78,10 @@ uses
 
 procedure TfrmMain.Button1Click(Sender: TObject);
 begin
-  showmessage(tprojectstyle.current.stylename);
-  tprojectstyle.current.stylename := 'impressive dark';
+  // showmessage(tprojectstyle.current.stylename);
+  // tprojectstyle.current.stylename := 'impressive dark';
   // TProjectStyle.Current.StyleName:='dark';
+  DoStyleChangeAction(Sender);
 end;
 
 function TfrmMain.AboutBoxTranslateTexts(const Language: string;
