@@ -202,7 +202,7 @@ procedure TfrmToolsStylesDialog.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
 {$IF Defined(IOS) or Defined(ANDROID)}
-  tthread.tthread.ForceQueue(nil,
+  tthread.ForceQueue(nil,
     procedure
     begin
       self.free;
