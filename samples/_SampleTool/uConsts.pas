@@ -50,7 +50,7 @@ const
   /// To update when you publish a new release of this project.
   /// Don't forget to update the Version Infos in the Project/Options dialog.
   /// </remarks>
-  CAboutVersionNumber = '1.0';
+  CAboutVersionNumber = '1.1';
 
   /// <summary>
   /// Version date of your project.
@@ -58,7 +58,7 @@ const
   /// <remarks>
   /// To update when you publish a new release of this project.
   /// </remarks>
-  CAboutVersionDate = '20250226';
+  CAboutVersionDate = '20250306';
 
   /// <summary>
   /// Title of your project used in the About box and as the main form caption
@@ -176,12 +176,12 @@ const
   /// <summary>
   /// Name of the default style used when the user choose the light mode.
   /// </summary>
-  CDefaultStyleLight = 'impressive light';
+  CDefaultStyleLight = 'light';
 
   /// <summary>
   /// Name of the default style used when the user choose the dark mode.
   /// </summary>
-  CDefaultStyleDark = 'impressive dark';
+  CDefaultStyleDark = 'dark';
 
   /// <summary>
   /// Name of the default style used when the user choose the custom mode.
@@ -258,7 +258,7 @@ type
     CilTseg);
 
 const
-  CUsedLicenseManager = TLicenseManagers.CilTseg;
+  CUsedLicenseManager = TLicenseManagers.None;
 
   { ****************************************************************************
     Program updates management settings
@@ -284,7 +284,7 @@ type
     CilTseg);
 
 const
-  CUsedProgramUpdatesManager = TProgramUpdatesManagers.CilTseg;
+  CUsedProgramUpdatesManager = TProgramUpdatesManagers.None;
 
   { ****************************************************************************
     Main menu options settings
