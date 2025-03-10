@@ -2,6 +2,7 @@ inherited StyleDarkByDefault: TStyleDarkByDefault
   inherited StyleBook1: TStyleBook
     Styles = <
       item
+        Platform = 'Windows'
         ResourcesBin = {
           464D585F5354594C4520322E3501060B7377697463687374796C65030402060D
           7468756D626261727374796C6503C30206147363726F6C6C6261727674726163
