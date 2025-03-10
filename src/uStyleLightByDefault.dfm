@@ -2,6 +2,7 @@ inherited StyleLightByDefault: TStyleLightByDefault
   inherited StyleBook1: TStyleBook
     Styles = <
       item
+        Platform = 'Windows'
         ResourcesBin = {
           464D585F5354594C4520322E3501060B7377697463687374796C65038901061C
           7472616E73706172656E74636972636C65627574746F6E7374796C6503FF0206
