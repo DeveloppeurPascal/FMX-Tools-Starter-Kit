@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-26T19:24:00.000+01:00
-/// Signature : 86c000332c56dc5f73820eed6e4e36bbd74e2fcb
+/// File last update : 2025-03-10T21:02:16.000+01:00
+/// Signature : 43c8b29bd8577f255655fd7c47862445a60f4c1a
 /// ***************************************************************************
 /// </summary>
 
@@ -66,12 +66,20 @@ uses
   Olf.RTL.Checksum in '..\..\lib-externes\librairies\src\Olf.RTL.Checksum.pas',
   u_md5 in '..\..\lib-externes\librairies\src\u_md5.pas',
   fCiltsegRegisterOrShowLicense in '..\..\lib-externes\CilTseg4Delphi\src\FMX\fCiltsegRegisterOrShowLicense.pas' {frmCilTsegRegisterOrShowLicense},
-  uDocumentsAncestor in '..\..\src\uDocumentsAncestor.pas';
+  uDocumentsAncestor in '..\..\src\uDocumentsAncestor.pas',
+  uStyleGoldenGraphite in 'uStyleGoldenGraphite.pas' {dmStyleGoldenGraphite: TDataModule},
+  uStyleTransparent in 'uStyleTransparent.pas' {dmStyleTransparent: TDataModule},
+  uStyleWin10ModernBlue in 'uStyleWin10ModernBlue.pas' {dmStyleWin10ModernBlue: TDataModule},
+  uStyleCoralCrystal in 'uStyleCoralCrystal.pas' {dmStyleCoralCrystal: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
+  Application.CreateForm(TdmStyleGoldenGraphite, dmStyleGoldenGraphite);
+  Application.CreateForm(TdmStyleTransparent, dmStyleTransparent);
+  Application.CreateForm(TdmStyleWin10ModernBlue, dmStyleWin10ModernBlue);
+  Application.CreateForm(TdmStyleCoralCrystal, dmStyleCoralCrystal);
   Application.Run;
 end.
