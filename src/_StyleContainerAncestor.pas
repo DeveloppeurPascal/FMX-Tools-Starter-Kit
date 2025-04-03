@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-10T21:11:30.000+01:00
-/// Signature : 64c1210a1c206d7a4b5b62e3fa3af75a3d8a1cde
+/// File last update : 2025-04-03T18:26:50.000+02:00
+/// Signature : c15bbf26e82f58f50c64bae91c4eb2805f7099e5
 /// ***************************************************************************
 /// </summary>
 
@@ -123,17 +123,11 @@ begin
   end;
 end;
 
-var
-  /// <summary>
-  /// PrevStyleBook is used to free previous (or last) TStyleBook
-  /// </summary>
-  PrevStyleBook: TStyleBook;
-
 class procedure T__StyleContainerAncestor.ReceivedProjectStyleChangeMessage
   (const Sender: TObject; const M: TMessage);
 var
   dm: T__StyleContainerAncestor;
-  StyleBook: TStyleBook;
+  ms: TMemoryStream;
 begin
   if (M is TProjectStyleChangeMessage) and
     ((M as TProjectStyleChangeMessage).Value.Tolower = GetStyleName.Tolower)
@@ -141,46 +135,18 @@ begin
   begin
     dm := Create(nil);
     try
-      StyleBook := dm.StyleBook1.clone(nil) as TStyleBook;
-      TStyleManager.SetStyle(StyleBook.Style);
-      // {$IFNDEF MSWINDOWS}
-      // // All platforms except Windows
-      // TStyleManager.SetStyle(dm.StyleBook1.Style.clone(dm));
-      // {$ELSE}
-      // // Only for Windows
-      // TStyleManager.SetStyle(dm.StyleBook1.Style.clone(nil));
-      // {$ENDIF}
+      ms := TMemoryStream.Create;
+      try
+        TStyleStreaming.SaveToStream(dm.StyleBook1.Style, ms);
+        ms.position := 0;
+        TStyleManager.SetStyle(TStyleStreaming.LoadFromStream(ms));
+      finally
+        ms.free;
+      end;
     finally
       dm.free;
     end;
-    // TODO -oDeveloppeurPascal : remove the comment when TStyleManager will be changed to not free the TStyleBook style or if the TStyleBook will be fixed
-    // FreeAndNil(PrevStyleBook);
-    PrevStyleBook := StyleBook;
   end;
 end;
-
-initialization
-
-// **********************************************************************
-// * uncomment and copy the code after this line in your units !!!
-// **********************************************************************
-
-// Call the Initialize method in your styles containers initialization blocs.
-// TStyleContainerClass.Initialize;
-
-// **********************************************************************
-// * don't copy the code after this line in your units !!!
-// **********************************************************************
-
-PrevStyleBook := nil;
-
-finalization
-
-// **********************************************************************
-// * don't copy the code after this line in your units !!!
-// **********************************************************************
-
-// TODO -oDeveloppeurPascal : remove the comment when TStyleManager will be changed to not free the TStyleBook style or if the TStyleBook will be fixed
-// PrevStyleBook.free;
 
 end.
