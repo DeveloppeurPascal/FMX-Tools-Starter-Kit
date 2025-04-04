@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-10T21:16:25.370+01:00
-/// Signature : 088b011a12330f6ecb66951e6e2373a5315d6689
+/// File last update : 2025-04-04T11:18:28.000+02:00
+/// Signature : d95155e74e36972c817d35941c7f36b4d1a6c4fe
 /// ***************************************************************************
 /// </summary>
 
@@ -112,7 +112,8 @@ implementation
 uses
   uStyleManager,
   uConfig,
-  uConsts;
+  uConsts,
+  uStyleManagerHelpers;
 
 procedure TfrmToolsStylesDialog.AddStylesToFlow(const Styles: TStringDynArray;
   const FlowLayout: TFlowLayout; const GroupIndex: integer;
