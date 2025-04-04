@@ -23,6 +23,7 @@ This project uses dependencies in the form of sub-modules. They will be absent f
 * [DeveloppeurPascal/AboutDialog-Delphi-Component](https://github.com/DeveloppeurPascal/AboutDialog-Delphi-Component) must be installed in the ./lib-externes/AboutDialog-Delphi-Component subfolder.
 * [DeveloppeurPascal/CilTseg4Delphi](https://github.com/DeveloppeurPascal/CilTseg4Delphi) must be installed in the ./lib-externes/CilTseg4Delphi subfolder.
 * [DeveloppeurPascal/Delphi-FMXExtend-Library](https://github.com/DeveloppeurPascal/Delphi-FMXExtend-Library) must be installed in the ./lib-externes/Delphi-FMXExtend-Library subfolder.
+* [DeveloppeurPascal/FMX-Styles-Utils](https://github.com/DeveloppeurPascal/FMX-Styles-Utils) must be installed in the ./lib-externes/FMX-Styles-Utils subfolder.
 * [DeveloppeurPascal/librairies](https://github.com/DeveloppeurPascal/librairies) must be installed in the ./lib-externes/librairies subfolder.
 
 ## Documentation and support
