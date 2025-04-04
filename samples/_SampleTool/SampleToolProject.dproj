@@ -400,22 +400,6 @@
         </DCCReference>
         <DCCReference Include="..\..\lib-externes\librairies\src\Olf.RTL.Streams.pas"/>
         <DCCReference Include="..\..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas"/>
-        <DCCReference Include="..\..\src\uStyleManager.pas"/>
-        <DCCReference Include="..\..\src\_StyleContainerAncestor.pas">
-            <Form>__StyleContainerAncestor</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\src\uStyleLightByDefault.pas">
-            <Form>StyleLightByDefault</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\src\uStyleDarkByDefault.pas">
-            <Form>StyleDarkByDefault</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\..\lib-externes\librairies\src\Olf.RTL.SystemAppearance.pas"/>
         <DCCReference Include="fMain.pas">
             <Form>frmMain</Form>
@@ -457,6 +441,23 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\..\lib-externes\FMX-Styles-Utils\src\_StyleContainerAncestor.pas">
+            <Form>__StyleContainerAncestor</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\..\lib-externes\FMX-Styles-Utils\src\uStyleManager.pas"/>
+        <DCCReference Include="..\..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleDarkByDefault.pas">
+            <Form>StyleDarkByDefault</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleLightByDefault.pas">
+            <Form>StyleLightByDefault</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="..\..\src\uStyleManagerHelpers.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1525,6 +1526,7 @@
                 <Platform value="Android64">False</Platform>
                 <Platform value="iOSDevice64">False</Platform>
                 <Platform value="iOSSimARM64">False</Platform>
+                <Platform value="Linux64">False</Platform>
                 <Platform value="OSX64">True</Platform>
                 <Platform value="OSXARM64">True</Platform>
                 <Platform value="Win32">True</Platform>

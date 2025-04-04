@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-10T21:02:16.000+01:00
-/// Signature : 43c8b29bd8577f255655fd7c47862445a60f4c1a
+/// File last update : 2025-04-04T11:22:10.000+02:00
+/// Signature : 3f82a1e9ae330f515112c9bf8c4de44de85894fa
 /// ***************************************************************************
 /// </summary>
 
@@ -54,10 +54,6 @@ uses
   _MainFormAncestor in '..\..\src\_MainFormAncestor.pas' {__MainFormAncestor},
   Olf.RTL.Streams in '..\..\lib-externes\librairies\src\Olf.RTL.Streams.pas',
   Olf.RTL.Maths.Conversions in '..\..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas',
-  uStyleManager in '..\..\src\uStyleManager.pas',
-  _StyleContainerAncestor in '..\..\src\_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
-  uStyleLightByDefault in '..\..\src\uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
-  uStyleDarkByDefault in '..\..\src\uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
   Olf.RTL.SystemAppearance in '..\..\lib-externes\librairies\src\Olf.RTL.SystemAppearance.pas',
   fMain in 'fMain.pas' {frmMain},
   fToolsStylesDialog in '..\..\src\fToolsStylesDialog.pas' {frmToolsStylesDialog},
@@ -70,7 +66,12 @@ uses
   uStyleGoldenGraphite in 'uStyleGoldenGraphite.pas' {dmStyleGoldenGraphite: TDataModule},
   uStyleTransparent in 'uStyleTransparent.pas' {dmStyleTransparent: TDataModule},
   uStyleWin10ModernBlue in 'uStyleWin10ModernBlue.pas' {dmStyleWin10ModernBlue: TDataModule},
-  uStyleCoralCrystal in 'uStyleCoralCrystal.pas' {dmStyleCoralCrystal: TDataModule};
+  uStyleCoralCrystal in 'uStyleCoralCrystal.pas' {dmStyleCoralCrystal: TDataModule},
+  _StyleContainerAncestor in '..\..\lib-externes\FMX-Styles-Utils\src\_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
+  uStyleManager in '..\..\lib-externes\FMX-Styles-Utils\src\uStyleManager.pas',
+  uStyleDarkByDefault in '..\..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
+  uStyleLightByDefault in '..\..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
+  uStyleManagerHelpers in '..\..\src\uStyleManagerHelpers.pas';
 
 {$R *.res}
 
