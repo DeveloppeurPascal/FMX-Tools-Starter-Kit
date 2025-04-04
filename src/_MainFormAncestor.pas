@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-27T21:50:47.717+01:00
-/// Signature : 356bb40ededab8991862a2c9e030cde6004eab52
+/// File last update : 2025-04-04T11:18:32.000+02:00
+/// Signature : a6cbb56c743c78796990ae421aa2ec42d7bc7cd0
 /// ***************************************************************************
 /// </summary>
 
@@ -358,7 +358,8 @@ uses
   fCiltsegRegisterOrShowLicense,
   Olf.CilTseg.ClientLib,
   System.DateUtils,
-  FMX.DialogService;
+  FMX.DialogService,
+  uStyleManagerHelpers;
 
 procedure T__MainFormAncestor.actAboutExecute(Sender: TObject);
 begin
