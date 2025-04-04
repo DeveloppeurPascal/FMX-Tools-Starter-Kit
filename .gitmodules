@@ -10,3 +10,6 @@
 [submodule "lib-externes/CilTseg4Delphi"]
 	path = lib-externes/CilTseg4Delphi
 	url = https://github.com/DeveloppeurPascal/CilTseg4Delphi.git
+[submodule "lib-externes/FMX-Styles-Utils"]
+	path = lib-externes/FMX-Styles-Utils
+	url = https://github.com/DeveloppeurPascal/FMX-Styles-Utils.git
