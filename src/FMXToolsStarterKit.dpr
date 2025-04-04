@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-25T18:06:36.000+01:00
-/// Signature : 75374bcf19a3b883e56f142230240c529731b24c
+/// File last update : 2025-04-04T11:17:32.000+02:00
+/// Signature : c8755e0fe51136aa8d05acf51e146e9a4f498e1e
 /// ***************************************************************************
 /// </summary>
 
@@ -55,10 +55,7 @@ uses
   uDocumentsAncestor in 'uDocumentsAncestor.pas',
   Olf.RTL.Streams in '..\lib-externes\librairies\src\Olf.RTL.Streams.pas',
   Olf.RTL.Maths.Conversions in '..\lib-externes\librairies\src\Olf.RTL.Maths.Conversions.pas',
-  uStyleManager in 'uStyleManager.pas',
-  _StyleContainerAncestor in '_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
-  uStyleLightByDefault in 'uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
-  uStyleDarkByDefault in 'uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
+  uStyleManagerHelpers in 'uStyleManagerHelpers.pas',
   Olf.RTL.SystemAppearance in '..\lib-externes\librairies\src\Olf.RTL.SystemAppearance.pas',
   fToolsStylesDialog in 'fToolsStylesDialog.pas' {frmToolsStylesDialog},
   fToolsLanguagesDialog in 'fToolsLanguagesDialog.pas' {frmToolsLanguagesDialog},
@@ -66,7 +63,11 @@ uses
   Olf.RTL.Checksum in '..\lib-externes\librairies\src\Olf.RTL.Checksum.pas',
   u_md5 in '..\lib-externes\librairies\src\u_md5.pas',
   fCiltsegRegisterOrShowLicense in '..\lib-externes\CilTseg4Delphi\src\FMX\fCiltsegRegisterOrShowLicense.pas' {frmCilTsegRegisterOrShowLicense},
-  fMainForm in 'fMainForm.pas' {MainForm};
+  fMainForm in 'fMainForm.pas' {MainForm},
+  _StyleContainerAncestor in '..\lib-externes\FMX-Styles-Utils\src\_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
+  uStyleManager in '..\lib-externes\FMX-Styles-Utils\src\uStyleManager.pas',
+  uStyleDarkByDefault in '..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
+  uStyleLightByDefault in '..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule};
 
 {$R *.res}
 
