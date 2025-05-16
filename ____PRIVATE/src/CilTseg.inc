@@ -27,14 +27,18 @@ const
   /// you declared in CilTseg backoffice and use as a file attached to new
   /// releases of the software.
   /// </summary>
-{$IF Defined(MSWINDOWS)}
-  CCiltsegSoftwareCurrentPlatform = 'Windows';
-{$ELSE IF Defined(MACOS)}
-  CCiltsegSoftwareCurrentPlatform = 'macOS';
+{$IF Defined(WIN32)}
+  CCiltsegSoftwareCurrentPlatform = 'Windows32';
+{$ELSE IF Defined(WIN64)}
+  CCiltsegSoftwareCurrentPlatform = 'Windows64';
 {$ELSE IF Defined(IOS)}
   CCiltsegSoftwareCurrentPlatform = 'iOS';
-{$ELSE IF Defined(ANDROID)}
-  CCiltsegSoftwareCurrentPlatform = 'Android';
+{$ELSE IF Defined(MACOS)}
+  CCiltsegSoftwareCurrentPlatform = 'macOS';
+{$ELSE IF Defined(ANDROID32)}
+  CCiltsegSoftwareCurrentPlatform = 'Android32';
+{$ELSE IF Defined(ANDROID64)}
+  CCiltsegSoftwareCurrentPlatform = 'Android64';
 {$ELSE IF Defined(LINUX)}
   CCiltsegSoftwareCurrentPlatform = 'Linux';
 {$ENDIF}
