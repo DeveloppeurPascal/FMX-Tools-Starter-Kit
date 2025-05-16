@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-04-04T11:17:32.000+02:00
-/// Signature : c8755e0fe51136aa8d05acf51e146e9a4f498e1e
+/// File last update : 2025-05-16T19:05:30.000+02:00
+/// Signature : f23c1eaa72578f9e40f8d677a4fcfc669c6dc579
 /// ***************************************************************************
 /// </summary>
 
@@ -67,7 +67,8 @@ uses
   _StyleContainerAncestor in '..\lib-externes\FMX-Styles-Utils\src\_StyleContainerAncestor.pas' {__StyleContainerAncestor: TDataModule},
   uStyleManager in '..\lib-externes\FMX-Styles-Utils\src\uStyleManager.pas',
   uStyleDarkByDefault in '..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleDarkByDefault.pas' {StyleDarkByDefault: TDataModule},
-  uStyleLightByDefault in '..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule};
+  uStyleLightByDefault in '..\lib-externes\FMX-Styles-Utils\samples\DarkLightSampleProject\uStyleLightByDefault.pas' {StyleLightByDefault: TDataModule},
+  uGetDeviceName in '..\lib-externes\librairies\src\uGetDeviceName.pas';
 
 {$R *.res}
 
