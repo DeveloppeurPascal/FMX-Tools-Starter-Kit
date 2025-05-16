@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-25T18:13:36.000+01:00
-/// Signature : 4e137f6631b5fe625e3a86570eede42a68f159c5
+/// File last update : 2025-05-16T19:19:14.000+02:00
+/// Signature : 2edc1a3b46347a1acdc0b45e1230ff334345c5a3
 /// ***************************************************************************
 /// </summary>
 
@@ -34,11 +34,16 @@ unit uConfig;
 
 interface
 
-// If you want to be able to update the template files in your project,
-// we recommend that you don't modify this file. Its operation should support
-// all standard use cases. Save the file in your project and work on the copy.
-// In this case, we suggest you open a ticket on the code repository to explain
-// your needs and the changes to be made to the template.
+// This file contains the TConfig.Current global instance to access to settings
+// of the starter kit from the starter kit and your projects.
+//
+// If you want to extend it with your own parameters, you just have to create a
+// TConfigHelpers (or with an other name) helper class where you'll add your
+// properties and their Get/Set methods.
+// Copy the content of the Get/Set methods here to have the same behaviour.
+//
+// To limit risks of duplicate variables names, prefix your own parameters
+// by your project name, a GUID or anything else than what we use (= 'FTSK.').
 
 uses
   Olf.RTL.Params,
@@ -46,7 +51,10 @@ uses
 
 type
   TConfig = class
-  private
+  private const
+    CVariableNamePrefix = 'FTSK.';
+
+  var
     FParams: TParamsFile;
     function GetLanguage: string;
     procedure SetLanguage(const Value: string);
@@ -73,6 +81,11 @@ type
     procedure SetLicenseEmail(const Value: string);
     procedure SetLicenseNumber(const Value: string);
   protected
+    /// <summary>
+    /// Use GetParams function in your TConfigHelpers to access global settings
+    /// storage and add your own parameters.
+    /// </summary>
+    function GetParams: TParamsFile;
   public
     /// <summary>
     /// The language you should use on screen and messages
@@ -205,7 +218,8 @@ uses
   FMX.Platform,
   Olf.RTL.CryptDecrypt,
   Olf.RTL.Language,
-  uTranslate;
+  uTranslate,
+  uGetDeviceName;
 
 var
   ConfigInstance: TConfig;
@@ -282,12 +296,14 @@ end;
 
 function TConfig.GetCustomStyleName: string;
 begin
-  result := FParams.getValue('CustomStyleName', CDefaultStyleCustom);
+  result := FParams.GetValue(CVariableNamePrefix + 'CustomStyleName',
+    CDefaultStyleCustom);
 end;
 
 function TConfig.GetDarkStyleName: string;
 begin
-  result := FParams.getValue('DarkStyleName', CDefaultStyleDark);
+  result := FParams.GetValue(CVariableNamePrefix + 'DarkStyleName',
+    CDefaultStyleDark);
 end;
 
 function TConfig.GetLanguage: string;
@@ -298,32 +314,41 @@ begin
   if lng.IsEmpty then
     lng := CDefaultLanguage;
 
-  result := FParams.getValue('Language', lng);
+  result := FParams.GetValue(CVariableNamePrefix + 'Language', lng);
 end;
 
 function TConfig.GetLicenseActivationNumber: string;
 begin
-  result := FParams.getValue('LicenseActivation', '');
+  result := FParams.GetValue(CVariableNamePrefix + 'LicenseActivation', '');
 end;
 
 function TConfig.GetLicenseDeviceName: string;
 begin
-  result := FParams.getValue('LicenseDeviceName', '');
+  result := FParams.GetValue(CVariableNamePrefix + 'LicenseDeviceName',
+    getDeviceName);
+  if result.IsEmpty then
+    result := getDeviceName;
 end;
 
 function TConfig.GetLicenseEmail: string;
 begin
-  result := FParams.getValue('LicenseUserEmail', '');
+  result := FParams.GetValue(CVariableNamePrefix + 'LicenseUserEmail', '');
 end;
 
 function TConfig.GetLicenseNumber: string;
 begin
-  result := FParams.getValue('LicenseNumber', '');
+  result := FParams.GetValue(CVariableNamePrefix + 'LicenseNumber', '');
 end;
 
 function TConfig.GetLightStyleName: string;
 begin
-  result := FParams.getValue('LightStyleName', CDefaultStyleLight);
+  result := FParams.GetValue(CVariableNamePrefix + 'LightStyleName',
+    CDefaultStyleLight);
+end;
+
+function TConfig.GetParams: TParamsFile;
+begin
+  result := FParams;
 end;
 
 function TConfig.GetPath: string;
@@ -333,22 +358,24 @@ end;
 
 function TConfig.GetRecentDocuments(const Index: integer): string;
 begin
-  result := FParams.getValue('RD' + Index.ToString, '');
+  result := FParams.GetValue(CVariableNamePrefix + 'RD' + Index.ToString, '');
 end;
 
 function TConfig.GetRecentDocumentsCount: integer;
 begin
-  result := FParams.getValue('RDC', 0);
+  result := FParams.GetValue(CVariableNamePrefix + 'RDC', 0);
 end;
 
 function TConfig.GetRecentDocumentsMaxCount: integer;
 begin
-  result := FParams.getValue('RDMC', COpenPreviousDocumentsMaxCount);
+  result := FParams.GetValue(CVariableNamePrefix + 'RDMC',
+    COpenPreviousDocumentsMaxCount);
 end;
 
 function TConfig.GetStyleMode: TStyleMode;
 begin
-  result := TStyleMode(FParams.getValue('StyleMode', ord(CDefaultStyleMode)));
+  result := TStyleMode(FParams.GetValue(CVariableNamePrefix + 'StyleMode',
+    ord(CDefaultStyleMode)));
 end;
 
 procedure TConfig.Save;
@@ -358,13 +385,13 @@ end;
 
 procedure TConfig.SetCustomStyleName(const Value: string);
 begin
-  FParams.setValue('CustomStyleName', Value.Trim.ToLower);
+  FParams.SetValue(CVariableNamePrefix + 'CustomStyleName', Value.Trim.ToLower);
   Save;
 end;
 
 procedure TConfig.SetDarkStyleName(const Value: string);
 begin
-  FParams.setValue('DarkStyleName', Value.Trim.ToLower);
+  FParams.SetValue(CVariableNamePrefix + 'DarkStyleName', Value.Trim.ToLower);
   Save;
 end;
 
@@ -376,62 +403,62 @@ begin
   if lng.IsEmpty then
     lng := CDefaultLanguage;
 
-  FParams.setValue('Language', Value);
+  FParams.SetValue(CVariableNamePrefix + 'Language', Value);
   Save;
   TTranslateTextsMessage.Broadcast(Value);
 end;
 
 procedure TConfig.SetLicenseActivationNumber(const Value: string);
 begin
-  FParams.setValue('LicenseActivation', Value);
+  FParams.SetValue(CVariableNamePrefix + 'LicenseActivation', Value);
   Save;
 end;
 
 procedure TConfig.SetLicenseDeviceName(const Value: string);
 begin
-  FParams.setValue('LicenseDeviceName', Value);
+  FParams.SetValue(CVariableNamePrefix + 'LicenseDeviceName', Value);
   Save;
 end;
 
 procedure TConfig.SetLicenseEmail(const Value: string);
 begin
-  FParams.setValue('LicenseUserEmail', Value);
+  FParams.SetValue(CVariableNamePrefix + 'LicenseUserEmail', Value);
   Save;
 end;
 
 procedure TConfig.SetLicenseNumber(const Value: string);
 begin
-  FParams.setValue('LicenseNumber', Value);
+  FParams.SetValue(CVariableNamePrefix + 'LicenseNumber', Value);
   Save;
 end;
 
 procedure TConfig.SetLightStyleName(const Value: string);
 begin
-  FParams.setValue('LightStyleName', Value.Trim.ToLower);
+  FParams.SetValue(CVariableNamePrefix + 'LightStyleName', Value.Trim.ToLower);
   Save;
 end;
 
 procedure TConfig.SetRecentDocuments(const Index: integer; const Value: string);
 begin
-  FParams.setValue('RD' + Index.ToString, Value);
+  FParams.SetValue(CVariableNamePrefix + 'RD' + Index.ToString, Value);
   Save;
 end;
 
 procedure TConfig.SetRecentDocumentsCount(const Value: integer);
 begin
-  FParams.setValue('RDC', Value);
+  FParams.SetValue(CVariableNamePrefix + 'RDC', Value);
   Save;
 end;
 
 procedure TConfig.SetRecentDocumentsMaxCount(const Value: integer);
 begin
-  FParams.setValue('RDMC', Value);
+  FParams.SetValue(CVariableNamePrefix + 'RDMC', Value);
   Save;
 end;
 
 procedure TConfig.SetStyleMode(const Value: TStyleMode);
 begin
-  FParams.setValue('StyleMode', ord(Value));
+  FParams.SetValue(CVariableNamePrefix + 'StyleMode', ord(Value));
   Save;
 end;
 
