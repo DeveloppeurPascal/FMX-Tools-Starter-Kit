@@ -458,6 +458,8 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\src\uStyleManagerHelpers.pas"/>
+        <DCCReference Include="..\..\lib-externes\librairies\src\uGetDeviceName.pas"/>
+        <DCCReference Include="uMyconfig.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
