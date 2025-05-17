@@ -1,5 +1,6 @@
 # 20250516 - [DeveloppeurPascal](https://github.com/DeveloppeurPascal)
 
+* updated dependencies
 * updated CilTseg default platforms list to follow the differents installations/platforms available for Delphi project
 * updated default (= main) project version date
 * updated the default settings storage unit (uConfig) and its general comment
