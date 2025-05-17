@@ -25,8 +25,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-04-04T11:18:32.000+02:00
-/// Signature : a6cbb56c743c78796990ae421aa2ec42d7bc7cd0
+/// File last update : 2025-05-17T08:33:54.000+02:00
+/// Signature : 6f69ad58b06e8fa38c200f1bba13777b386bcb96
 /// ***************************************************************************
 /// </summary>
 
@@ -508,24 +508,30 @@ end;
 
 procedure T__MainFormAncestor.DoCheckLicenseOnStartup(Sender: TObject);
 begin
-  if (CUsedLicenseManager = TLicenseManagers.CilTseg) and
-    tconfig.Current.LicenseNumber.IsEmpty then
-    // TODO : attendre un nombre de lancement ou de jours avant de faire une nouvelle demande
-    tthread.CreateAnonymousThread(
-      procedure
+  case CUsedLicenseManager of
+    TLicenseManagers.None: // nothing to do in this case
+      ;
+    TLicenseManagers.CilTseg:
       begin
-        sleep(2000);
-        tthread.queue(nil,
-          procedure
-          begin
-            if tconfig.Current.LicenseActivationNumber.IsEmpty then
-              DoRegisterALicense(self)
-            else
-              DoAboutAction(self);
-          end);
-      end).Start
-  else if (CUsedLicenseManager <> TLicenseManagers.None) then
+        if tconfig.Current.LicenseNumber.IsEmpty then
+          // TODO : attendre un nombre de lancement ou de jours avant de faire une nouvelle demande
+          tthread.CreateAnonymousThread(
+            procedure
+            begin
+              sleep(2000);
+              tthread.queue(nil,
+                procedure
+                begin
+                  if tconfig.Current.LicenseActivationNumber.IsEmpty then
+                    DoRegisterALicense(self)
+                  else
+                    DoAboutAction(self);
+                end);
+            end).Start;
+      end;
+  else
     raise exception.Create('Not implemented.');
+  end;
 end;
 
 procedure T__MainFormAncestor.DoCheckForANewRelease(Sender: TObject);
