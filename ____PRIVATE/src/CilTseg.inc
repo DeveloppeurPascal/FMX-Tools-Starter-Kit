@@ -33,8 +33,14 @@ const
   CCiltsegSoftwareCurrentPlatform = 'Windows64';
 {$ELSE IF Defined(IOS)}
   CCiltsegSoftwareCurrentPlatform = 'iOS';
-{$ELSE IF Defined(MACOS)}
-  CCiltsegSoftwareCurrentPlatform = 'macOS';
+{$ELSE IF Defined(OSX32)}
+  CCiltsegSoftwareCurrentPlatform = 'MacIntel32';
+{$ELSE IF Defined(OSX64)}
+{$IFDEF CPUARM}
+  CCiltsegSoftwareCurrentPlatform = 'MacAppleSilicon';
+{$ELSE}
+  CCiltsegSoftwareCurrentPlatform = 'MacIntel64';
+{$ENDIF}
 {$ELSE IF Defined(ANDROID32)}
   CCiltsegSoftwareCurrentPlatform = 'Android32';
 {$ELSE IF Defined(ANDROID64)}
@@ -42,3 +48,4 @@ const
 {$ELSE IF Defined(LINUX)}
   CCiltsegSoftwareCurrentPlatform = 'Linux';
 {$ENDIF}
+
