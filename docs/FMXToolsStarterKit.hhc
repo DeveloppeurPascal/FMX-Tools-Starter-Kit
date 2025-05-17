@@ -2983,6 +2983,10 @@
                                                   <param name="Local" value="uConfig.TConfig.EndUpdate.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetParams">
+                                                  <param name="Local" value="uConfig.TConfig.GetParams.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="GetPath">
                                                   <param name="Local" value="uConfig.TConfig.GetPath.html">
                                                   </OBJECT>
@@ -3605,6 +3609,21 @@
                                                   </OBJECT>
                                           </UL>
                                   </UL>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="uGetDeviceName">
+                  <param name="Local" value="uGetDeviceName.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Routines">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="getDeviceName">
+                                  <param name="Local" value="uGetDeviceName.getDeviceName.html">
+                                  </OBJECT>
                           </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
@@ -6913,6 +6932,10 @@
                                                   <param name="Local" value="uConfig.TConfig.EndUpdate.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetParams">
+                                                  <param name="Local" value="uConfig.TConfig.GetParams.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="GetPath">
                                                   <param name="Local" value="uConfig.TConfig.GetPath.html">
                                                   </OBJECT>
@@ -7532,6 +7555,47 @@
                                               <LI> <OBJECT type="text/sitemap">
                                                   <param name="Name" value="ToJSON">
                                                   <param name="Local" value="uDocumentsAncestor.TJSONDocumentAncestor.ToJSON.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="uGetDeviceName">
+                  <param name="Local" value="uGetDeviceName.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Routines">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="getDeviceName">
+                                  <param name="Local" value="uGetDeviceName.getDeviceName.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="uMyconfig">
+                  <param name="Local" value="uMyconfig.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Helpers">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TMyConfig">
+                                  <param name="Local" value="uMyconfig.TMyConfig.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="MySampleParam">
+                                                  <param name="Local" value="uMyconfig.TMyConfig.MySampleParam.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>
