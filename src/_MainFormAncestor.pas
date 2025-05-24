@@ -29,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T19:50:26.000+02:00
-/// Signature : c8bd1ba7ad60c2a6ae2a9e365d2d93aeb6b84672
+/// File last update : 2025-05-24T20:30:46.000+02:00
+/// Signature : 3c578cd6d2372cf61aac74dddd9148773f3593b5
 /// ***************************************************************************
 /// </summary>
 
@@ -570,18 +570,18 @@ begin
         else
         begin
           CurReleaseDate := ISO8601ToDate(CAboutVersionDate);
-          CurPlatform := CciltsegSoftwareCurrentPlatform.ToLower;
+          CurPlatform := CCiltsegSoftwareCurrentPlatform.ToLower;
           DownloadURL := '';
           Tab := result.GetPlatforms;
           for i := 0 to length(Tab) - 1 do
             if Tab[i].ToLower = CurPlatform then
+            // TODO : à tester sur une localisation Turque et les plateformes Windows (pour s'assurer que le "i" n'est pas remplacé)
             begin
               DownloadURL := result.GetDownloadURL(Tab[i]);
               break;
             end;
-          if DownloadURL.IsEmpty then
-            ShowMessage('No new release available.') // TODO : à traduire
-          else if (CurReleaseDate < result.ReleaseDate) then
+          if (not DownloadURL.IsEmpty) and (CurReleaseDate < result.ReleaseDate)
+          then
             TDialogService.MessageDialog // TODO : à traduire
               ('A new release is available, do you want to download it ?',
               TMsgDlgType.mtConfirmation, mbYesNo, TMsgDlgBtn.mbYes, 0,
@@ -589,7 +589,9 @@ begin
               begin
                 if AModalResult = mrYes then
                   url_Open_In_Browser(DownloadURL);
-              end);
+              end)
+          else
+            ShowMessage('No new release available.'); // TODO : à traduire
         end;
       finally
         result.free;
