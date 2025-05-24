@@ -21,7 +21,7 @@
   <TargetPlatform>0</TargetPlatform>
   <Sources>
     <Source>.\FMXToolsStarterKit.dpr</Source>
-    <Source>..\samples\_SampleTool\SampleToolProject.dpr</Source>
+    <Source>..\samples\01-NoDocProject\NoDocProjectSample.dpr</Source>
   </Sources>
   <Outputs>
     <Output Type="HTML">
