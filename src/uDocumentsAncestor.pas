@@ -71,7 +71,7 @@ type
   end;
 
   /// <summary>
-  /// Subscribe to this message if you need to be informed when we changed current document
+  /// Subscribe to this message if you need to be informed when "current" document has changed
   /// </summary>
   TCurrentDocumentChangedMessage = class(TMessage)
   private
@@ -268,7 +268,7 @@ type
     /// </remarks>
     function GetPrivateXORKey: TByteDynArray; virtual;
     /// <summary>
-    /// Returns True if this document as a Private XOR Key and should by crypted
+    /// Returns True if this document has a Private XOR Key and should by crypted
     /// </summary>
     function IsCrypted: boolean; override;
     /// <summary>
