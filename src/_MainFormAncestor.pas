@@ -311,9 +311,16 @@ type
     procedure DoCheckForANewRelease(Sender: TObject); virtual;
     /// <summary>
     /// Returns a document instance.
-    /// Override it in your main form descendant to create an instance of the good class (yours)
     /// </summary>
-    function GetNewDoc: TDocumentAncestor; virtual; abstract;
+    /// <remarks>
+    /// The FileName can be empty. Use it only to check the extension and if
+    /// the file exists or not, but don't load it. It's done by the standard
+    /// "File / Open" option.
+    /// Depending on the file extension, returns the good TDocumentAncestor
+    /// descendant.
+    /// </remarks>
+    function GetNewDoc(const FileName: string = ''): TDocumentAncestor;
+      virtual; abstract;
   public
     /// <summary>
     /// Current opened document
@@ -539,7 +546,6 @@ var
   CilTsegAPI: TCilTsegClientLib;
   result: TCilTsegLastRelease;
   i: integer;
-  s: string;
   Tab: TStringDynArray;
   CurPlatform: string;
   CurReleaseDate: TDate;
@@ -563,7 +569,6 @@ begin
           CurPlatform := CciltsegSoftwareCurrentPlatform.ToLower;
           DownloadURL := '';
           Tab := result.GetPlatforms;
-          s := '';
           for i := 0 to length(Tab) - 1 do
             if Tab[i].ToLower = CurPlatform then
             begin
