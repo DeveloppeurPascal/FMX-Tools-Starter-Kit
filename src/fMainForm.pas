@@ -15,6 +15,10 @@
 ///
 /// ***************************************************************************
 ///
+/// A starter kit for your FireMonkey projects in Delphi.
+///
+/// ***************************************************************************
+///
 /// Author(s) :
 /// Patrick PREMARTIN
 ///
@@ -25,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-02-25T20:03:14.000+01:00
-/// Signature : 0dbabb4925cad683664060a0824454173640c1bc
+/// File last update : 2025-05-24T19:51:44.000+02:00
+/// Signature : 745b13a268d2d313201efdc81d77058af14ca67b
 /// ***************************************************************************
 /// </summary>
 
@@ -59,7 +63,8 @@ type
   TMainForm = class(T__MainFormAncestor)
   private
   protected
-    function GetNewDoc: TDocumentAncestor; override;
+    function GetNewDoc(const FileName: string = ''): TDocumentAncestor;
+      override;
   public
 
   end;
@@ -72,10 +77,11 @@ implementation
 {$R *.fmx}
 { TMainForm }
 
-function TMainForm.GetNewDoc: TDocumentAncestor;
+function TMainForm.GetNewDoc(const FileName: string): TDocumentAncestor;
 begin
-  // TODO : replace by your document class
-  result := TDocumentAncestor.Create;
+{$MESSAGE WARN 'Create an instance of your document and remove this comment.'}
+  // TODO : Create an instance of your document and remove this comment
+  // result := TYourDocumentType.Create;
 end;
 
 end.
