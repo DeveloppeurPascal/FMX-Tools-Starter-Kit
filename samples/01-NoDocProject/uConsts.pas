@@ -15,6 +15,10 @@
 ///
 /// ***************************************************************************
 ///
+/// A starter kit for your FireMonkey projects in Delphi.
+///
+/// ***************************************************************************
+///
 /// Author(s) :
 /// Patrick PREMARTIN
 ///
@@ -25,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-06T10:11:18.000+01:00
-/// Signature : 4eedfca841e740f022dc3aed8c9f6249dc593d47
+/// File last update : 2025-05-24T20:03:18.000+02:00
+/// Signature : a20d43f9db164eea7c2d72e414150a3add82812b
 /// ***************************************************************************
 /// </summary>
 
@@ -50,7 +54,7 @@ const
   /// To update when you publish a new release of this project.
   /// Don't forget to update the Version Infos in the Project/Options dialog.
   /// </remarks>
-  CAboutVersionNumber = '1.1';
+  CAboutVersionNumber = '1.2';
 
   /// <summary>
   /// Version date of your project.
@@ -58,12 +62,12 @@ const
   /// <remarks>
   /// To update when you publish a new release of this project.
   /// </remarks>
-  CAboutVersionDate = '20250306';
+  CAboutVersionDate = '20250524';
 
   /// <summary>
   /// Title of your project used in the About box and as the main form caption
   /// </summary>
-  CAboutTitle = 'FMX Tools Starter Kit (sample)';
+  CAboutTitle = 'No Doc Project Sample';
 
   /// <summary>
   /// The copyright to show in the About box
@@ -79,12 +83,12 @@ const
   /// The URL where you can buy the software.
   /// (if not empty, a "Buy" button is added in the About Box)
   /// </summary>
-  CSoftwareBuyURL = CAboutURL;
+  CSoftwareBuyURL = '';
 
   /// <summary>
   /// Website open by Tools / Support menu option
   /// </summary>
-  CSupportURL = 'https://developpeur-pascal.fr/nous-contacter.php';
+  CSupportURL = 'https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit/issues';
 
   /// <summary>
   /// Used as a folder name to store your projects settings

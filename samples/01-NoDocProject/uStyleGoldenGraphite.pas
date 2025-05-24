@@ -15,6 +15,10 @@
 ///
 /// ***************************************************************************
 ///
+/// A starter kit for your FireMonkey projects in Delphi.
+///
+/// ***************************************************************************
+///
 /// Author(s) :
 /// Patrick PREMARTIN
 ///
@@ -25,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-10T21:00:58.000+01:00
-/// Signature : 38f659e64fb5c7ae0cbe86247a8f69996cadc818
+/// File last update : 2025-05-24T20:00:04.000+02:00
+/// Signature : c07aeba24121178e47fd4d542db8bb97d7ecf56b
 /// ***************************************************************************
 /// </summary>
 
@@ -71,6 +75,6 @@ end;
 
 initialization
 
-TdmStyleGoldenGraphite.Initialize;
+TdmStyleGoldenGraphite.RegisterStyle;
 
 end.

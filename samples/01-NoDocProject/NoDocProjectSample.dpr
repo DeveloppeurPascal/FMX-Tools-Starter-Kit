@@ -15,6 +15,10 @@
 ///
 /// ***************************************************************************
 ///
+/// A starter kit for your FireMonkey projects in Delphi.
+///
+/// ***************************************************************************
+///
 /// Author(s) :
 /// Patrick PREMARTIN
 ///
@@ -25,12 +29,12 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-16T19:38:52.000+02:00
-/// Signature : 2fc51d1d36e71d079f15315585cf3b400ce646e7
+/// File last update : 2025-05-24T20:02:02.000+02:00
+/// Signature : 5372c0b9ced7e16b114b9473ed0c5ee88e0f53e2
 /// ***************************************************************************
 /// </summary>
 
-program SampleToolProject;
+program NoDocProjectSample;
 
 uses
   System.StartUpCopy,

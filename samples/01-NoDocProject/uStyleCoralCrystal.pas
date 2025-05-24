@@ -15,6 +15,10 @@
 ///
 /// ***************************************************************************
 ///
+/// A starter kit for your FireMonkey projects in Delphi.
+///
+/// ***************************************************************************
+///
 /// Author(s) :
 /// Patrick PREMARTIN
 ///
@@ -25,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-10T21:03:38.000+01:00
-/// Signature : 0093a0fcb367f54aa62014cf3c02646b6ee67f05
+/// File last update : 2025-05-24T19:59:54.000+02:00
+/// Signature : 7ca358a3471d6d77f7e56c79814801304cc7a0a0
 /// ***************************************************************************
 /// </summary>
 
@@ -71,6 +75,6 @@ end;
 
 initialization
 
-TdmStyleCoralCrystal.initialize;
+TdmStyleCoralCrystal.RegisterStyle;
 
 end.

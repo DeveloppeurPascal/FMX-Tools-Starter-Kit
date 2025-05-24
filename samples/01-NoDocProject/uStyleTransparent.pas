@@ -15,6 +15,10 @@
 ///
 /// ***************************************************************************
 ///
+/// A starter kit for your FireMonkey projects in Delphi.
+///
+/// ***************************************************************************
+///
 /// Author(s) :
 /// Patrick PREMARTIN
 ///
@@ -25,12 +29,12 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-03-10T21:00:52.000+01:00
-/// Signature : 57a53cab96e0dd55fe11abf18b572b3173c41dca
+/// File last update : 2025-05-24T20:00:02.000+02:00
+/// Signature : bf8828851a81ffcf261f596543b9626d9157e715
 /// ***************************************************************************
 /// </summary>
 
-unit uStyleWin10ModernBlue;
+unit uStyleTransparent;
 
 interface
 
@@ -43,7 +47,7 @@ uses
   uStyleManager;
 
 type
-  TdmStyleWin10ModernBlue = class(T__StyleContainerAncestor)
+  TdmStyleTransparent = class(T__StyleContainerAncestor)
   private
   public
     class function GetStyleName: string; override;
@@ -51,26 +55,26 @@ type
   end;
 
 var
-  dmStyleWin10ModernBlue: TdmStyleWin10ModernBlue;
+  dmStyleTransparent: TdmStyleTransparent;
 
 implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 {$R *.dfm}
-{ TdmStyleWin10ModernBlue }
+{ TdmStyleTransparent }
 
-class function TdmStyleWin10ModernBlue.GetStyleName: string;
+class function TdmStyleTransparent.GetStyleName: string;
 begin
-  result := 'Windows 10 Modern Blue';
+  result := 'Transparent';
 end;
 
-class function TdmStyleWin10ModernBlue.GetStyleType: TProjectStyleType;
+class function TdmStyleTransparent.GetStyleType: TProjectStyleType;
 begin
-  result := TProjectStyleType.other;
+  result := TProjectStyleType.dark;
 end;
 
 initialization
 
-TdmStyleWin10ModernBlue.Initialize;
+TdmStyleTransparent.RegisterStyle;
 
 end.
