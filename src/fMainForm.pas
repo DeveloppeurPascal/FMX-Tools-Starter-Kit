@@ -29,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T19:51:44.000+02:00
-/// Signature : 745b13a268d2d313201efdc81d77058af14ca67b
+/// File last update : 2025-05-24T20:29:50.000+02:00
+/// Signature : 31b896bc8c96ae71e0a1cb2ddd46ad37789e14df
 /// ***************************************************************************
 /// </summary>
 
@@ -82,6 +82,7 @@ begin
 {$MESSAGE WARN 'Create an instance of your document and remove this comment.'}
   // TODO : Create an instance of your document and remove this comment
   // result := TYourDocumentType.Create;
+  result := nil;
 end;
 
 end.
