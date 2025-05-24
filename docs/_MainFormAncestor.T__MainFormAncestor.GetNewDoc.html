@@ -83,7 +83,6 @@
 <div id="summaryContent" class="sectionContent" contenteditable="false">
 <p>
 Returns a document instance.
-Override it in your main form descendant to create an instance of the good class (yours)
 </p>
 </div>
 </div>
@@ -100,7 +99,29 @@ Override it in your main form descendant to create an instance of the good class
 </div>
 </div>
 <div id="syntaxContent" class="sectionContent" contenteditable="false">
-<div class="codeSnippet" contenteditable="false"><input class="code" type="hidden" value="" /><div class="codeSnippetTabs"><div class="codeSnippetTabActive"><a>Delphi</a></div></div><div class="codeSnippetCodeContainer"><div class="codeSnippetCode"><pre class="delphi" contenteditable="false">function GetNewDoc: TDocumentAncestor</pre></div></div></div><div class="subSection"><h4 class="subHeading">Return Value</h4><div id="returnsType">Type: <span class="returnType"><a href="uDocumentsAncestor.TDocumentAncestor.html" title="">uDocumentsAncestor.TDocumentAncestor</a></span></div><div id="returns" contenteditable="false"><p> </p></div></div>
+<div class="codeSnippet" contenteditable="false"><input class="code" type="hidden" value="" /><div class="codeSnippetTabs"><div class="codeSnippetTabActive"><a>Delphi</a></div></div><div class="codeSnippetCodeContainer"><div class="codeSnippetCode"><pre class="delphi" contenteditable="false">function GetNewDoc(const FileName: string = ''): TDocumentAncestor</pre></div></div></div><div class="subSection"><h4 class="subHeading">Parameters</h4><dl id="parameters"><dt><span class="parameter">FileName</span></dt><dd>Type: <span title="">System.string</span><br /><p /></dd></dl></div><div class="subSection"><h4 class="subHeading">Return Value</h4><div id="returnsType">Type: <span class="returnType"><a href="uDocumentsAncestor.TDocumentAncestor.html" title="">uDocumentsAncestor.TDocumentAncestor</a></span></div><div id="returns" contenteditable="false"><p> </p></div></div>
+</div>
+</div>
+<div id="remarksSection" class="section">
+<input class="tagName" type="hidden" value="remarks" />
+<div id="remarksHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Remarks</span>
+</a>
+</div>
+</div>
+<div id="remarksContent" class="sectionContent" contenteditable="false">
+<p>
+The FileName can be empty. Use it only to check the extension and if
+the file exists or not, but don't load it. It's done by the standard
+"File / Open" option.
+Depending on the file extension, returns the good TDocumentAncestor
+descendant.
+</p>
 </div>
 </div>
 </div>

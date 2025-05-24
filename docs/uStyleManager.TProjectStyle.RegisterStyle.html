@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>TDocumentAncestor.Destroy Destructor</title>
+<title>TProjectStyle.RegisterStyle Method</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 <meta name="generator" content="DocInsight" />
@@ -49,7 +49,7 @@
       window.top.navigationFrame.postMessage(
         {
           action: "selectTocItem",
-          itemKey: "uDocumentsAncestor.TDocumentAncestor.Destroy",
+          itemKey: "uStyleManager.TProjectStyle.RegisterStyle",
         },
         "*"
       );
@@ -61,11 +61,11 @@
 <input type="hidden" id="contentEditableControl" class="userDataStyle" value="false" />
 <input type="hidden" id="userDataCache" class="userDataStyle" />
 <input type="hidden" id="hiddenScrollOffset" />
-<input type="hidden" id="moduleName" value="uDocumentsAncestor" />
-<input type="hidden" id="elementId" value="M:uDocumentsAncestor.TDocumentAncestor.Destroy" />
+<input type="hidden" id="moduleName" value="uStyleManager" />
+<input type="hidden" id="elementId" value="M:uStyleManager.TProjectStyle.RegisterStyle" />
 <div class="topic">
 <div id="content">
-<h1 class="title">TDocument<wbr />Ancestor<wbr />.Destroy Destructor</h1>
+<h1 class="title">TProject<wbr />Style<wbr />.Register<wbr />Style Method</h1>
 <div id="mainSection">
 <div id="mainBody">
 <div id="summarySection" class="section">
@@ -82,12 +82,11 @@
 </div>
 <div id="summaryContent" class="sectionContent" contenteditable="false">
 <p>
-Never call it, use only "Free" or "FreeAndNil" if you called the
-Create() method to get a new instance of this document.
+Add a style to the available styles for this project.
 </p>
 </div>
 </div>
-<strong>Unit</strong>:  <a href="uDocumentsAncestor.html" title="">uDocumentsAncestor</a><br />
+<strong>Unit</strong>:  <a href="uStyleManager.html" title="">uStyleManager</a><br />
 <div id="syntaxSection" class="section">
 <div id="syntaxHeader" class="sectionHeader">
 <div>
@@ -100,7 +99,7 @@ Create() method to get a new instance of this document.
 </div>
 </div>
 <div id="syntaxContent" class="sectionContent" contenteditable="false">
-<div class="codeSnippet" contenteditable="false"><input class="code" type="hidden" value="" /><div class="codeSnippetTabs"><div class="codeSnippetTabActive"><a>Delphi</a></div></div><div class="codeSnippetCodeContainer"><div class="codeSnippetCode"><pre class="delphi" contenteditable="false">destructor Destroy</pre></div></div></div>
+<div class="codeSnippet" contenteditable="false"><input class="code" type="hidden" value="" /><div class="codeSnippetTabs"><div class="codeSnippetTabActive"><a>Delphi</a></div></div><div class="codeSnippetCodeContainer"><div class="codeSnippetCode"><pre class="delphi" contenteditable="false">procedure RegisterStyle(const StyleName: string; const StyleType: TProjectStyleType = 2)</pre></div></div></div><div class="subSection"><h4 class="subHeading">Parameters</h4><dl id="parameters"><dt><span class="parameter">StyleName</span></dt><dd>Type: <span title="">System.string</span><br /><p /></dd><dt><span class="parameter">StyleType</span></dt><dd>Type: <a href="uStyleManager.TProjectStyleType.html" title="">uStyleManager.TProjectStyleType</a><br /><p /></dd></dl></div>
 </div>
 </div>
 </div>

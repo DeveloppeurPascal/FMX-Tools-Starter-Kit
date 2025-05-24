@@ -68,6 +68,24 @@
 <h1 class="title">TProject<wbr />Style Class</h1>
 <div id="mainSection">
 <div id="mainBody">
+<div id="summarySection" class="section">
+<input class="tagName" type="hidden" value="summary" />
+<div id="summaryHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Summary</span>
+</a>
+</div>
+</div>
+<div id="summaryContent" class="sectionContent" contenteditable="false">
+<p>
+A singleton to manage current style in the project and get its properties.
+</p>
+</div>
+</div>
 <strong>Unit</strong>:  <a href="uStyleManager.html" title="">uStyleManager</a><br />
 <div id="inheritanceHierarchySection" class="section">
 <div id="inheritanceHierarchyHeader" class="sectionHeader">
@@ -118,7 +136,12 @@
 Inherited
                 </label><label><input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected" />
 Protected
-                </label></div></div><table id="group-Constructors"><colgroup><col width="60px" /><col width="20%" /></colgroup><tbody><tr><th class="iconColumn"> </th><th class="nameColumn">Name</th><th class="descriptionColumn">Description</th></tr><tr class="protected "><td><img src="themes/legacy/images/protmethod.gif" title="protected constructor" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Create"><input type="hidden" value="M:uStyleManager.TProjectStyle.Create" /><a href="uStyleManager.TProjectStyle.Create.html" title="uStyleManager.TProjectStyle.Create">Create</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Create"><p /></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public destructor" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Destroy"><input type="hidden" value="M:uStyleManager.TProjectStyle.Destroy" /><a href="uStyleManager.TProjectStyle.Destroy.html" title="uStyleManager.TProjectStyle.Destroy">Destroy</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Destroy"><p /></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
+                </label></div></div><table id="group-Constructors"><colgroup><col width="60px" /><col width="20%" /></colgroup><tbody><tr><th class="iconColumn"> </th><th class="nameColumn">Name</th><th class="descriptionColumn">Description</th></tr><tr class="protected "><td><img src="themes/legacy/images/protmethod.gif" title="protected constructor" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Create"><input type="hidden" value="M:uStyleManager.TProjectStyle.Create" /><a href="uStyleManager.TProjectStyle.Create.html" title="uStyleManager.TProjectStyle.Create">Create</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Create"><p>
+Instance constructor method for this class.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public destructor" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Destroy"><input type="hidden" value="M:uStyleManager.TProjectStyle.Destroy" /><a href="uStyleManager.TProjectStyle.Destroy.html" title="uStyleManager.TProjectStyle.Destroy">Destroy</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Destroy"><p>
+Instance destructor method for this class. don't call it.
+Use ".Free()" or "FreeAndNil()".
+</p></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
 </div>
 </div>
 <div id="group-PropertiesSection" class="section">
@@ -137,7 +160,13 @@ Protected
 Inherited
                 </label><label><input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected" />
 Protected
-                </label></div></div><table id="group-Properties"><colgroup><col width="60px" /><col width="20%" /></colgroup><tbody><tr><th class="iconColumn"> </th><th class="nameColumn">Name</th><th class="descriptionColumn">Description</th></tr><tr class="member"><td><img src="themes/legacy/images/pubproperty.gif" title="public property" /></td><td class="memberId" data-id="P:uStyleManager.TProjectStyle.StyleName"><input type="hidden" value="P:uStyleManager.TProjectStyle.StyleName" /><a href="uStyleManager.TProjectStyle.StyleName.html" title="uStyleManager.TProjectStyle.StyleName">StyleName</a></td><td><div class="memberSummary" data-id="P:uStyleManager.TProjectStyle.StyleName"><p /></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubproperty.gif" title="public property" /></td><td class="memberId" data-id="P:uStyleManager.TProjectStyle.Styles"><input type="hidden" value="P:uStyleManager.TProjectStyle.Styles" /><a href="uStyleManager.TProjectStyle.Styles.html" title="uStyleManager.TProjectStyle.Styles">Styles</a></td><td><div class="memberSummary" data-id="P:uStyleManager.TProjectStyle.Styles"><p /></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubproperty.gif" title="public property" /></td><td class="memberId" data-id="P:uStyleManager.TProjectStyle.StylesCount"><input type="hidden" value="P:uStyleManager.TProjectStyle.StylesCount" /><a href="uStyleManager.TProjectStyle.StylesCount.html" title="uStyleManager.TProjectStyle.StylesCount">StylesCount</a></td><td><div class="memberSummary" data-id="P:uStyleManager.TProjectStyle.StylesCount"><p /></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
+                </label></div></div><table id="group-Properties"><colgroup><col width="60px" /><col width="20%" /></colgroup><tbody><tr><th class="iconColumn"> </th><th class="nameColumn">Name</th><th class="descriptionColumn">Description</th></tr><tr class="member"><td><img src="themes/legacy/images/pubproperty.gif" title="public property" /></td><td class="memberId" data-id="P:uStyleManager.TProjectStyle.StyleName"><input type="hidden" value="P:uStyleManager.TProjectStyle.StyleName" /><a href="uStyleManager.TProjectStyle.StyleName.html" title="uStyleManager.TProjectStyle.StyleName">StyleName</a></td><td><div class="memberSummary" data-id="P:uStyleManager.TProjectStyle.StyleName"><p>
+Name of the current style.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubproperty.gif" title="public property" /></td><td class="memberId" data-id="P:uStyleManager.TProjectStyle.Styles"><input type="hidden" value="P:uStyleManager.TProjectStyle.Styles" /><a href="uStyleManager.TProjectStyle.Styles.html" title="uStyleManager.TProjectStyle.Styles">Styles</a></td><td><div class="memberSummary" data-id="P:uStyleManager.TProjectStyle.Styles"><p>
+Give access to each registered styles as style item instances.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubproperty.gif" title="public property" /></td><td class="memberId" data-id="P:uStyleManager.TProjectStyle.StylesCount"><input type="hidden" value="P:uStyleManager.TProjectStyle.StylesCount" /><a href="uStyleManager.TProjectStyle.StylesCount.html" title="uStyleManager.TProjectStyle.StylesCount">StylesCount</a></td><td><div class="memberSummary" data-id="P:uStyleManager.TProjectStyle.StylesCount"><p>
+Number of available registered styles.
+</p></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
 </div>
 </div>
 <div id="group-MethodsSection" class="section">
@@ -156,7 +185,32 @@ Protected
 Inherited
                 </label><label><input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected" />
 Protected
-                </label></div></div><table id="group-Methods"><colgroup><col width="60px" /><col width="20%" /></colgroup><tbody><tr><th class="iconColumn"> </th><th class="nameColumn">Name</th><th class="descriptionColumn">Description</th></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /><img src="themes/legacy/images/static.gif" title="Class member" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Current"><input type="hidden" value="M:uStyleManager.TProjectStyle.Current" /><a href="uStyleManager.TProjectStyle.Current.html" title="uStyleManager.TProjectStyle.Current">Current</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Current"><p /></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.GetStyles"><input type="hidden" value="M:uStyleManager.TProjectStyle.GetStyles" /><a href="uStyleManager.TProjectStyle.GetStyles.html" title="uStyleManager.TProjectStyle.GetStyles">GetStyles</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.GetStyles"><p /></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Register"><input type="hidden" value="M:uStyleManager.TProjectStyle.Register" /><a href="uStyleManager.TProjectStyle.Register.html" title="uStyleManager.TProjectStyle.Register">Register</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Register"><p /></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
+                </label></div></div><table id="group-Methods"><colgroup><col width="60px" /><col width="20%" /></colgroup><tbody><tr><th class="iconColumn"> </th><th class="nameColumn">Name</th><th class="descriptionColumn">Description</th></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /><img src="themes/legacy/images/static.gif" title="Class member" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.Current"><input type="hidden" value="M:uStyleManager.TProjectStyle.Current" /><a href="uStyleManager.TProjectStyle.Current.html" title="uStyleManager.TProjectStyle.Current">Current</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.Current"><p>
+Returns the global TProjectStyle singleton class.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.GetStyles"><input type="hidden" value="M:uStyleManager.TProjectStyle.GetStyles" /><a href="uStyleManager.TProjectStyle.GetStyles.html" title="uStyleManager.TProjectStyle.GetStyles">GetStyles</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.GetStyles"><p>
+Returns an array of strings corresponding on registered styles name.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /></td><td class="memberId" data-id="M:uStyleManager.TProjectStyle.RegisterStyle"><input type="hidden" value="M:uStyleManager.TProjectStyle.RegisterStyle" /><a href="uStyleManager.TProjectStyle.RegisterStyle.html" title="uStyleManager.TProjectStyle.RegisterStyle">RegisterStyle</a></td><td><div class="memberSummary" data-id="M:uStyleManager.TProjectStyle.RegisterStyle"><p>
+Add a style to the available styles for this project.
+</p></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
+</div>
+</div>
+<div id="remarksSection" class="section">
+<input class="tagName" type="hidden" value="remarks" />
+<div id="remarksHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Remarks</span>
+</a>
+</div>
+</div>
+<div id="remarksContent" class="sectionContent" contenteditable="false">
+<p>
+Don't create or destroy instances of this class. Only use "Current()"
+method to access to its global unique instance.
+</p>
 </div>
 </div>
 </div>

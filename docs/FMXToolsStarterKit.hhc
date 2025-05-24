@@ -2373,6 +2373,10 @@
                                                   <param name="Name" value="Initialize">
                                                   <param name="Local" value="_StyleContainerAncestor.T__StyleContainerAncestor.Initialize.html">
                                                   </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="RegisterStyle">
+                                                  <param name="Local" value="_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle.html">
+                                                  </OBJECT>
                                           </UL>
                                       <LI> <OBJECT type="text/sitemap">
                                           <param name="Name" value="Fields">
@@ -3126,6 +3130,10 @@
                                   <param name="Local" value="uConsts.CCiltsegServerURL.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CCiltsegShowAboutBoxInsteadOfRegistrationDialogOnStartup">
+                                  <param name="Local" value="uConsts.CCiltsegShowAboutBoxInsteadOfRegistrationDialogOnStartup.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CCiltsegSoftwareCurrentPlatform">
                                   <param name="Local" value="uConsts.CCiltsegSoftwareCurrentPlatform.html">
                                   </OBJECT>
@@ -3743,8 +3751,8 @@
                                                   <param name="Local" value="uStyleManager.TProjectStyle.GetStyles.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="Register">
-                                                  <param name="Local" value="uStyleManager.TProjectStyle.Register.html">
+                                                  <param name="Name" value="RegisterStyle">
+                                                  <param name="Local" value="uStyleManager.TProjectStyle.RegisterStyle.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>
@@ -3941,8 +3949,8 @@
                   </UL>
           </UL>
       <LI> <OBJECT type="text/sitemap">
-          <param name="Name" value="SampleToolProject">
-          <param name="Local" value="SampleToolProject.html">
+          <param name="Name" value="NoDocProjectSample">
+          <param name="Local" value="NoDocProjectSample.html">
           </OBJECT>
           <UL>
               <LI> <OBJECT type="text/sitemap">
@@ -6301,6 +6309,10 @@
                                                   <param name="Name" value="Initialize">
                                                   <param name="Local" value="_StyleContainerAncestor.T__StyleContainerAncestor.Initialize.html">
                                                   </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="RegisterStyle">
+                                                  <param name="Local" value="_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle.html">
+                                                  </OBJECT>
                                           </UL>
                                       <LI> <OBJECT type="text/sitemap">
                                           <param name="Name" value="Fields">
@@ -7796,8 +7808,8 @@
                                                   <param name="Local" value="uStyleManager.TProjectStyle.GetStyles.html">
                                                   </OBJECT>
                                               <LI> <OBJECT type="text/sitemap">
-                                                  <param name="Name" value="Register">
-                                                  <param name="Local" value="uStyleManager.TProjectStyle.Register.html">
+                                                  <param name="Name" value="RegisterStyle">
+                                                  <param name="Local" value="uStyleManager.TProjectStyle.RegisterStyle.html">
                                                   </OBJECT>
                                           </UL>
                                   </UL>

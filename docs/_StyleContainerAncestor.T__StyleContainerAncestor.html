@@ -140,8 +140,10 @@ Protected
 Returns the name of this style. This name could to be shown to end users.
 </p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /><img src="themes/legacy/images/static.gif" title="Class member" /></td><td class="memberId" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.GetStyleType"><input type="hidden" value="M:_StyleContainerAncestor.T__StyleContainerAncestor.GetStyleType" /><a href="_StyleContainerAncestor.T__StyleContainerAncestor.GetStyleType.html" title="_StyleContainerAncestor.T__StyleContainerAncestor.GetStyleType">GetStyleType</a></td><td><div class="memberSummary" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.GetStyleType"><p>
 Returns the type (dark, light, other) of this style. It's used in the default style selection form.
-</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /><img src="themes/legacy/images/static.gif" title="Class member" /></td><td class="memberId" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.Initialize"><input type="hidden" value="M:_StyleContainerAncestor.T__StyleContainerAncestor.Initialize" /><a href="_StyleContainerAncestor.T__StyleContainerAncestor.Initialize.html" title="_StyleContainerAncestor.T__StyleContainerAncestor.Initialize">Initialize</a></td><td><div class="memberSummary" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.Initialize"><p>
-Register this style in the starter kit styles manager if current platform is available.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /><img src="themes/legacy/images/static.gif" title="Class member" /></td><td class="memberId" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.Initialize"><input type="hidden" value="M:_StyleContainerAncestor.T__StyleContainerAncestor.Initialize" /><a href="_StyleContainerAncestor.T__StyleContainerAncestor.Initialize.html" title="_StyleContainerAncestor.T__StyleContainerAncestor.Initialize">Initialize</a></td><td><div class="memberSummary" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.Initialize"><p><b>Deprecated</b>. 
+DEPRECATED. Used to register the style in the available styles list.
+</p></div></td></tr><tr class="member"><td><img src="themes/legacy/images/pubmethod.gif" title="public method" /><img src="themes/legacy/images/static.gif" title="Class member" /></td><td class="memberId" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle"><input type="hidden" value="M:_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle" /><a href="_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle.html" title="_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle">RegisterStyle</a></td><td><div class="memberSummary" data-id="M:_StyleContainerAncestor.T__StyleContainerAncestor.RegisterStyle"><p>
+Register this style in the available styles list if current platform is available.
 </p></div></td></tr></tbody></table><a href="#mainBody">Top</a></div>
 </div>
 </div>
@@ -178,10 +180,11 @@ Protected
 </div>
 <div id="remarksContent" class="sectionContent" contenteditable="false">
 <p>
-In your projects create a class descendant for each style you want to add
-to your project. Overload GetStyleName and GetStyleType functions and add
-a call to TStyleContainerClass.Initialize in the initialization bloc of
-your unit.
+In your projects :
+- create a descendant of this class for each style you want to use
+- override GetStyleName and GetStyleType functions
+- call the class procedure RegisterStyle() of your class in the
+initialization section of its unit.
 </p>
 </div>
 </div>

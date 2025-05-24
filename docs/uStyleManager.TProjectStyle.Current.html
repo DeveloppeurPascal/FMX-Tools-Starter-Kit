@@ -68,6 +68,24 @@
 <h1 class="title">TProject<wbr />Style<wbr />.Current Method</h1>
 <div id="mainSection">
 <div id="mainBody">
+<div id="summarySection" class="section">
+<input class="tagName" type="hidden" value="summary" />
+<div id="summaryHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Summary</span>
+</a>
+</div>
+</div>
+<div id="summaryContent" class="sectionContent" contenteditable="false">
+<p>
+Returns the global TProjectStyle singleton class.
+</p>
+</div>
+</div>
 <strong>Unit</strong>:  <a href="uStyleManager.html" title="">uStyleManager</a><br />
 <div id="syntaxSection" class="section">
 <div id="syntaxHeader" class="sectionHeader">
@@ -82,6 +100,25 @@
 </div>
 <div id="syntaxContent" class="sectionContent" contenteditable="false">
 <div class="codeSnippet" contenteditable="false"><input class="code" type="hidden" value="" /><div class="codeSnippetTabs"><div class="codeSnippetTabActive"><a>Delphi</a></div></div><div class="codeSnippetCodeContainer"><div class="codeSnippetCode"><pre class="delphi" contenteditable="false">class function Current: TProjectStyle</pre></div></div></div><div class="subSection"><h4 class="subHeading">Return Value</h4><div id="returnsType">Type: <span class="returnType"><a href="uStyleManager.TProjectStyle.html" title="">uStyleManager.TProjectStyle</a></span></div><div id="returns" contenteditable="false"><p> </p></div></div>
+</div>
+</div>
+<div id="remarksSection" class="section">
+<input class="tagName" type="hidden" value="remarks" />
+<div id="remarksHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Remarks</span>
+</a>
+</div>
+</div>
+<div id="remarksContent" class="sectionContent" contenteditable="false">
+<p>
+Never try to "Free()" the instance given by the "Current()" method.
+You will have access violations in your program and memory leaks !
+</p>
 </div>
 </div>
 </div>

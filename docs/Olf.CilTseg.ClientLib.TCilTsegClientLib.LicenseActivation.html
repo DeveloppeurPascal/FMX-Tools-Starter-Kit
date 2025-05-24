@@ -68,6 +68,24 @@
 <h1 class="title">TCil<wbr />Tseg<wbr />Client<wbr />Lib<wbr />.License<wbr />Activation Method</h1>
 <div id="mainSection">
 <div id="mainBody">
+<div id="summarySection" class="section">
+<input class="tagName" type="hidden" value="summary" />
+<div id="summaryHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Summary</span>
+</a>
+</div>
+</div>
+<div id="summaryContent" class="sectionContent" contenteditable="false">
+<p>
+Call the API to activate the license key on this device.
+</p>
+</div>
+</div>
 <strong>Unit</strong>:  <a href="Olf.CilTseg.ClientLib.html" title="">Olf.CilTseg.ClientLib</a><br />
 <div id="syntaxSection" class="section">
 <div id="syntaxHeader" class="sectionHeader">
@@ -82,6 +100,30 @@
 </div>
 <div id="syntaxContent" class="sectionContent" contenteditable="false">
 <div class="codeSnippet" contenteditable="false"><input class="code" type="hidden" value="" /><div class="codeSnippetTabs"><div class="codeSnippetTabActive"><a>Delphi</a></div></div><div class="codeSnippetCodeContainer"><div class="codeSnippetCode"><pre class="delphi" contenteditable="false">function LicenseActivation(const ALicenseNumber: string; const AUserEmail: string; const ADeviceName: string): TCilTsegLicenseActivation</pre></div></div></div><div class="subSection"><h4 class="subHeading">Parameters</h4><dl id="parameters"><dt><span class="parameter">ALicenseNumber</span></dt><dd>Type: <span title="">System.string</span><br /><p /></dd><dt><span class="parameter">AUserEmail</span></dt><dd>Type: <span title="">System.string</span><br /><p /></dd><dt><span class="parameter">ADeviceName</span></dt><dd>Type: <span title="">System.string</span><br /><p /></dd></dl></div><div class="subSection"><h4 class="subHeading">Return Value</h4><div id="returnsType">Type: <span class="returnType"><a href="Olf.CilTseg.ClientLib.TCilTsegLicenseActivation.html" title="">Olf.CilTseg.ClientLib.TCilTsegLicenseActivation</a></span></div><div id="returns" contenteditable="false"><p> </p></div></div>
+</div>
+</div>
+<div id="remarksSection" class="section">
+<input class="tagName" type="hidden" value="remarks" />
+<div id="remarksHeader" class="sectionHeader">
+<div>
+<a href="javascript:void(0)" class="collapsibleAreaHref" title="Collapse">
+<span class="collapsibleAreaIcon collapsibleAreaExpanding">
+<!---->
+</span>
+<span class="collapsibleAreaTitle">Remarks</span>
+</a>
+</div>
+</div>
+<div id="remarksContent" class="sectionContent" contenteditable="false">
+<p>
+See the DeviceName as a computer (real or virtual machine) unique
+identifier. You can use the operating system name, a device or
+harddrive identifier depending on the security level you need.
+CilTseg won't do anithing with it. It's your job to get and check it
+to verify a license activation with CheckLicenseActivation() method.
+The call is done in current thread. It can block the process if a
+timeout occured.
+</p>
 </div>
 </div>
 </div>
