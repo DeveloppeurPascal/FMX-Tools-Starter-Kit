@@ -29,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T20:30:46.000+02:00
-/// Signature : 3c578cd6d2372cf61aac74dddd9148773f3593b5
+/// File last update : 2025-05-24T20:55:18.000+02:00
+/// Signature : 492e5009264eb8f702769b8d750d4ee9b833cd44
 /// ***************************************************************************
 /// </summary>
 
@@ -533,10 +533,11 @@ begin
               tthread.queue(nil,
                 procedure
                 begin
-                  if tconfig.Current.LicenseActivationNumber.IsEmpty then
-                    DoRegisterALicense(self)
+                  if CCiltsegShowAboutBoxInsteadOfRegistrationDialogOnStartup
+                  then
+                    DoAboutAction(self)
                   else
-                    DoAboutAction(self);
+                    DoRegisterALicense(self);
                 end);
             end).Start;
       end;

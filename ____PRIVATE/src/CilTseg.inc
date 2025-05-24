@@ -48,4 +48,8 @@ const
 {$ELSE IF Defined(LINUX)}
   CCiltsegSoftwareCurrentPlatform = 'Linux';
 {$ENDIF}
-
+  /// <summary>
+  /// Allow to choose which dialog box to show on startup when no license is
+  /// activated between the default registration dialog or the about dialog box.
+  /// </summary>
+  CCiltsegShowAboutBoxInsteadOfRegistrationDialogOnStartup = True;
