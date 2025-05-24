@@ -61,7 +61,7 @@ const
   /// <remarks>
   /// To update when you publish a new release of this project.
   /// </remarks>
-  CAboutVersionDate = '20250517';
+  CAboutVersionDate = '20250524';
 
   /// <summary>
   /// Title of your project used in the About box and as the main form caption
@@ -82,12 +82,12 @@ const
   /// The URL where you can buy the software.
   /// (if not empty, a "Buy" button is added in the About Box)
   /// </summary>
-  CSoftwareBuyURL = CAboutURL;
+  CSoftwareBuyURL = '';
 
   /// <summary>
   /// Website open by Tools / Support menu option
   /// </summary>
-  CSupportURL = CAboutURL + 'userhelp.html';
+  CSupportURL = 'https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit/issues';
 
   /// <summary>
   /// Used as a folder name to store your projects settings
@@ -214,7 +214,7 @@ const
   /// Define if the program manage documents with default classes and their
   /// descendants
   /// </summary>
-  CDocumentsMode = TDocumentsMode.Mono;
+  CDocumentsMode = TDocumentsMode.None;
 
   /// <summary>
   /// Maximum number of documents listed in the "File/Open recent" menu item
