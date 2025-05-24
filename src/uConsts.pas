@@ -29,8 +29,8 @@
 /// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 ///
 /// ***************************************************************************
-/// File last update : 2025-05-24T19:58:12.000+02:00
-/// Signature : 148b5014c6ad8b4d0528fc90f19cb6d16fc9f418
+/// File last update : 2025-05-24T20:59:24.000+02:00
+/// Signature : 8fb554a7a584610451deefd78747479de9a623f3
 /// ***************************************************************************
 /// </summary>
 
@@ -91,7 +91,8 @@ const
   /// <summary>
   /// Website open by Tools / Support menu option
   /// </summary>
-  CSupportURL = 'https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit/issues';
+  CSupportURL =
+    'https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit/issues';
 
   /// <summary>
   /// Used as a folder name to store your projects settings
