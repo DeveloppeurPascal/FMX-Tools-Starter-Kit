@@ -1,34 +1,38 @@
-﻿/// <summary>
-/// ***************************************************************************
-///
-/// FMX Tools Starter Kit
-///
-/// Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
-///
-/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-/// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
-/// THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-/// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-/// FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
-/// DEALINGS IN THE SOFTWARE.
-///
-/// ***************************************************************************
-///
-/// Author(s) :
-/// Patrick PREMARTIN
-///
-/// Site :
-/// https://fmxtoolsstarterkit.developpeur-pascal.fr/
-///
-/// Project site :
-/// https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
-///
-/// ***************************************************************************
-/// File last update : 2025-04-04T11:18:28.000+02:00
-/// Signature : d95155e74e36972c817d35941c7f36b4d1a6c4fe
-/// ***************************************************************************
-/// </summary>
+﻿(* C2PP
+  ***************************************************************************
+
+  FMX Tools Starter Kit
+
+  Copyright 2024-2025 Patrick Prémartin under AGPL 3.0 license.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+  THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+  DEALINGS IN THE SOFTWARE.
+
+  ***************************************************************************
+
+  A starter kit for your FireMonkey projects in Delphi.
+
+  ***************************************************************************
+
+  Author(s) :
+  Patrick PREMARTIN
+
+  Site :
+  https://fmxtoolsstarterkit.developpeur-pascal.fr/
+
+  Project site :
+  https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
+
+  ***************************************************************************
+  File last update : 2025-04-04T11:27:11.964+02:00
+  Signature : b7df4cf2f9f010fa05de854476cd3fb6807fdd2c
+  ***************************************************************************
+*)
 
 unit fToolsStylesDialog;
 
