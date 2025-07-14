@@ -7087,6 +7087,10 @@
                                   <param name="Local" value="uConsts.CCiltsegServerURL.html">
                                   </OBJECT>
                               <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CCiltsegShowAboutBoxInsteadOfRegistrationDialogOnStartup">
+                                  <param name="Local" value="uConsts.CCiltsegShowAboutBoxInsteadOfRegistrationDialogOnStartup.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
                                   <param name="Name" value="CCiltsegSoftwareCurrentPlatform">
                                   <param name="Local" value="uConsts.CCiltsegSoftwareCurrentPlatform.html">
                                   </OBJECT>
@@ -7642,15 +7646,6 @@
                                           </UL>
                                   </UL>
                           </UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Variables">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="dmStyleCoralCrystal">
-                                  <param name="Local" value="uStyleCoralCrystal.dmStyleCoralCrystal.html">
-                                  </OBJECT>
-                          </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
                   <param name="Name" value="uStyleDarkByDefault">
@@ -7710,15 +7705,6 @@
                                                   </OBJECT>
                                           </UL>
                                   </UL>
-                          </UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Variables">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="dmStyleGoldenGraphite">
-                                  <param name="Local" value="uStyleGoldenGraphite.dmStyleGoldenGraphite.html">
-                                  </OBJECT>
                           </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
@@ -7929,15 +7915,6 @@
                                           </UL>
                                   </UL>
                           </UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Variables">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="dmStyleTransparent">
-                                  <param name="Local" value="uStyleTransparent.dmStyleTransparent.html">
-                                  </OBJECT>
-                          </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
                   <param name="Name" value="uStyleWin10ModernBlue">
@@ -7967,15 +7944,6 @@
                                                   </OBJECT>
                                           </UL>
                                   </UL>
-                          </UL>
-                      <LI> <OBJECT type="text/sitemap">
-                          <param name="Name" value="Variables">
-                          </OBJECT>
-                          <UL>
-                              <LI> <OBJECT type="text/sitemap">
-                                  <param name="Name" value="dmStyleWin10ModernBlue">
-                                  <param name="Local" value="uStyleWin10ModernBlue.dmStyleWin10ModernBlue.html">
-                                  </OBJECT>
                           </UL>
                   </UL>
               <LI> <OBJECT type="text/sitemap">
