@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-05-24T21:00:26.867+02:00
-  Signature : e4dbe35b2f86dc1b42bc2d319fe77dde553057f9
+  File last update : 2025-07-14T16:55:12.000+02:00
+  Signature : d2ed30d0d226c924f3151d79df22995d678e5d89
   ***************************************************************************
 *)
 
@@ -973,6 +973,7 @@ end;
 procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
 var
   i: integer;
+  MI : TMenuItem;
 begin
 {$IF Defined(IOS) or Defined(ANDROID)}
   exit;
@@ -980,7 +981,14 @@ begin
 {$IFDEF MACOS}
   mnuFileQuit.Visible := false;
   mnuHelpAbout.Parent := mnuMacOS;
+  mnuHelpCheckForANewRelease.parent:=mnumacos;
+  MI := TMenuItem.Create(self);
+  MI.Parent := mnuMacOS;
+  MI.Text := '-';
   mnuTools.Parent := mnuMacOS;
+  MI := TMenuItem.Create(self);
+  MI.Parent := mnuMacOS;
+  MI.Text := '-';
 {$ENDIF}
   mnuToolsLanguage.Visible := CShowToolsLanguagesMenuItem;
   mnuToolsStyle.Visible := CShowToolsStylesMenuItem;
