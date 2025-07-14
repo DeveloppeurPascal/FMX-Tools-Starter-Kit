@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-05-24T20:07:17.043+02:00
-  Signature : 0d204f80a9d9fa29ffb45b693f892765a05bcbca
+  File last update : 2025-07-14T16:42:30.000+02:00
+  Signature : 67b7e82feb8f9fef893052d23767a7843ebca25e
   ***************************************************************************
 *)
 
@@ -84,9 +84,5 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TfrmMain, frmMain);
-  Application.CreateForm(TdmStyleGoldenGraphite, dmStyleGoldenGraphite);
-  Application.CreateForm(TdmStyleTransparent, dmStyleTransparent);
-  Application.CreateForm(TdmStyleWin10ModernBlue, dmStyleWin10ModernBlue);
-  Application.CreateForm(TdmStyleCoralCrystal, dmStyleCoralCrystal);
   Application.Run;
 end.
