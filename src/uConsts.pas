@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-05-24T21:00:26.850+02:00
-  Signature : e28b9272af1785a3f27c601d3d42396e187e4727
+  File last update : 2025-07-14T16:39:10.000+02:00
+  Signature : e3e5961274dbba03ab06afdff216b231ca59912b
   ***************************************************************************
 *)
 
@@ -65,7 +65,7 @@ const
   /// <remarks>
   /// To update when you publish a new release of this project.
   /// </remarks>
-  CAboutVersionDate = '20250524';
+  CAboutVersionDate = '20250714';
 
   /// <summary>
   /// Title of your project used in the About box and as the main form caption
@@ -269,8 +269,11 @@ const
   /// <summary>
   /// What license manager is used by the starter kit in this project ?
   /// </summary>
+{$IFDEF RELEASE}
   CUsedLicenseManager = TLicenseManagers.None;
-
+{$ELSE}
+  CUsedLicenseManager = TLicenseManagers.None;
+{$ENDIF}
   { ****************************************************************************
     Program updates management settings
     ************************************************************************** }
@@ -299,8 +302,11 @@ const
   /// What system is used by the starter kit to detect and download new
   /// releases of this program ?
   /// </summary>
+{$IFDEF RELEASE}
   CUsedProgramUpdatesManager = TProgramUpdatesManagers.None;
-
+{$ELSE}
+  CUsedProgramUpdatesManager = TProgramUpdatesManagers.None;
+{$ENDIF}
   { ****************************************************************************
     Main menu options settings
     ************************************************************************** }
@@ -330,7 +336,7 @@ const
   /// Show (if true) / hide (if false) the Tool/Options menu item
   /// </summary>
   CShowToolsOptionsMenuItem = false;
-  // TODO -oDeveloppeurPascal : add a system to manage a Tools/Options dialog box
+  // TODO -oDeveloppeurPascal : add a system to manage a standard Tools/Options dialog box
 
   /// <summary>
   /// If the program has to manage documents (mode solo or multi), define if
@@ -342,7 +348,7 @@ const
   /// Show (if true) / hide (if false) the Project/Options menu item
   /// </summary>
   CShowDocumentOptionsMenuItem = false;
-  // TODO -oDeveloppeurPascal : add a system to manage a Document/Options dialog box
+  // TODO -oDeveloppeurPascal : add a system to manage a standard Document/Options dialog box
 
   /// <summary>
   /// Show the "File/Open recent" menu item
