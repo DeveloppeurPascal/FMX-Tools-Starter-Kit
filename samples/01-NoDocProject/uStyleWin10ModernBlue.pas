@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-05-24T20:07:17.052+02:00
-  Signature : d54de1b40bef1e68b418a60783698466f8ebdd6b
+  File last update : 2025-07-14T16:40:24.000+02:00
+  Signature : fa6da99103b8730b3eab785ca9eaab35de9ce9dd
   ***************************************************************************
 *)
 
@@ -53,9 +53,6 @@ type
     class function GetStyleName: string; override;
     class function GetStyleType: TProjectStyleType; override;
   end;
-
-var
-  dmStyleWin10ModernBlue: TdmStyleWin10ModernBlue;
 
 implementation
 

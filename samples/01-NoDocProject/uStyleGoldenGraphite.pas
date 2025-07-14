@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-05-24T20:07:17.052+02:00
-  Signature : 26540e3c12725892dc3f0ae1bd1523b19a4588cc
+  File last update : 2025-07-14T16:40:20.000+02:00
+  Signature : 11ffbde370ffe0314273a9b7f531101aac4f9d6f
   ***************************************************************************
 *)
 
@@ -53,9 +53,6 @@ type
     class function GetStyleName: string; override;
     class function GetStyleType: TProjectStyleType; override;
   end;
-
-var
-  dmStyleGoldenGraphite: TdmStyleGoldenGraphite;
 
 implementation
 

@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-05-24T20:07:17.052+02:00
-  Signature : c2b707a3d560a7dee65f73263b47b3123e67fd7d
+  File last update : 2025-07-14T16:40:16.000+02:00
+  Signature : b4259a5416bf369f98a331c04278dfdbe67a6c0e
   ***************************************************************************
 *)
 
@@ -53,9 +53,6 @@ type
     class function GetStyleType: TProjectStyleType; override;
     class function GetStyleName: string; override;
   end;
-
-var
-  dmStyleCoralCrystal: TdmStyleCoralCrystal;
 
 implementation
 
