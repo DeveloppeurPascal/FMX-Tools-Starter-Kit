@@ -29,8 +29,8 @@
   https://github.com/DeveloppeurPascal/FMX-Tools-Starter-Kit
 
   ***************************************************************************
-  File last update : 2025-07-14T16:55:12.000+02:00
-  Signature : d2ed30d0d226c924f3151d79df22995d678e5d89
+  File last update : 2025-07-14T17:10:26.000+02:00
+  Signature : 0359e6321c3da7cae48194dbadf81ee37e6a4975
   ***************************************************************************
 *)
 
@@ -564,8 +564,9 @@ begin
       result := CilTsegAPI.GetSoftwareLastRelease;
       try
         if result.Error then
-          ShowMessage('A technical problem prevents us from checking whether a '
-            + 'new version of the program is available. Please try again later or '
+          TDialogService.ShowMessage
+            ('A technical problem prevents us from checking whether a ' +
+            'new version of the program is available. Please try again later or '
             + 'contact the support if the problem persists.')
           // TODO : à traduire
         else
@@ -592,7 +593,8 @@ begin
                   url_Open_In_Browser(DownloadURL);
               end)
           else
-            ShowMessage('No new release available.'); // TODO : à traduire
+            TDialogService.ShowMessage('No new release available.');
+          // TODO : à traduire
         end;
       finally
         result.free;
@@ -973,7 +975,9 @@ end;
 procedure T__MainFormAncestor.RefreshMenuItemsVisibility(const Menu: TMainMenu);
 var
   i: integer;
-  MI : TMenuItem;
+{$IFDEF MACOS}
+  MI: TMenuItem;
+{$ENDIF}
 begin
 {$IF Defined(IOS) or Defined(ANDROID)}
   exit;
@@ -981,7 +985,7 @@ begin
 {$IFDEF MACOS}
   mnuFileQuit.Visible := false;
   mnuHelpAbout.Parent := mnuMacOS;
-  mnuHelpCheckForANewRelease.parent:=mnumacos;
+  mnuHelpCheckForANewRelease.Parent := mnuMacOS;
   MI := TMenuItem.Create(self);
   MI.Parent := mnuMacOS;
   MI.Text := '-';
